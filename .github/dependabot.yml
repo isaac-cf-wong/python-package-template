@@ -6,8 +6,8 @@ updates:
     interval: daily
     time: "13:00"
   open-pull-requests-limit: 10
-  reviewers:
-  - dciborow
+  # reviewers:
+  # - dciborow
   allow:
   - dependency-type: direct
   - dependency-type: indirect
