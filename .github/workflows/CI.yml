@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         python-version: ["3.9", "3.10", "3.11", "3.12"]
-    uses: microsoft/action-python/.github/workflows/validation.yml@0.6.4
+    uses: microsoft/action-python/.github/workflows/validation.yml@0.7.3
     with:
       workdir: '.'
       python-version: ${{ matrix.python-version }}
