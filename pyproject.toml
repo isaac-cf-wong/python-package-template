@@ -57,7 +57,7 @@ Documentation = "https://github.com/isaac-cf-wong/python-package-template/tree/m
 Source = "https://github.com/isaac-cf-wong/python-package-template"
 Tracker = "https://github.com/isaac-cf-wong/python-package-template/issues"
 Home = "https://github.com/isaac-cf-wong/python-package-template"
-"Release Notes": "https://github.com/isaac-cf-wong/python-package-template/releases"
+"Release Notes" = "https://github.com/isaac-cf-wong/python-package-template/releases"
 
 [tool.flit.module]
 name = "package_name"
