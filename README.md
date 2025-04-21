@@ -1,5 +1,37 @@
 # Python Project Template
 
+<!--
+- PyPI version
+    - Update package_name to the name of the package.
+- License: MIT
+    - Update the License if it is not MIT.
+- Build
+    - Update username
+    - Update package_name
+- codecov (If you would like to use codecov to track the coverage of unit test)
+    - Update username
+    - Update package_name
+- Python Version
+    - Update package_name
+- Documentation Status (The badge always displays online. You may switch to dynamic badge that provides the real-time monitoring service)
+    - Update username
+    - Update package_name
+- DOI (Issue a persistent identifier for your repository with Zenodo. This also allows people to cite your package in their publications. Guideline: https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content)
+    - Update ID
+    - Update DOI
+
+Remove the comment when all are done.
+-->
+
+[![PyPI version](https://badge.fury.io/py/package_name.svg)](https://pypi.org/project/package_name/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Build](https://img.shields.io/github/actions/workflow/status/username/package_name/CI.yml?branch=main)](https://github.com/username/package_name/actions)
+[![codecov](https://codecov.io/gh/username/package_name/branch/main/graph/badge.svg)](https://codecov.io/gh/username/package_name)
+[![Python Version](https://img.shields.io/pypi/pyversions/package_name)](https://pypi.org/project/package_name/)
+[![Security: bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
+[![Documentation Status](https://img.shields.io/badge/documentation-online-brightgreen)](https://username.github.io/package_name/)
+[![DOI](https://zenodo.org/badge/ID.svg)](https://doi.org/DOI)
+
 This project is a template for creating Python projects that follows the Python Standards declared in PEP 621. It uses a pyproject.yaml file to configure the project and Flit to simplify the build process and publish to PyPI. Flit simplifies the build and packaging process for Python projects by eliminating the need for separate setup.py and setup.cfg files. With Flit, you can manage all relevant configurations within the pyproject.toml file, streamlining development and promoting maintainability by centralizing project metadata, dependencies, and build specifications in one place.
 
 ## Checklist
