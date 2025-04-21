@@ -1,6 +1,62 @@
 # Python Project Template
 
+<!--
+- PyPI version
+    - Update package_name to the name of the package.
+- License: MIT
+    - Update the License if it is not MIT.
+- Build
+    - Update username
+    - Update package_name
+- codecov (If you would like to use codecov to track the coverage of unit test)
+    - Update username
+    - Update package_name
+- Python Version
+    - Update package_name
+- Documentation Status (The badge always displays online. You may switch to dynamic badge that provides the real-time monitoring service)
+    - Update username
+    - Update package_name
+- DOI (Issue a persistent identifier for your repository with Zenodo. This also allows people to cite your package in their publications. Guideline: https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content)
+    - Update ID
+    - Update DOI
+
+Remove the comment when all are done.
+-->
+
+[![PyPI version](https://badge.fury.io/py/package_name.svg)](https://pypi.org/project/package_name/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Build](https://img.shields.io/github/actions/workflow/status/username/package_name/CI.yml?branch=main)](https://github.com/username/package_name/actions)
+[![codecov](https://codecov.io/gh/username/package_name/branch/main/graph/badge.svg)](https://codecov.io/gh/username/package_name)
+[![Python Version](https://img.shields.io/pypi/pyversions/package_name)](https://pypi.org/project/package_name/)
+[![Security: bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
+[![Documentation Status](https://img.shields.io/badge/documentation-online-brightgreen)](https://username.github.io/package_name/)
+[![DOI](https://zenodo.org/badge/ID.svg)](https://doi.org/DOI)
+
 This project is a template for creating Python projects that follows the Python Standards declared in PEP 621. It uses a pyproject.yaml file to configure the project and Flit to simplify the build process and publish to PyPI. Flit simplifies the build and packaging process for Python projects by eliminating the need for separate setup.py and setup.cfg files. With Flit, you can manage all relevant configurations within the pyproject.toml file, streamlining development and promoting maintainability by centralizing project metadata, dependencies, and build specifications in one place.
+
+## Checklist
+
+- [ ] Update the following entries in [pyproject.toml](pyproject.toml):
+  - [ ] [project]
+    - [ ] authors
+    - [ ] description
+  - [ ] [project.urls]
+    - [ ] Documentation
+    - [ ] Issues
+    - [ ] Tracker
+    - [ ] Home
+    - [ ] "Release Notes"
+  - [ ] [tool.flit.module]
+    - [ ] name
+- [ ] Update [CONTRIBUTING.md](CONTRIBUTING.md)
+- [ ] Update [LICENSE](LICENSE)
+- [ ] Update [SECURITY.md](SECURITY.md)
+- [ ] Set up `Discussions` for community support. Quickstart: https://docs.github.com/en/discussions/quickstart
+- [ ] Update [SUPPORT.md](SUPPORT.md)
+- [ ] When ready to publish the package to PyPI:
+  - [ ] Add API tokens for PyPI and Test PyPI to GitHub Action secrets.
+- [ ] When ready to publish documentation to GitHub Pages:
+  - [ ] Go to Settings → Pages and set the Source under Build and deployment to GitHub Actions.
 
 ## Project Organization
 
@@ -41,19 +97,23 @@ Pytest is a versatile testing framework for Python projects that simplifies test
 The pyproject.toml file plays an essential role in configuring pytest for your project. It includes various test markers, such as integration, notebooks, gpu, spark, slow, and unit, which are used during testing. It also specifies options for generating test coverage reports, setting the Python path, and outputting test results in the xunit2 format. You can easily modify the pyproject.toml file to customize pytest for your project's specific needs.
 
 ##### pylint
+
 Pylint is a versatile Python linter and static analysis tool that identifies errors and style issues in your code. It generates an in-depth report, presenting errors, warnings, and conventions found in the codebase. Pylint configurations are centralized in the pyproject.toml file, covering extension management, warning suppression, output formatting, and code style settings such as maximum function arguments and class attributes. The unique scoring system provided by Pylint helps developers assess and maintain code quality, ensuring a focus on readability and maintainability throughout the project's development.
 
 ##### pyright
+
 Pyright is a static type checker for Python that uses type annotations to analyze your code and catch type-related errors. It is capable of analyzing Python code that uses type annotations as well as code that uses docstrings to specify types.
 
 The pyproject.toml file contains configurations for Pyright, such as the directories to include or exclude from analysis, the virtual environment to use, and various settings for reporting missing imports and type stubs. By using Pyright, you can catch errors related to type mismatches before they even occur, which can save you time and improve the quality of your code.
 
 ##### flake8
+
 Flake8 is a code linter for Python that checks your code for style and syntax issues. It checks your code for PEP 8 style guide violations, syntax errors, and more.
 
 The pyproject.toml file contains configurations for Flake8, such as the maximum line length, which errors to ignore, and which style guide to follow. By using Flake8, you can ensure that your code follows the recommended style guide and catch syntax errors before they cause problems.
 
 ##### tox
+
 In our repository, we use Tox to automate testing and building our Python package across various environments and versions. Configured through the pyproject.toml file, Tox is set up with four testing environments: py, integration, spark, and all. Each environment targets specific test categories or runs all tests together, ensuring compatibility and functionality in different scenarios.
 
 The [tool.tox] section in the pyproject.toml file contains the Tox configuration details, including the legacy_tox_ini attribute. Our setup outlines the dependencies needed for each environment, as well as the test runner (e.g., pytest) and any associated commands. This ensures consistent test execution across all environments.
@@ -61,7 +121,9 @@ The [tool.tox] section in the pyproject.toml file contains the Tox configuration
 Tox helps us efficiently automate testing and building processes, maintaining the reliability and functionality of our Python package across a wide range of environments. By identifying potential compatibility issues early in the development process, we improve the quality and usability of our package. Our Tox configuration streamlines the development workflow, promoting code quality and consistency throughout the project.
 
 ### Development
+
 #### Codespaces
+
 In our project, we use GitHub Codespaces to simplify development and enhance collaboration. Codespaces provides a consistent, cloud-based workspace accessible from any device with a web browser, eliminating the need for local software installations. Our configuration automatically sets up required dependencies and development tools, while customizable workspaces and seamless GitHub integration streamline the development process and improve teamwork.
 
 When you create a Codespace from a template repository, you initially work within the browser version of Visual Studio Code. Or, connect your local VS Code to a remote Codespace and enjoy seamless development without the hassle of local software installations. GitHub now supports this fantastic feature, making it a breeze to work on projects from any device.
@@ -71,6 +133,7 @@ To get started, simply set the desktop version of Visual Studio Code as your def
 GitHub Codespaces also supports Settings Sync, a feature that synchronizes extensions, settings, and preferences across multiple devices and instances of Visual Studio Code. Whether Settings Sync is enabled by default in a Codespace depends on your pre-existing settings and whether you access the Codespace via the browser or the desktop application. With Settings Sync, you can ensure a consistent development experience across devices, making it even more convenient to work on your projects within GitHub Codespaces.
 
 #### Devcontainer
+
 Dev Containers in Visual Studio Code allows you to use a Docker container as a complete development environment, opening any folder or repository inside a container and taking advantage of all of VS Code's features. A devcontainer.json file in your project describes how VS Code should access or create a development container with a well-defined tool and runtime stack. You can use an image as a starting point for your devcontainer.json. An image is like a mini-disk drive with various tools and an operating system pre-installed. You can pull images from a container registry, which is a collection of repositories that store images.
 
 Creating a dev container in VS Code involves creating a devcontainer.json file that specifies how VS Code should start the container and what actions to take after it connects. You can customize the dev container by using a Dockerfile to install new software or make other changes that persist across sessions. Additional dev container configuration is also possible, including installing additional tools, automatically installing extensions, forwarding or publishing additional ports, setting runtime arguments, reusing or extending your existing Docker Compose setup, and adding more advanced container configuration.
@@ -82,6 +145,7 @@ When editing the contents of the .devcontainer folder, you'll need to rebuild fo
 You can also use a Dockerfile to automate dev container creation. In your Dockerfile, use FROM to designate the image, and the RUN instruction to install any software. You can use && to string together multiple commands. If you don't want to create a devcontainer.json by hand, you can select the Dev Containers: Add Dev Container Configuration Files... command from the Command Palette (F1) to add the needed files to your project as a starting point, which you can further customize for your needs.
 
 #### Setup
+
 This project includes three files in the .devcontainer and .vscode directories that enable you to use GitHub Codespaces or Docker and VSCode locally to set up an environment that includes all the necessary extensions and tools for Python development.
 
 The Dockerfile specifies the base image and dependencies needed for the development container. The Dockerfile installs the necessary dependencies for the development container, including Python 3 and flit, a tool used to build and publish Python packages. It sets an environment variable to indicate that flit should be installed globally. It then copies the pyproject.toml file into the container and creates an empty README.md file. It creates a directory src/python_package and installs only the development dependencies using flit. Finally, it removes unnecessary files, including the pyproject.toml, README.md, and src directory.
@@ -93,7 +157,3 @@ The settings.json file is where we can customize various project-specific settin
 ## Getting Started
 
 To get started with this template, simply 'Use This Template' to create a new repository and start building your project within the `src` directory. Try to open the project in GitHub Codespace, and to run the unit tests using the VS Code Test extension.
-
-## Contributing
-
-This project welcomes contributions and suggestions. For details, visit the repository's [Contributor License Agreement (CLA)](https://cla.opensource.microsoft.com) and [Code of Conduct](https://opensource.microsoft.com/codeofconduct/) pages.

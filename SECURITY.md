@@ -1,41 +1,72 @@
-<!-- BEGIN MICROSOFT SECURITY.MD V0.0.5 BLOCK -->
+# Security Policy
 
-## Security
+<!--
+Update `package_name` to the name of the package.
 
-Microsoft takes the security of our software products and services seriously, which includes all source code repositories managed through our GitHub organizations, which include [Microsoft](https://github.com/Microsoft), [Azure](https://github.com/Azure), [DotNet](https://github.com/dotnet), [AspNet](https://github.com/aspnet), [Xamarin](https://github.com/xamarin), and [our GitHub organizations](https://opensource.microsoft.com/).
+Remove the comment when this is done.
+-->
 
-If you believe you have found a security vulnerability in any Microsoft-owned repository that meets [Microsoft's definition of a security vulnerability](https://docs.microsoft.com/en-us/previous-versions/tn-archive/cc751383(v=technet.10)), please report it to us as described below.
+We will support the latest stable release of `package_name`. Please make sure you are using the most recent version before reporting a security issue.
 
-## Reporting Security Issues
+<!--
+State the versions that you provide supports.
 
-**Please do not report security vulnerabilities through public GitHub issues.**
+Remove the comment when this is done.
+-->
 
-Instead, please report them to the Microsoft Security Response Center (MSRC) at [https://msrc.microsoft.com/create-report](https://msrc.microsoft.com/create-report).
+| Version | Supported |
+| ------- | --------- |
+| 0.1.x   | ✅        |
+| < 0.1   | ❌        |
 
-If you prefer to submit without logging in, send email to [secure@microsoft.com](mailto:secure@microsoft.com).  If possible, encrypt your message with our PGP key; please download it from the [Microsoft Security Response Center PGP Key page](https://www.microsoft.com/en-us/msrc/pgp-key-msrc).
+## Reporting a Vulnerability
 
-You should receive a response within 24 hours. If for some reason you do not, please follow up via email to ensure we received your original message. Additional information can be found at [microsoft.com/msrc](https://www.microsoft.com/msrc).
+<!--
+Update `package_name` to the name of the package.
 
-Please include the requested information listed below (as much as you can provide) to help us better understand the nature and scope of the possible issue:
+Remove the comment when this is done.
+-->
 
-  * Type of issue (e.g. buffer overflow, SQL injection, cross-site scripting, etc.)
-  * Full paths of source file(s) related to the manifestation of the issue
-  * The location of the affected source code (tag/branch/commit or direct URL)
-  * Any special configuration required to reproduce the issue
-  * Step-by-step instructions to reproduce the issue
-  * Proof-of-concept or exploit code (if possible)
-  * Impact of the issue, including how an attacker might exploit the issue
+If you discover a security vulnerability in `package_name`, we encourage you to report it responsibly.
 
-This information will help us triage your report more quickly.
+**Please do not open a public issue.** Instead, contact us directly via email:
 
-If you are reporting for a bug bounty, more complete reports can contribute to a higher bounty award. Please visit our [Microsoft Bug Bounty Program](https://microsoft.com/msrc/bounty) page for more details about our active programs.
+<!--
+Update the email.
 
-## Preferred Languages
+Remove the comment when this is done.
+-->
 
-We prefer all communications to be in English.
+📧 [support.contact@email.com](mailto:support.contact@email.com)
 
-## Policy
+Include as much information as possible to help us understand and reproduce the issue quickly and accurately:
 
-Microsoft follows the principle of [Coordinated Vulnerability Disclosure](https://www.microsoft.com/en-us/msrc/cvd).
+- Description of the vulnerability
+- Steps to reproduce
+- Affected versions
+- Your operating system and Python version
 
-<!-- END MICROSOFT SECURITY.MD BLOCK -->
+<!--
+Make sure the `3-5 business days` is a reasonable timeline to promise.
+
+Remove the comment when this is done.
+-->
+
+We aim to respond to all security-related emails within **3–5 business days**.
+
+## Responsible Disclosure Process
+
+1. Submit the vulnerability report via email (see above).
+2. We will acknowledge receipt and begin investigation.
+3. We will work on a fix and prepare a patch release.
+4. Once the issue is resolved, we will publish an advisory and credit you (if desired).
+
+## Thanks
+
+<!--
+Update `package_name` to the name of the package.
+
+Remove the comment when this is done.
+-->
+
+We value the security of our users and appreciate responsible disclosures. Thank you for helping make `package_name` better and safer!

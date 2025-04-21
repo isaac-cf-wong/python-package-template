@@ -1,5 +1,5 @@
 files:
-  - ".gitignore"  # include
+  - ".gitignore" # include
   - ".github"
   - ".vscode"
   - "tests/conftest.py"
@@ -7,8 +7,8 @@ files:
   - ".pre-commit-config.yml"
   - ".pypirc"
   - "docs"
-  - "src/README.md"
   - "CODE_OF_CONDUCT.md"
+  - "CONTRIBUTING.md"
   - "LICENSE"
   - "README.md"
   - "SECURITY.md"
