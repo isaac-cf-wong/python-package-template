@@ -1,25 +1,60 @@
-# TODO: The maintainer of this repo has not yet edited this file
-
-**REPO OWNER**: Do you want Customer Service & Support (CSS) support for this product/project?
-
-- **No CSS support:** Fill out this template with information about how to file issues and get help.
-- **Yes CSS support:** Fill out an intake form at [aka.ms/spot](https://aka.ms/spot). CSS will work with/help you to determine next steps. More details also available at [aka.ms/onboardsupport](https://aka.ms/onboardsupport).
-- **Not sure?** Fill out a SPOT intake as though the answer were "Yes". CSS will help you decide.
-
-*Then remove this first heading from this SUPPORT.MD file before publishing your repo.*
-
 # Support
 
-## How to file issues and get help
+<!--
+Update `package name` to the name of the package.
 
-This project uses GitHub Issues to track bugs and feature requests. Please search the existing
-issues before filing new issues to avoid duplicates.  For new issues, file your bug or
-feature request as a new Issue.
+Remove the comment when this is done.
+-->
 
-For help and questions about using this project, please **REPO MAINTAINER: INSERT INSTRUCTIONS HERE
-FOR HOW TO ENGAGE REPO OWNERS OR COMMUNITY FOR HELP. COULD BE A STACK OVERFLOW TAG OR OTHER
-CHANNEL. WHERE WILL YOU HELP PEOPLE?**.
+Thank you for your interest in **package name**!
 
-## Microsoft Support Policy
+If you have questions, suggestions, or need help using the project, here are some ways to get support:
 
-Support for this **PROJECT or PRODUCT** is limited to the resources listed above.
+## 💬 Ask a Question
+
+<!--
+- Update the link to Discussion.
+    - Update `username` to the user name or organization.
+    - Update `package_name` to the name of the package.
+- Update the link to Issue.
+    - Update `username` to the user name or organization.
+    - Update `package_name` to the name of the package.
+
+Remove the comment when this is done.
+-->
+
+If you're experiencing a problem or have a question about how to use `package name`, please open a [GitHub Discussion](https://github.com/username/package_name/discussions) or [Issue](https://github.com/username/package_name/issues), depending on the nature of your question.
+
+- Use **Discussions** for general questions, ideas, or usage help.
+- Use **Issues** for reporting bugs or requesting new features.
+
+## 🐛 Found a Bug?
+
+<!--
+- Update the link to Issue.
+    - Update `username` to the user name or organization.
+    - Update `package_name` to the name of the package.
+
+Remove the comment when this is done.
+-->
+
+Please check if your issue has already been reported. If not, create a [new issue](https://github.com/username/package_name/issues/new/choose) with:
+
+<!--
+Update `package_name` to the name of the package.
+
+Remove the comment when this is done.
+-->
+
+- A clear and descriptive title.
+- Steps to reproduce the problem.
+- Relevant logs or error messages.
+- The version of Python and `package_name` you're using.
+
+## 🙋 Want to Contribute?
+
+Contributions are welcome! Please check out the [Contributing Guide](CONTRIBUTING.md) and our [Code of Conduct](CODE_OF_CONDUCT.md) to get started.
+
+---
+
+We appreciate your support and interest in the project!
