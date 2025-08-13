@@ -54,6 +54,8 @@ repos:
       - id: cspell
         name: check commit message spelling
         args:
+          - --config
+          - .vscode/cspell.json
           - --no-must-find-files
           - --no-progress
           - --no-summary
