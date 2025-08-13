@@ -321,3 +321,30 @@ overgeneral-exceptions= [
     "BaseException",
     "Exception"
 ]
+
+[tool.ruff]
+line-length = 120  # Matches Black's default
+target-version = "py37"  # Matches pyupgrade --py37-plus
+extend-select = [
+  "E", "F", "W",  # pycodestyle errors and warnings
+  "I",  # isort rules
+  "UP",  # pyupgrade rules
+  "C90",  # McCabe complexity
+  "N",  # PEP8 naming
+  "B",  # Bugbear (opinionated checks)
+  "A",  # Flake8-builtins
+  "C4",  # Flake8-comprehensions
+  "PT",  # Flake8-pytest
+  "RUF",  # Ruff-specific rules
+]
+ignore = [
+  "E501",  # Line length (handled by formatter)
+  "C901",  # Disable overly strict complexity checks (optional, adjust as needed)
+]
+fix = true  # Enable autofix
+unfixable = []  # List rules that should not be autofixed, if any
+
+[tool.ruff.format]
+quote-style = "double"  # Use double quotes for strings
+indent-style = "space"  # Use spaces for indentation
+docstring-code-format = true  # Format code in docstrings
