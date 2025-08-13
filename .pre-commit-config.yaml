@@ -4,7 +4,7 @@ ci:
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.1.0
+    rev: v6.0.0
     hooks:
       - id: check-added-large-files
       - id: check-case-conflict
@@ -17,44 +17,64 @@ repos:
       - id: requirements-txt-fixer
       - id: trailing-whitespace
 
-  - repo: https://github.com/PyCQA/isort
-    rev: 5.12.0
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.12.8
     hooks:
-      - id: isort
-        args: ["-a", "from __future__ import annotations"]
+      - id: ruff
+        args: [--fix, --config=pyproject.toml]
 
-  - repo: https://github.com/asottile/pyupgrade
-    rev: v2.31.0
+  - repo: https://github.com/psf/black
+    rev: 25.1.0 # Matches pyproject.toml
     hooks:
-      - id: pyupgrade
-        args: [--py37-plus]
-
-  - repo: https://github.com/hadialqattan/pycln
-    rev: v1.2.5
-    hooks:
-      - id: pycln
+      - id: black
         args: [--config=pyproject.toml]
-        stages: [manual]
+
+  - repo: https://github.com/PyCQA/pylint
+    rev: v3.3.8
+    hooks:
+      - id: pylint
+        args: [--rcfile=pyproject.toml]
+        additional_dependencies:
+          - numpy
+          - torch
+          - pyodbc
+          - pydantic
+          - ciso8601
+          - netcdf4
+          - scipy
+          - pyspark>=3.5.3
 
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.1.0
+    rev: v2.4.1
     hooks:
       - id: codespell
+        name: codespell
+        description: Checks for common misspellings in code and documentation
+        entry: codespell
+        language: python
+        types: [text]
+      - id: codespell
+        name: codespell-commit-msg
+        description: Checks commit messages for common misspellings
+        args:
+          - .git/COMMIT_EDITMSG
+        entry: codespell
+        stages: [commit-msg]
+        always_run: true
 
   - repo: https://github.com/pre-commit/pygrep-hooks
-    rev: v1.9.0
+    rev: v1.10.0
     hooks:
       - id: python-check-blanket-noqa
       - id: python-check-blanket-type-ignore
       - id: python-no-log-warn
       - id: python-no-eval
-      - id: python-use-type-annotations
       - id: rst-backticks
       - id: rst-directive-colons
       - id: rst-inline-touching-normal
 
   - repo: https://github.com/mgedmin/check-manifest
-    rev: "0.47"
+    rev: "0.50"
     hooks:
       - id: check-manifest
         stages: [manual]
