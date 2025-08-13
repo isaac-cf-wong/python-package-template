@@ -48,11 +48,11 @@ repos:
     rev: v9.1.1 # Keep this version or update to the latest stable
     hooks:
       - id: cspell
-        name: Check spelling in Markdown and TeX files
+        name: Check spelling in Python, reSt, and Markdown files.
         args: ["--config", ".vscode/cspell.json"]
-        files: ^.*\.(py|md)$
+        files: ^.*\.(py|rst|md)$
       - id: cspell
-        name: check commit message spelling
+        name: Check commit message spelling.
         args:
           - --config
           - .vscode/cspell.json
