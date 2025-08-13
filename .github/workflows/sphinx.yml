@@ -1,10 +1,17 @@
-# name: Deploy Sphinx documentation to Pages
+name: Deploy Sphinx documentation to Pages
 
-# on:
-#   push:
-#     branches: [main] # branch to trigger deployment
+on:
+  push:
+    branches: [main] # branch to trigger deployment
 
-# jobs:
+jobs:
+  # This is a placeholder to silence complaints about an empty workflow file.
+  # Please remove it for your python package.
+  placeholder:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Do nothing
+        run: echo "Placeholder workflow - no actions performed"
 #   pages:
 #     runs-on: ubuntu-latest
 #     environment:
