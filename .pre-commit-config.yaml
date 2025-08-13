@@ -44,21 +44,21 @@ repos:
           - scipy
           - pyspark>=3.5.3
 
-  - repo: https://github.com/codespell-project/codespell
-    rev: v2.4.1
+  - repo: https://github.com/streetsidesoftware/cspell-cli
+    rev: v9.1.1 # Keep this version or update to the latest stable
     hooks:
-      - id: codespell
-        name: codespell
-        description: Checks for common misspellings in code and documentation
-        entry: codespell
-        language: python
-        types: [text]
-      - id: codespell
-        name: codespell-commit-msg
-        description: Checks commit messages for common misspellings
+      - id: cspell
+        name: Check spelling in Markdown and TeX files
+        args: ["--config", ".vscode/cspell.json"]
+        files: ^.*\.(py|md)$
+      - id: cspell
+        name: check commit message spelling
         args:
+          - --no-must-find-files
+          - --no-progress
+          - --no-summary
+          - --files
           - .git/COMMIT_EDITMSG
-        entry: codespell
         stages: [commit-msg]
         always_run: true
 
