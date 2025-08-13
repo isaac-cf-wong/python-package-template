@@ -1,6 +1,6 @@
 [build-system]
-requires = ["flit_core >=2,<4"]
-build-backend = "flit_core.buildapi"
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
 
 [project]
 name =  "package_name"
@@ -59,8 +59,11 @@ Tracker = "https://github.com/isaac-cf-wong/python-package-template/issues"
 Home = "https://github.com/isaac-cf-wong/python-package-template"
 "Release Notes" = "https://github.com/isaac-cf-wong/python-package-template/releases"
 
-[tool.flit.module]
-name = "package_name"
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/package_name"]
 
 [tool.bandit]
 exclude_dirs = ["build","dist","tests","scripts"]
@@ -318,6 +321,33 @@ deprecated-modules="optparse,tkinter.tix"
 
 [tool.pylint.'EXCEPTIONS']
 overgeneral-exceptions= [
-    "BaseException",
-    "Exception"
+    "builtins.BaseException",
+    "builtins.Exception"
 ]
+
+[tool.ruff]
+line-length = 120  # Matches Black's default
+target-version = "py39" # Align with CI (3.9–3.12) and requires-python (>=3.8.1)
+lint.extend-select = [
+  "E", "F", "W",  # pycodestyle errors and warnings
+  "I",  # isort rules
+  "UP",  # pyupgrade rules
+  "C90",  # McCabe complexity
+  "N",  # PEP8 naming
+  "B",  # Bugbear (opinionated checks)
+  "A",  # Flake8-builtins
+  "C4",  # Flake8-comprehensions
+  "PT",  # Flake8-pytest
+  "RUF",  # Ruff-specific rules
+]
+lint.ignore = [
+  "E501",  # Line length (handled by formatter)
+  "C901",  # Disable overly strict complexity checks (optional, adjust as needed)
+]
+fix = true  # Enable autofix
+lint.unfixable = []  # List rules that should not be autofixed, if any
+
+[tool.ruff.format]
+quote-style = "double"  # Use double quotes for strings
+indent-style = "space"  # Use spaces for indentation
+docstring-code-format = true  # Format code in docstrings

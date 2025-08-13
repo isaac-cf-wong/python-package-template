@@ -5,14 +5,21 @@ on:
     branches: [main] # branch to trigger deployment
 
 jobs:
-  pages:
+  # This is a placeholder to silence complaints about an empty workflow file.
+  # Please remove it for your python package.
+  placeholder:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      # url: ${{ steps.deployment.outputs.page_url }}
-    permissions:
-      pages: write
-      id-token: write
     steps:
-      - id: deployment
-        uses: sphinx-notes/pages@3.4
+      - name: Do nothing
+        run: echo "Placeholder workflow - no actions performed"
+#   pages:
+#     runs-on: ubuntu-latest
+#     environment:
+#       name: github-pages
+#       # url: ${{ steps.deployment.outputs.page_url }}
+#     permissions:
+#       pages: write
+#       id-token: write
+#     steps:
+#       - id: deployment
+#         uses: sphinx-notes/pages@3.4
