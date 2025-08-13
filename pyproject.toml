@@ -327,7 +327,7 @@ overgeneral-exceptions= [
 
 [tool.ruff]
 line-length = 120  # Matches Black's default
-target-version = "py37"  # Matches pyupgrade --py37-plus
+target-version = "py39" # Align with CI (3.9–3.12) and requires-python (>=3.8.1)
 lint.extend-select = [
   "E", "F", "W",  # pycodestyle errors and warnings
   "I",  # isort rules
