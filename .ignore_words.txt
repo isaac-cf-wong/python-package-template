@@ -5,6 +5,7 @@ asdict
 autoupdate
 buildapi
 Cabe
+capsys
 cff
 ciso
 classmethod

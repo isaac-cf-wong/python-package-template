@@ -1,32 +1,30 @@
-#   ---------------------------------------------------------------------------------
-#   Copyright (c) Microsoft Corporation. All rights reserved.
-#   Licensed under the MIT License. See LICENSE in project root for information.
-#   ---------------------------------------------------------------------------------
-"""This is a sample python file for testing functions from the source code."""
+"""Sample tests for hello_world module."""
+
 from __future__ import annotations
 
-from package_name.hello_world import hello_world
+from python_package_template.hello_world import good_night, hello_goodbye, hello_world
 
 
-def hello_test():
+def test_hello_world(capsys, some_integer: int):
     """
-    This defines the expected usage, which can then be used in various test cases.
-    Pytest will not execute this code directly, since the function does not contain the suffix "test"
+    Test hello_world function.
+    It uses the some_integer fixture defined in conftest.py.
+
+    Args:
+        capsys: Pytest fixture to capture stdout and stderr.
+        some_integer: An integer input from fixture.
     """
-    hello_world()
+    assert hello_world(some_integer) == f"string-{some_integer}"
+    assert capsys.readouterr().out == "hello world\n"
 
 
-def test_hello(unit_test_mocks: None):
-    """
-    This is a simple test, which can use a mock to override online functionality.
-    unit_test_mocks: Fixture located in conftest.py, implicitly imported via pytest.
-    """
-    hello_test()
+def test_good_night(capsys):
+    assert good_night() == "string"
+    captured = capsys.readouterr()
+    assert captured.out == "good night\n"
 
 
-def test_int_hello():
-    """
-    This test is marked implicitly as an integration test because the name contains "_init_"
-    https://docs.pytest.org/en/6.2.x/example/markers.html#automatically-adding-markers-based-on-test-names
-    """
-    hello_test()
+def test_hello_goodbye(capsys):
+    hello_goodbye()
+    captured = capsys.readouterr()
+    assert captured.out == "hello world\ngood night\n"
