@@ -10,6 +10,7 @@ cff
 ciso
 classmethod
 codespell
+commitlint
 conftest
 contextlib
 contextmanager
