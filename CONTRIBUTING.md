@@ -1,16 +1,4 @@
-<!--
-Update `package_name` to the name of the package.
-
-Remove the comment when this is done.
--->
-
-# Contributing to package name
-
-<!--
-Update `package_name` to the name of the package.
-
-Remove the comment when this is done.
--->
+# Contributing to package_name
 
 🎉 Thank you for your interest in contributing to `package_name`!
 Your ideas, fixes, and improvements are welcome and appreciated.
@@ -21,26 +9,10 @@ Whether you’re fixing a typo, reporting a bug, suggesting a feature, or submit
 
 1. Open an Issue
 
-<!--
-- Update the link to Issue.
-    - Update `username` to the user name or organization.
-    - Update `package_name` to the name of the package.
-
-Remove the comment when this is done.
--->
-
-- Have a question, bug report, or feature suggestion? [Open an issue](https://github.com/username/package_name/issues/new/choose) and describe your idea clearly.
+- Have a question, bug report, or feature suggestion? [Open an issue](https://github.com/isaac-cf-wong/python-package-template/issues/new/choose) and describe your idea clearly.
 - Check for existing issues before opening a new one.
 
 2. Fork and Clone the Repository
-
-<!--
-- Update the link to Issue.
-    - Update `username` to the user name or organization.
-    - Update `package_name` to the name of the package.
-
-Remove the comment when this is done.
--->
 
 ```shell
 git clone git@github.com:<username>/package_name.git
@@ -49,11 +21,17 @@ cd package_name
 
 3. Set Up Your Environment
 
-We recommend using a virtual environment:
+We recommend using uv to manage virtual environments for installing `package_name`.
+If you don't have uv installed, you can install it with pip. See the project pages for more details:
+
+- Install via pip: `pip install --upgrade pip && pip install uv`
+- Project pages: [uv on PyPI](https://pypi.org/project/uv/) | [uv on GitHub](https://github.com/astral-sh/uv)
+- Full documentation and usage guide: [uv docs](https://docs.astral.sh/uv/)
 
 ```shell
-python -m venv venv
-source venv/bin/activate  # on Windows: venv\Scripts\activate
+# Create a virtual environment (recommended with uv)
+uv venv --python 3.10
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install -e ".[dev]"
 ```
 
@@ -99,22 +77,10 @@ The pull request titles should match the [Conventional Commits spec](https://www
 
 ## 📜 Licensing
 
-<!--
-Update the statement if a different license is used.
-
-Remove the comment when this is done.
--->
-
 By contributing, you agree that your contributions will be licensed under the project’s MIT License.
 
 ---
 
-<!--
-Update package_name to the name of the package.
-
-Remove the comment when this is done.
--->
-
-Thanks again for being part of the package_name community!
+Thanks again for being part of the `package_name` community!
 
 ---
