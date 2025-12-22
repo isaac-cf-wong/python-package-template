@@ -1,6 +1,6 @@
 # Security Policy
 
-We will support the latest stable release of `package_name`. Please ensure you are using the most recent version before reporting a security issue.
+We will support the latest stable release of `python-package-template`. Please ensure you are using the most recent version before reporting a security issue.
 
 | Version | Supported |
 | ------- | --------- |
@@ -9,7 +9,7 @@ We will support the latest stable release of `package_name`. Please ensure you a
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability in `package_name`, we encourage you to report it responsibly.
+If you discover a security vulnerability in `python-package-template`, we encourage you to report it responsibly.
 
 **Please do not open a public issue.** Instead, contact us directly via email:
 
@@ -33,4 +33,4 @@ We aim to respond to all security-related emails within **3–5 business days**.
 
 ## Thanks
 
-We value the security of our users and appreciate responsible disclosures. Thank you for helping make `package_name` better and safer!
+We value the security of our users and appreciate responsible disclosures. Thank you for helping make `python-package-template` better and safer!
