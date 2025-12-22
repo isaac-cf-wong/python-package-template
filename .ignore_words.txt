@@ -5,6 +5,7 @@ asdict
 autoupdate
 buildapi
 Cabe
+cff
 ciso
 classmethod
 codespell
