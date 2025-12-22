@@ -130,3 +130,7 @@ dmypy.json
 
 # Mac metadata files
 .DS_Store
+
+# Node.js
+node_modules/
+package-lock.json
