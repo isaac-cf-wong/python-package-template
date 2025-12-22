@@ -7,7 +7,7 @@
 [![Python Versions](https://img.shields.io/pypi/pyversions/python-package-template)](https://pypi.org/project/python-package-template/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Security: bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
-[![DOI](https://zenodo.org/badge/DOI.svg)](https://doi.org/10.5281/zenodo.DOI)
+[![DOI](https://zenodo.org/badge/924023559.svg)](https://doi.org/10.5281/zenodo.18017404)
 
 This project is a template for creating Python packages with a standardized structure and configuration. It includes the configurations for various development tools such as linters, formatters, type checkers, and test runners.
 

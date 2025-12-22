@@ -13,6 +13,7 @@ contextlib
 contextmanager
 dbutils
 docstrings
+DOI
 EDITMSG
 envlist
 envpython
