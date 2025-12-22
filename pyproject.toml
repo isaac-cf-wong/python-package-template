@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "python_package_template"
 authors = [{ name = "Isaac C. F. Wong", email = "isaac.cf.wong@gmail.com" }]
-description = "Sample Python Project for creating a new Python Module"
+description = "A GitHub template repository for a Python package"
 readme = "README.md"
 classifiers = [
     "Development Status :: 3 - Alpha",
