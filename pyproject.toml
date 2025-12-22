@@ -56,7 +56,7 @@ docs = [
 python_package_template = "python_package_template.cli.main:app"
 
 [project.urls]
-Documentation = "https://isaac-cf-wong.github.io/python_package_template"
+Documentation = "https://isaac-cf-wong.github.io/python-package-template"
 Source = "https://github.com/isaac-cf-wong/python-package-template"
 Tracker = "https://github.com/isaac-cf-wong/python-package-template/issues"
 Home = "https://github.com/isaac-cf-wong/python-package-template"
