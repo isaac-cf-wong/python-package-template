@@ -49,13 +49,13 @@ repos:
     hooks:
       - id: cspell
         name: Check spelling in Python, reSt, and Markdown files.
-        args: ["--config", ".vscode/cspell.json"]
+        args: ["--config", "cspell.json"]
         files: ^.*\.(py|rst|md)$
       - id: cspell
         name: Check commit message spelling.
         args:
           - --config
-          - .vscode/cspell.json
+          - cspell.json
           - --no-must-find-files
           - --no-progress
           - --no-summary
