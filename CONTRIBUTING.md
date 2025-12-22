@@ -1,6 +1,6 @@
-# Contributing to package_name
+# Contributing to python-package-template
 
-🎉 Thank you for your interest in contributing to `package_name`!
+🎉 Thank you for your interest in contributing to `python-package-template`!
 Your ideas, fixes, and improvements are welcome and appreciated.
 
 Whether you’re fixing a typo, reporting a bug, suggesting a feature, or submitting a pull request—this guide will help you get started.
@@ -15,13 +15,13 @@ Whether you’re fixing a typo, reporting a bug, suggesting a feature, or submit
 2. Fork and Clone the Repository
 
 ```shell
-git clone git@github.com:<username>/package_name.git
-cd package_name
+git clone git@github.com:<username>/python-package-template.git
+cd python-package-template
 ```
 
 3. Set Up Your Environment
 
-We recommend using uv to manage virtual environments for installing `package_name`.
+We recommend using uv to manage virtual environments for installing `python-package-template`.
 If you don't have uv installed, you can install it with pip. See the project pages for more details:
 
 - Install via pip: `pip install --upgrade pip && pip install uv`
@@ -81,6 +81,6 @@ By contributing, you agree that your contributions will be licensed under the pr
 
 ---
 
-Thanks again for being part of the `package_name` community!
+Thanks again for being part of the `python-package-template` community!
 
 ---
