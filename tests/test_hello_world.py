@@ -2,10 +2,24 @@
 
 from __future__ import annotations
 
-from python_package_template.hello_world import good_night, hello_goodbye, hello_world
+from python_package_template.hello_world import good_night, hello_goodbye, hello_world, say_hello
 
 
-def test_hello_world(capsys, some_integer: int):
+def test_say_hello(capsys, some_name):
+    """
+    Test say_hello function.
+    It uses the some_name fixture defined in conftest.py.
+
+    Args:
+        capsys: Pytest fixture to capture stdout and stderr.
+        some_name: A string input from fixture.
+    """
+    say_hello(some_name)
+    captured = capsys.readouterr()
+    assert captured.out == f"Hello, {some_name}!\n"
+
+
+def test_hello_world(capsys):
     """
     Test hello_world function.
     It uses the some_integer fixture defined in conftest.py.
@@ -14,17 +28,18 @@ def test_hello_world(capsys, some_integer: int):
         capsys: Pytest fixture to capture stdout and stderr.
         some_integer: An integer input from fixture.
     """
-    assert hello_world(some_integer) == f"string-{some_integer}"
-    assert capsys.readouterr().out == "hello world\n"
+    hello_world()
+    captured = capsys.readouterr()
+    assert captured.out == "Hello, world!\n"
 
 
 def test_good_night(capsys):
     assert good_night() == "string"
     captured = capsys.readouterr()
-    assert captured.out == "good night\n"
+    assert captured.out == "Good night!\n"
 
 
 def test_hello_goodbye(capsys):
     hello_goodbye()
     captured = capsys.readouterr()
-    assert captured.out == "hello world\ngood night\n"
+    assert captured.out == "Hello, world!\nGood night!\n"

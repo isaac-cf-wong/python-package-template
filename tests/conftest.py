@@ -8,10 +8,10 @@ import pytest
 
 
 @pytest.fixture
-def some_integer() -> int:
-    """A simple fixture that provides an integer value for testing.
+def some_name() -> str:
+    """A simple fixture that provides a string name.
 
     Returns:
-        An integer value.
+        A string name.
     """
-    return 42
+    return "developer"
