@@ -3,17 +3,22 @@
 from __future__ import annotations
 
 
-def hello_world(i: int = 0) -> str:
-    """Hello World Function.
+def say_hello(name: str) -> None:
+    """Say Hello Function.
 
     Args:
-        i: An integer input.
+        name: Name to greet.
+    """
+    print(f"Hello, {name}!")
+
+
+def hello_world() -> None:
+    """Hello World Function.
 
     Returns:
         A string output.
     """
-    print("hello world")
-    return f"string-{i}"
+    say_hello("world")
 
 
 def good_night() -> str:
@@ -22,11 +27,11 @@ def good_night() -> str:
     Returns:
         A string output.
     """
-    print("good night")
+    print("Good night!")
     return "string"
 
 
 def hello_goodbye() -> None:
     """Hello Goodbye Function."""
-    hello_world(1)
+    hello_world()
     good_night()
