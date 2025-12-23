@@ -286,7 +286,7 @@ overgeneral-exceptions = ["builtins.BaseException", "builtins.Exception"]
 
 [tool.ruff]
 line-length = 120 # Matches Black's default
-target-version = "py39" # Align with CI (3.9–3.12) and requires-python (>=3.8.1)
+target-version = "py310" # Align with CI (3.10–3.12) and requires-python (>=3.10)
 lint.extend-select = [
     "E",
     "F",
