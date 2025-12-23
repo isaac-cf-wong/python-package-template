@@ -3,7 +3,7 @@
 [![Python CI](https://github.com/isaac-cf-wong/python-package-template/actions/workflows/CI.yml/badge.svg)](https://github.com/isaac-cf-wong/python-package-template/actions/workflows/CI.yml)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/isaac-cf-wong/python-package-template/main.svg)](https://results.pre-commit.ci/latest/github/isaac-cf-wong/python-package-template/main)
 [![Documentation Status](https://img.shields.io/badge/documentation-online-brightgreen)](https://isaac-cf-wong.github.io/python-package-template/)
-[![cov](https://isaac-cf-wong.github.io/python-package-template/badges/coverage.svg)](https://github.com/isaac-cf-wong/python-package-template/actions)
+[![codecov](https://codecov.io/gh/isaac-cf-wong/python-package-template/graph/badge.svg?token=COF8341N60)](https://codecov.io/gh/isaac-cf-wong/python-package-template)
 [![PyPI Version](https://img.shields.io/pypi/pyversions/python-package-template)](https://pypi.org/project/python-package-template/)
 [![Python Versions](https://img.shields.io/pypi/pyversions/python-package-template)](https://pypi.org/project/python-package-template/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
