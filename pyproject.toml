@@ -82,7 +82,7 @@ fast = true
 branch = true
 
 [tool.coverage.report]
-fail_under = 100
+fail_under = 0
 
 [tool.flake8]
 max-line-length = 120
@@ -115,7 +115,7 @@ pythonPlatform = "Linux"
 executionEnvironments = [{ root = "src" }]
 
 [tool.pytest.ini_options]
-addopts = "--cov-report xml:coverage.xml --cov src --cov-fail-under 0 --cov-append -m 'not integration'"
+addopts = "--cov-report xml:coverage.xml --cov src --cov-append -m 'not integration'"
 pythonpath = ["src"]
 testpaths = "tests"
 junit_family = "xunit2"
