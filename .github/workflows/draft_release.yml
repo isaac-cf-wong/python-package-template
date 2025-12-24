@@ -30,7 +30,6 @@ jobs:
           OUTPUT: CHANGELOG.md
 
       - name: Delete existing draft release
-        continue-on-error: true
         run: |
           gh release delete next-release --yes || true
         env:
