@@ -67,7 +67,6 @@ nav:
   - Installation: user_guide/installation.md
   - User Guide:
       - Quick Start: user_guide/quick_start.md
-      - Installation: user_guide/installation.md
       - Packaging: user_guide/packaging.md
       - Project Structure: user_guide/project_structure.md
       - Development Tools: user_guide/development_tools.md
