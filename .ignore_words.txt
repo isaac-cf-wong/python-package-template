@@ -23,6 +23,7 @@ envpython
 getrecursionlimit
 inlinevar
 isort
+mathjax
 metaclass
 noqa
 nssm
