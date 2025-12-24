@@ -48,6 +48,7 @@ rcfile
 scipy
 setrecursionlimit
 shellcheck
+subpackages
 testpaths
 tkinter
 venv
