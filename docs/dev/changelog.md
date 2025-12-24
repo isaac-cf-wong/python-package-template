@@ -15,7 +15,7 @@ The template uses git-cliff for automated changelog generation based on conventi
 
 All commits must follow the [Conventional Commits](https://conventionalcommits.org/) specification:
 
-```
+```text
 <type>[optional scope]: <description>
 
 [optional body]
