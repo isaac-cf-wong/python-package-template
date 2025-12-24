@@ -23,7 +23,7 @@ The template uses MkDocs with Material theme for documentation, featuring:
 ### Navigation Structure
 
 ```yaml
---8<-- "mkdocs.yml:65:91"
+--8<-- "mkdocs.yml:68:94"
 ```
 
 ## Writing Documentation
