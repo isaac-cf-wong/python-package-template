@@ -244,7 +244,7 @@ Update `__init__.py` to expose modules appropriately.
 
 Add project-specific ignores:
 
-```
+```gitignore
 # Project specific
 *.log
 .cache/
