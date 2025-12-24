@@ -34,12 +34,22 @@ def test_hello_world(capsys):
 
 
 def test_good_night(capsys):
+    """Test good_night function.
+
+    Args:
+        capsys: Pytest fixture to capture stdout and stderr.
+    """
     assert good_night() == "string"
     captured = capsys.readouterr()
     assert captured.out == "Good night!\n"
 
 
 def test_hello_goodbye(capsys):
+    """Test hello_goodbye function.
+
+    Args:
+        capsys: Pytest fixture to capture stdout and stderr.
+    """
     hello_goodbye()
     captured = capsys.readouterr()
     assert captured.out == "Hello, world!\nGood night!\n"
