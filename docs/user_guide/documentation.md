@@ -164,7 +164,6 @@ mkdocs build
 The template includes GitHub Actions for automatic deployment:
 
 - **GitHub Pages**: Automatic deployment on pushes to main
-- **Branch-based**: Different versions for different branches
 
 ## Documentation Structure
 
