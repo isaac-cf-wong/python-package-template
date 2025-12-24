@@ -1,31 +1,44 @@
 # Installation
 
+<!-- prettier-ignore-start -->
+
 !!!warning
+
     This is an example installation guide page for a Python package template.
     Adjust the content as needed for your specific package.
+
+<!-- prettier-ignore-end -->
 
 We recommend using `uv` to manage virtual environments for installing `python_package_template`.
 
 If you don't have `uv` installed, you can install it with pip. See the project pages for more details:
 
--   Install via pip: `pip install --upgrade pip && pip install uv`
--   Project pages: [uv on PyPI](https://pypi.org/project/uv/) | [uv on GitHub](https://github.com/astral-sh/uv)
--   Full documentation and usage guide: [uv docs](https://docs.astral.sh/uv/)
+- Install via pip: `pip install --upgrade pip && pip install uv`
+- Project pages: [uv on PyPI](https://pypi.org/project/uv/) | [uv on GitHub](https://github.com/astral-sh/uv)
+- Full documentation and usage guide: [uv docs](https://docs.astral.sh/uv/)
 
 ## Requirements
 
--   Python 3.10 or higher
--   Operating System: Linux, macOS, or Windows
+- Python 3.10 or higher
+- Operating System: Linux, macOS, or Windows
 
-<!-- prettier-ignore -->
+<!-- prettier-ignore-start -->
 !!!note
+
     The package is built and tested against Python 3.10-3.12. When creating a virtual environment with `uv`, specify the Python version to ensure compatibility: `uv venv --python 3.10` (replace `3.10` with your preferred version in the 3.10-3.12 range). This avoids potential issues with unsupported Python versions.
+
+<!-- prettier-ignore-end -->
 
 ## Install from PyPI
 
+<!-- prettier-ignore-start -->
+
 !!!warning
+
     The package is NOT published to PyPI.
     This section is for demonstration purposes only.
+
+<!-- prettier-ignore-end -->
 
 The recommended way to install `python_package_template` is from PyPI:
 
@@ -105,9 +118,13 @@ python -c "import python_package_template; print(python_package_template.__versi
 
 ## Getting Help
 
+<!-- prettier-ignore-start -->
+
 1. Check the [troubleshooting guide](../dev/troubleshooting.md)
 2. Search existing [issues](https://github.com/isaac-cf-wong/python-package-template/issues)
 3. Create a new issue with:
     - Your operating system and Python version
     - Full error message
     - Steps to reproduce the problem
+
+<!-- prettier-ignore-end -->
