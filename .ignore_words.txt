@@ -1,4 +1,5 @@
 abstractproperty
+addinivalue
 addopts
 analyse
 asdict
@@ -21,6 +22,7 @@ EDITMSG
 envlist
 envpython
 getrecursionlimit
+htmlcov
 inlinevar
 isort
 mathjax
