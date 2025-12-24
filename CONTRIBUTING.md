@@ -136,7 +136,7 @@ Whether you’re fixing a typo, reporting a bug, suggesting a feature, or submit
 
 ✅ **Good commits:**
 
-```
+```text
 feat(parser): add support for YAML configuration files
 fix(logger): prevent crash on empty log messages
 docs(readme): update installation instructions for clarity
@@ -145,7 +145,7 @@ refactor(utils): simplify data processing pipeline
 
 ❌ **Bad commits:**
 
-```
+```text
 fixed stuff
 wip: many changes
 update code
