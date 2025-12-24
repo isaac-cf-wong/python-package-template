@@ -48,7 +48,7 @@ Core runtime dependencies. Add your package's dependencies here.
 ### Optional Dependencies
 
 ```toml
---8<-- "pyproject.toml:25:53"
+--8<-- "pyproject.toml:25:54"
 ```
 
 Extras allow users to install additional features:

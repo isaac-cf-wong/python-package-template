@@ -22,11 +22,13 @@ EDITMSG
 envlist
 envpython
 getrecursionlimit
+glightbox
 htmlcov
 inlinevar
 isort
 mathjax
 metaclass
+mkdocstrings
 noqa
 nssm
 numpy
