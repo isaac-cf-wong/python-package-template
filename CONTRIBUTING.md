@@ -121,7 +121,7 @@ Whether you’re fixing a typo, reporting a bug, suggesting a feature, or submit
         - test: Adding missing tests or correcting existing tests
     - Example:
 
-        ```
+        ```text
         feat(signal): add BBH waveform generation for aligned-spin systems
 
         This commit introduces support for aligned-spin binary black hole
