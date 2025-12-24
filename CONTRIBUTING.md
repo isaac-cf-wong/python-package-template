@@ -7,6 +7,8 @@ Whether you’re fixing a typo, reporting a bug, suggesting a feature, or submit
 
 ## 📌 How to Contribute
 
+<!-- prettier-ignore-start -->
+
 1. Open an Issue
 
     - Have a question, bug report, or feature suggestion? [Open an issue](https://github.com/isaac-cf-wong/python-package-template/issues/new/choose) and describe your idea clearly.
@@ -53,8 +55,10 @@ Whether you’re fixing a typo, reporting a bug, suggesting a feature, or submit
     The project includes a `commitlint.config.js` configuration file that defines the commit message rules.
     Once installed, commitlint will automatically validate your commit messages when pre-commit runs.
 
-    **Important:** Commit messages are validated in CI/CD pipelines, and the changelog is auto-generated from commits.
-    See section [Commit Message Guidelines](#commit-message-guidelines) below for details.
+    !!!important
+
+        Commit messages are validated in CI/CD pipelines, and the changelog is auto-generated from commits.
+        See section [Commit Message Guidelines](#commit-message-guidelines) below for details.
 
 5. Create a New Branch
 
@@ -81,11 +85,15 @@ Whether you’re fixing a typo, reporting a bug, suggesting a feature, or submit
     Clearly describe the motivation and scope of your change. Link it to the relevant issue if applicable.
     The pull request titles should match the [Conventional Commits spec](https://www.conventionalcommits.org/).
 
+<!-- prettier-ignore-end -->
+
 ## 📝 Commit Message Guidelines
 
 **Why this matters:** Our changelog is automatically generated from commit messages using git-cliff. Commit messages must follow the Conventional Commits format and adhere to strict rules.
 
 ### Rules
+
+<!-- prettier-ignore-start -->
 
 1. **One type of change per commit**
 
@@ -121,6 +129,8 @@ Whether you’re fixing a typo, reporting a bug, suggesting a feature, or submit
         ```
 
     - Commitlint will validate your message format automatically.
+
+<!-- prettier-ignore-end -->
 
 ### Examples
 
