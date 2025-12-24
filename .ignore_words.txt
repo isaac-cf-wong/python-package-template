@@ -19,6 +19,7 @@ dbutils
 docstrings
 DOI
 EDITMSG
+endfor
 envlist
 envpython
 getrecursionlimit
@@ -54,7 +55,9 @@ rcfile
 scipy
 setrecursionlimit
 shellcheck
+softprops
 subpackages
+Tera
 testpaths
 tkinter
 venv
