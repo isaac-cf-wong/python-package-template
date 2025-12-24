@@ -32,6 +32,7 @@ mkdocstrings
 noqa
 nssm
 numpy
+oneline
 optparse
 overgeneral
 posargs
