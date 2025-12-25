@@ -31,6 +31,7 @@ jobs:
           args: --latest --verbose
         env:
           OUTPUT: CHANGELOG.md
+          GITHUB_REPO: ${{ github.repository }}
 
       - name: Delete draft release
         continue-on-error: true
