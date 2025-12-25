@@ -144,7 +144,7 @@ git push origin v1.2.3
 
 The template includes automatic draft release creation:
 
-- **Triggers**: On every push and pull request to main
+- **Triggers**: On every push to main
 - **Purpose**: Preview upcoming changes before creating a version tag
 - **Content**: Shows all unreleased changes using git-cliff
 - **Cleanup**: Draft releases are automatically deleted when real releases are created
