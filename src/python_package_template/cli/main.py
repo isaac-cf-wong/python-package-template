@@ -49,19 +49,19 @@ def setup_logging(level: LoggingLevel = LoggingLevel.INFO) -> None:
     for h in logger.handlers[:]:  # Use slice copy to avoid modification during iteration
         logger.removeHandler(h)
     # Add the RichHandler
-    if not logger.handlers:
-        handler = RichHandler(
-            console=console,
-            rich_tracebacks=True,
-            show_time=True,
-            show_level=True,  # Keep level (e.g., DEBUG, INFO) for clarity
-            markup=True,  # Enable Rich markup in messages for styling
-            level=level.value,  # Ensure handler respects the level
-            omit_repeated_times=False,
-            log_time_format="%H:%M",
-        )
-        handler.setLevel(level.value)
-        logger.addHandler(handler)
+
+    handler = RichHandler(
+        console=console,
+        rich_tracebacks=True,
+        show_time=True,
+        show_level=True,  # Keep level (e.g., DEBUG, INFO) for clarity
+        markup=True,  # Enable Rich markup in messages for styling
+        level=level.value,  # Ensure handler respects the level
+        omit_repeated_times=False,
+        log_time_format="%H:%M",
+    )
+    handler.setLevel(level.value)
+    logger.addHandler(handler)
 
     # Prevent propagation to root logger to avoid duplicate output
     logger.propagate = False
