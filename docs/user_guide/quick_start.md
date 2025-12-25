@@ -13,7 +13,7 @@ This template includes:
 - **Documentation**: MkDocs with Material theme for API docs and user guides
 - **CI/CD**: GitHub Actions workflows for validation, testing, and publishing
 - **Code Quality**: Linting, formatting, spell checking, and security scanning
-- **Example Code**: A sample `hello_world` module with CLI interface
+- **Example Code**: A sample `hello_world` module with CLI
 
 ## Getting Started
 
