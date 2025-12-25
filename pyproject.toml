@@ -24,7 +24,7 @@ dependencies = [
 
 [project.optional-dependencies]
 test = [
-    "bandit[toml]==1.8.2",
+    "bandit[toml]==1.9.2",
     "black==25.1.0",
     "check-manifest==0.50",
     "flake8-bugbear==24.12.12",
