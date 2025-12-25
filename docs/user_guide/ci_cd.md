@@ -14,6 +14,24 @@ The template includes comprehensive CI/CD using GitHub Actions with:
 - **Documentation deployment**: GitHub Pages integration
 - **Package publishing**: Optional PyPI publishing (requires setup)
 
+## Quick Setup (TL;DR)
+
+For the impatient developer - here's the minimal setup to get CI/CD working:
+
+### One-Time Setup Checklist
+
+- [ ] **Enable PyPI trusted publishing** (optional, for package publishing):
+  - Go to [pypi.org](https://pypi.org) → your project → Settings → Publishing
+  - Add GitHub as trusted publisher: `your-username/your-repo` workflow `publish.yml`
+- [ ] **Enable package publishing**: Rename `.github/workflows/publish.example.yml` to `publish.yml`
+- [ ] **Set branch protection**:
+  - Go to repository Settings → Branches → Add rule for `main`
+  - Require status checks: `test (3.10)`, `test (3.11)`, `test (3.12)`
+- [ ] **Install pre-commit.ci**: Go to [pre-commit.ci](https://pre-commit.ci/) and install the GitHub App
+- [ ] **Test it**: Push a commit and watch the workflows run!
+
+**Time to first release**: ~10 minutes. See detailed instructions below for each step.
+
 ## GitHub Actions Workflows
 
 ### CI Workflow (`.github/workflows/CI.yml`)
