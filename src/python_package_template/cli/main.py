@@ -1,5 +1,5 @@
 # pylint: disable=import-outside-toplevel
-"""Main entry point for the package_name CLI application."""
+"""Main entry point for the python_package_template CLI application."""
 
 from __future__ import annotations
 
