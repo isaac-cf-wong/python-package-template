@@ -202,6 +202,14 @@ For PyPI publishing, use [trusted publishing](https://docs.pypi.org/trusted-publ
 - **`PYPI_API_TOKEN`**: PyPI API token for publishing to production PyPI
 - **`TEST_PYPI_API_TOKEN`**: TestPyPI API token for testing publishing
 
+<!-- prettier-ignore-start -->
+
+!!! tip "Decision Guide"
+
+    Use trusted publishing unless you have a specific reason for API tokens. Trusted publishing is more secure and easier to set up.
+
+<!-- prettier-ignore-end -->
+
 ### Enabling PyPI Publishing
 
 The publish workflow is disabled by default. To enable it:
