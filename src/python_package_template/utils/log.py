@@ -19,7 +19,7 @@ def get_version_information() -> str:
 
 def setup_logger(
     outdir: str = ".", label: str | None = None, log_level: str | int = "INFO", print_version: bool = False
-):
+) -> None:
     """Setup logging output: call at the start of the script to use
 
     Args:
