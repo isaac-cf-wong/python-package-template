@@ -53,8 +53,9 @@ def setup_logger(
 
     if not any(isinstance(h, logging.FileHandler) for h in logger.handlers):
         if label:
-            Path(outdir).mkdir(parents=True, exist_ok=True)
-            log_file = f"{outdir}/{label}.log"
+            outdir_path = Path(outdir)
+            outdir_path.mkdir(parents=True, exist_ok=True)
+            log_file = outdir_path / f"{label}.log"
             file_handler = logging.FileHandler(log_file)
             file_handler.setFormatter(logging.Formatter("%(asctime)s %(levelname)-8s: %(message)s", datefmt="%H:%M"))
 
