@@ -1,4 +1,4 @@
-name: Deploy mkdocs documentation to Pages
+name: Documentation
 
 on:
   push:
