@@ -30,8 +30,9 @@ jobs:
           OUTPUT: CHANGELOG.md
 
       - name: Delete existing draft release
+        continue-on-error: true
         run: |
-          gh release delete next-release --yes || true
+          gh release delete next-release --yes
         env:
           GH_TOKEN: ${{ github.token }}
 
