@@ -385,7 +385,7 @@ Before creating a release:
 
 Releasing is simple - just create a git tag and push it:
 
-**Step 1: Decide the version number**
+#### Step 1: Decide the version number
 
 Follow [semantic versioning](https://semver.org/):
 
@@ -400,7 +400,7 @@ Follow [semantic versioning](https://semver.org/):
 - `v1.0.0-beta.1` - Beta release with patch number
 - `v1.0.0-rc.1` - Release candidate for final testing
 
-**Step 2: Create and push the tag**
+#### Step 2: Create and push the tag
 
 ```bash
 # Create tag (replace v1.0.0 with your version)
@@ -410,7 +410,7 @@ git tag v1.0.0
 git push origin v1.0.0
 ```
 
-**Step 3: Watch the automation**
+#### Step 3: Watch the automation
 
 The release workflow automatically:
 
