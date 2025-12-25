@@ -474,18 +474,6 @@ Conventional commits help:
 - Determine version bumps (major/minor/patch)
 - Quickly see what changed
 
-### Pre-release Checklist
-
-Before creating a release:
-
-1. **Check draft release**: Review the "Next Release (Draft)" on GitHub Releases
-2. **Verify you're on main**: `git branch` and `git pull origin main`
-3. **Verify tag target**: Ensure current commit is what you want to release
-4. **Update docs**: Ensure documentation is current
-5. **Check dependencies**: Review for security updates
-6. **Manual release creation** (not recommended):
-   - The automated process handles this, but you can manually edit releases if needed
-
 ### Post-release
 
 - **Verify release**: Check that the GitHub release was created with correct changelog
