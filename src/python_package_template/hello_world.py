@@ -17,7 +17,7 @@ def hello_world() -> None:
     say_hello("world")
 
 
-def say_goodbye(name: str):
+def say_goodbye(name: str) -> None:
     """Good bye Function.
 
     Args:
@@ -26,7 +26,7 @@ def say_goodbye(name: str):
     print(f"Goodbye, {name}!")
 
 
-def goodbye_world():
+def goodbye_world() -> None:
     """Goodbye World Function."""
     say_goodbye("world")
 
