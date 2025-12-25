@@ -1,6 +1,7 @@
 # CI/CD and Releases
 
-This guide explains the continuous integration and deployment setup in this Python package template, including GitHub Actions workflows, release automation, and best practices.
+This guide explains the continuous integration and deployment setup in this Python package template,
+including GitHub Actions workflows, release automation, and best practices.
 
 ## Overview
 
@@ -110,7 +111,6 @@ Handles package publishing to PyPI (disabled by default):
 <!-- prettier-ignore-start -->
 
 !!!note
-
     Rename this file from `publish.example.yml` to `publish.yml` to enable PyPI publishing
 
 <!-- prettier-ignore-end -->
@@ -205,8 +205,8 @@ For PyPI publishing, use [trusted publishing](https://docs.pypi.org/trusted-publ
 <!-- prettier-ignore-start -->
 
 !!! tip "Decision Guide"
-
-    Use trusted publishing unless you have a specific reason for API tokens. Trusted publishing is more secure and easier to set up.
+    Use trusted publishing unless you have a specific reason for API tokens.
+    Trusted publishing is more secure and easier to set up.
 
 <!-- prettier-ignore-end -->
 
@@ -431,21 +431,26 @@ You can monitor progress in the **Actions** tab on GitHub.
 
 After pushing the tag:
 
+<!-- prettier-ignore-start -->
+
 1. **Check GitHub Actions**: Go to **Actions** tab
 
-   - Look for the workflow named after your tag or "Release"
-   - Verify it completed successfully (green checkmark)
+    - Look for the workflow named after your tag or "Release"
+    - Verify it completed successfully (green checkmark)
 
 2. **Check GitHub Releases**: Go to **Releases** page
 
-   - New release should appear with your tag
-   - Changelog should be auto-generated
-   - Release should show "Latest" if it's the newest
+    - New release should appear with your tag
+    - Changelog should be auto-generated
+    - Release should show "Latest" if it's the newest
 
 3. **Verify PyPI** (if publishing enabled):
-   ```bash
-   pip install your-package==1.0.0  # Should work
-   ```
+
+    ```bash
+    pip install your-package==1.0.0  # Should work
+    ```
+
+<!-- prettier-ignore-end -->
 
 ### Fixing Release Mistakes
 
@@ -488,7 +493,9 @@ GitHub allows editing release notes after creation:
 
 **Commit message format:**
 
-The changelog is auto-generated from commit messages using [conventional commits](https://www.conventionalcommits.org/). Use these formats:
+The changelog is auto-generated from commit messages using
+[conventional commits](https://www.conventionalcommits.org/).
+Use these formats:
 
 ```bash
 # New features (appear in changelog as "Features")
@@ -555,8 +562,8 @@ GitHub's advanced security analysis is **enabled by default** in the CI workflow
 <!-- prettier-ignore-start -->
 
 !!!note
-
-    Bandit already runs in pre-commit hooks for basic security scanning. CodeQL provides deeper analysis but uses more CI resources (~2-3 minutes per run).
+    Bandit already runs in pre-commit hooks for basic security scanning.
+    CodeQL provides deeper analysis but uses more CI resources (~2-3 minutes per run).
 
 <!-- prettier-ignore-end -->
 

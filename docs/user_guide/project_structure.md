@@ -1,14 +1,17 @@
 # Project Structure
 
-This guide explains the recommended project structure used in this Python package template, including the rationale behind the `src/` layout and how to organize your code effectively.
+This guide explains the recommended project structure used in this Python package template,
+including the rationale behind the `src/` layout and how to organize your code effectively.
 
 ## Overview
 
-This template follows modern Python packaging best practices with a `src/` layout. This structure separates your package code from development files and tools, providing better isolation and avoiding common packaging issues.
+This template follows modern Python packaging best practices with a `src/` layout.
+This structure separates your package code from development files and tools,
+providing better isolation and avoiding common packaging issues.
 
 ## Directory Structure
 
-```
+```text
 your-project/
 ├── src/
 │   └── your_package/
@@ -36,7 +39,7 @@ your-project/
 └── other config files...
 ```
 
-## Why src/ Layout?
+## Why src/ Layout
 
 The `src/` layout offers several advantages:
 
@@ -90,7 +93,7 @@ if __name__ == "__main__":
 
 #### CLI Structure (`cli/`)
 
-```
+```text
 cli/
 ├── __init__.py
 └── main.py
@@ -101,7 +104,7 @@ cli/
 
 #### Utils (`utils/`)
 
-```
+```text
 utils/
 ├── __init__.py
 └── helpers.py

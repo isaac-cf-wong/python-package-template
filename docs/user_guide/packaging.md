@@ -1,6 +1,8 @@
 # Packaging
 
-This guide explains the packaging setup in this Python package template, including how dependencies are managed, the build system, and how to customize it for your project.
+This guide explains the packaging setup in this Python package template,
+including how dependencies are managed, the build system,
+and how to customize it for your project.
 
 ## Overview
 

@@ -1,6 +1,7 @@
 # Testing
 
-This guide explains the testing setup in this Python package template, including how to write tests, run them, and measure coverage.
+This guide explains the testing setup in this Python package template, including how to write tests, run them,
+and measure coverage.
 
 ## Overview
 
@@ -16,7 +17,7 @@ The template uses Pytest as the testing framework with the following features:
 
 ### Directory Layout
 
-```
+```text
 tests/
 ├── conftest.py          # Shared fixtures and configuration
 ├── test_hello_world.py  # Tests for hello_world module

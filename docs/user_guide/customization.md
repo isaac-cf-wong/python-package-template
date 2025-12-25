@@ -1,6 +1,7 @@
 # Customization
 
-This guide explains how to customize this Python package template for your specific project needs, including renaming, configuration changes, and removing unwanted features.
+This guide explains how to customize this Python package template for your specific project needs,
+including renaming, configuration changes, and removing unwanted features.
 
 ## Overview
 

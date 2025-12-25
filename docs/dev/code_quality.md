@@ -1,6 +1,7 @@
 # Code Quality
 
-This guide covers the code quality assurance tools and practices used in this Python package template, including linting, security scanning, and spell checking.
+This guide covers the code quality assurance tools and practices used in this Python package template,
+including linting, security scanning, and spell checking.
 
 ## Overview
 
@@ -160,12 +161,18 @@ Quality checks run automatically in GitHub Actions and pre-commit.ci:
 
 Pre-commit.ci provides automated pre-commit hook execution:
 
+<!-- prettier-ignore-start -->
+
 1. **Install the GitHub App**: Go to [pre-commit.ci](https://pre-commit.ci/) and install the app on your repository
 2. **Configuration** (`.pre-commit-config.yaml`):
-   ```yaml
-   --8<-- ".pre-commit-config.yaml:1:12"
-   ```
+
+    ```yaml
+    --8<-- ".pre-commit-config.yaml:1:12"
+    ```
+
 3. **Automatic execution**: Pre-commit.ci runs on every PR and push
+
+<!-- prettier-ignore-end -->
 
 ## Code Quality Metrics
 
@@ -229,19 +236,19 @@ Test coverage is enforced:
 
 ## Tool Selection Rationale
 
-### Why Multiple Linters?
+### Why Multiple Linters
 
 - **Ruff**: Fast, comprehensive, auto-fixing
 - **Pylint**: Detailed analysis, custom rules
 - **Flake8**: Legacy compatibility, extensive plugins
 
-### Why Bandit?
+### Why Bandit
 
 - **Security focus**: Catches common vulnerabilities
 - **Python specific**: Understands Python security issues
 - **Configurable**: Can be tuned for project needs
 
-### Why CSpell?
+### Why CSpell
 
 - **Multi-language**: Works with Python, Markdown, YAML
 - **Custom dictionaries**: Project-specific terminology
@@ -352,4 +359,6 @@ pip install --upgrade ruff bandit
 npm update cspell
 ```
 
-For more information, see the documentation for individual tools: [Ruff](https://docs.astral.sh/ruff/), [Bandit](https://bandit.readthedocs.io/), [CSpell](https://cspell.org/), [Pyright](https://microsoft.github.io/pyright/).
+For more information, see the documentation for individual tools:
+[Ruff](https://docs.astral.sh/ruff/), [Bandit](https://bandit.readthedocs.io/),
+[CSpell](https://cspell.org/), [Pyright](https://microsoft.github.io/pyright/).

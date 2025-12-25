@@ -39,3 +39,6 @@ MD036: false
 # Enforce proper list marker style (e.g., - or *)
 MD032:
   style: dash
+
+MD046:
+  style: fenced

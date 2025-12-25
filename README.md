@@ -10,8 +10,11 @@
 [![Security: bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
 [![DOI](https://zenodo.org/badge/924023559.svg)](https://doi.org/10.5281/zenodo.18017404)
 
-This project is a template for creating Python packages with a standardized structure and configuration. It includes the configurations for various development tools such as linters, formatters, type checkers, and test runners.
+This project is a template for creating Python packages with a standardized structure and configuration.
+It includes the configurations for various development tools such as linters, formatters, type checkers, and test runners.
 
 ## Getting Started
 
-To get started with this template, simply 'Use This Template' to create a new repository and start building your project within the `src` directory. Try to open the project in GitHub Codespace, and to run the unit tests using the VS Code Test extension.
+To get started with this template, simply 'Use This Template' to create a new repository
+and start building your project within the `src` directory.
+Try to open the project in GitHub Codespace, and to run the unit tests using the VS Code Test extension.

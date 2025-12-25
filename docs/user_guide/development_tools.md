@@ -1,6 +1,7 @@
 # Development Tools
 
-This guide covers the development tools configured in this template, including pre-commit hooks, code quality tools, and how to use them effectively.
+This guide covers the development tools configured in this template,
+including pre-commit hooks, code quality tools, and how to use them effectively.
 
 ## Overview
 

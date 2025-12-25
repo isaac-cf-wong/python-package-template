@@ -3,7 +3,6 @@
 <!-- prettier-ignore-start -->
 
 !!!warning
-
     This is an example installation guide page for a Python package template.
     Adjust the content as needed for your specific package.
 
@@ -24,8 +23,10 @@ If you don't have `uv` installed, you can install it with pip. See the project p
 
 <!-- prettier-ignore-start -->
 !!!note
-
-    The package is built and tested against Python 3.10-3.12. When creating a virtual environment with `uv`, specify the Python version to ensure compatibility: `uv venv --python 3.10` (replace `3.10` with your preferred version in the 3.10-3.12 range). This avoids potential issues with unsupported Python versions.
+    The package is built and tested against Python 3.10-3.12. When creating a virtual environment with `uv`,
+    specify the Python version to ensure compatibility:
+    `uv venv --python 3.10` (replace `3.10` with your preferred version in the 3.10-3.12 range).
+    This avoids potential issues with unsupported Python versions.
 
 <!-- prettier-ignore-end -->
 
@@ -34,7 +35,6 @@ If you don't have `uv` installed, you can install it with pip. See the project p
 <!-- prettier-ignore-start -->
 
 !!!warning
-
     The package is NOT published to PyPI.
     This section is for demonstration purposes only.
 

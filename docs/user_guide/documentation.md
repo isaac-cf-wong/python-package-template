@@ -1,6 +1,7 @@
 # Documentation
 
-This guide explains how documentation is set up in this Python package template, including MkDocs configuration, API reference generation, and best practices for writing docs.
+This guide explains how documentation is set up in this Python package template, including MkDocs configuration,
+API reference generation, and best practices for writing docs.
 
 ## Overview
 
@@ -56,7 +57,7 @@ def function():
 
 <!-- prettier-ignore-start -->
 
-```
+```text
 !!! note
     Admonition for notes, warnings, etc.
 ```
@@ -375,13 +376,19 @@ If you want to use a custom domain:
 
 **Solution:**
 
+<!-- prettier-ignore-start -->
+
 1. Check markdown file syntax
 2. Verify all navigation links in `mkdocs.yml` point to existing files
 3. Run locally to debug:
-   ```bash
-   mkdocs build --strict
-   ```
+
+    ```bash
+    mkdocs build --strict
+    ```
+
 4. Fix any errors and push again
+
+<!-- prettier-ignore-end -->
 
 ### 404 - Site Not Found
 

@@ -1,6 +1,7 @@
 # Changelog
 
-This guide explains how changelogs are automatically generated in this Python package template using git-cliff and conventional commits.
+This guide explains how changelogs are automatically generated in this Python package template
+using git-cliff and conventional commits.
 
 ## Overview
 

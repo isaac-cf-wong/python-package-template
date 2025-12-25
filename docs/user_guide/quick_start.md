@@ -1,6 +1,7 @@
 # Quick Start
 
-Welcome to the **Python Package Template**! This template provides a standardized, production-ready setup for building Python packages.
+Welcome to the **Python Package Template**! This template provides a standardized,
+production-ready setup for building Python packages.
 It includes modern tooling, best practices, and configurations to help you get started quickly.
 
 ## What This Template Provides
@@ -56,7 +57,9 @@ pip install -e ".[dev,docs,test]"
 
 ### 3. Set Up Pre-commit Hooks and Commit Message Validation
 
-The template uses pre-commit hooks to automatically check code quality before commits, and commitlint to validate commit messages follow the [conventional commits](https://www.conventionalcommits.org/) standard. This ensures consistent, well-documented changes.
+The template uses pre-commit hooks to automatically check code quality before commits,
+and commitlint to validate commit messages follow the [conventional commits](https://www.conventionalcommits.org/) standard.
+This ensures consistent, well-documented changes.
 
 **Install commitlint dependencies:**
 
@@ -64,7 +67,9 @@ The template uses pre-commit hooks to automatically check code quality before co
 npm install
 ```
 
-This installs `@commitlint/cli` and `@commitlint/config-angular`, which validate that your commit messages follow the conventional commits format (e.g., `feat: add new feature`, `fix: resolve bug`).
+This installs `@commitlint/cli` and `@commitlint/config-angular`,
+which validate that your commit messages follow the conventional commits format
+(e.g., `feat: add new feature`, `fix: resolve bug`).
 
 **Install pre-commit hooks:**
 

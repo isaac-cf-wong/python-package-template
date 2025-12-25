@@ -3,15 +3,18 @@
 🎉 Thank you for your interest in contributing to `python-package-template`!
 Your ideas, fixes, and improvements are welcome and appreciated.
 
-Whether you’re fixing a typo, reporting a bug, suggesting a feature, or submitting a pull request—this guide will help you get started.
+Whether you’re fixing a typo, reporting a bug, suggesting a feature,
+or submitting a pull request—this guide will help you get started.
 
-## 📌 How to Contribute
+## How to Contribute
 
 <!-- prettier-ignore-start -->
 
 1. Open an Issue
 
-    - Have a question, bug report, or feature suggestion? [Open an issue](https://github.com/isaac-cf-wong/python-package-template/issues/new/choose) and describe your idea clearly.
+    - Have a question, bug report, or feature suggestion?
+    [Open an issue](https://github.com/isaac-cf-wong/python-package-template/issues/new/choose)
+    and describe your idea clearly.
     - Check for existing issues before opening a new one.
 
 2. Fork and Clone the Repository
@@ -39,7 +42,9 @@ Whether you’re fixing a typo, reporting a bug, suggesting a feature, or submit
 
 4. Set Up Pre-commit Hooks and Commitlint
 
-    We use **pre-commit** to ensure code quality and consistency, and **commitlint** to enforce commit message conventions. After installing dependencies, run:
+    We use **pre-commit** to ensure code quality and consistency,
+    and **commitlint** to enforce commit message conventions.
+    After installing dependencies, run:
 
     ```shell
     pre-commit install
@@ -56,7 +61,6 @@ Whether you’re fixing a typo, reporting a bug, suggesting a feature, or submit
     Once installed, commitlint will automatically validate your commit messages when pre-commit runs.
 
     !!!important
-
         Commit messages are validated in CI/CD pipelines, and the changelog is auto-generated from commits.
         See section [Commit Message Guidelines](#commit-message-guidelines) below for details.
 
@@ -87,9 +91,10 @@ Whether you’re fixing a typo, reporting a bug, suggesting a feature, or submit
 
 <!-- prettier-ignore-end -->
 
-## 📝 Commit Message Guidelines
+## Commit Message Guidelines
 
-**Why this matters:** Our changelog is automatically generated from commit messages using git-cliff. Commit messages must follow the Conventional Commits format and adhere to strict rules.
+**Why this matters:** Our changelog is automatically generated from commit messages using git-cliff.
+Commit messages must follow the Conventional Commits format and adhere to strict rules.
 
 ### Rules
 
@@ -103,7 +108,8 @@ Whether you’re fixing a typo, reporting a bug, suggesting a feature, or submit
 2. **Descriptive and meaningful messages**
 
     - Describe _what_ changed and _why_, not just _what_ was edited.
-    - Avoid vague messages like "fix bug" or "update code"; instead use "fix: prevent signal saturation in noise simulation" or "feat: add support for multi-detector frame merging".
+    - Avoid vague messages like "fix bug" or "update code";
+      instead use "fix: prevent signal saturation in noise simulation" or "feat: add support for multi-detector frame merging".
 
 3. **Follow Conventional Commits format**
 
@@ -159,7 +165,7 @@ more fixes (no type/scope)
 - Document new features and update existing docs if needed.
 - Tag your PR with relevant labels if you can.
 
-## 📜 Licensing
+## Licensing
 
 By contributing, you agree that your contributions will be licensed under the project’s MIT License.
 
