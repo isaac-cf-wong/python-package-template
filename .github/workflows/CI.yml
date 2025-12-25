@@ -43,7 +43,6 @@ jobs:
 
   codeql:
     runs-on: ubuntu-latest
-    if: github.event_name != 'workflow_call'
     permissions:
       security-events: write
     steps:
