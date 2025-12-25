@@ -354,32 +354,36 @@ The draft release helps you:
 
 Before creating a release:
 
+<!-- prettier-ignore-start -->
+
 1. **Review draft release**: Go to GitHub Releases and check the "Next Release (Draft)"
 
-   - Verify all important changes are included
-   - Check that the changelog is well-organized
-   - Ensure no accidental commits snuck in
+    - Verify all important changes are included
+    - Check that the changelog is well-organized
+    - Ensure no accidental commits snuck in
 
 2. **Verify you're on the right commit**:
 
-   ```bash
-   git log --oneline -1  # Shows current commit
-   git branch -v        # Verify you're on main
-   ```
+    ```bash
+    git log --oneline -1  # Shows current commit
+    git branch -v        # Verify you're on main
+    ```
 
 3. **Ensure main branch is up to date**:
 
-   ```bash
-   git pull origin main
-   ```
+    ```bash
+    git pull origin main
+    ```
 
 4. **Verify all tests pass locally** (optional, but recommended):
 
-   ```bash
-   pytest
-   ```
+    ```bash
+    pytest
+    ```
 
 5. **Check documentation**: Ensure documentation is current and reflects new changes
+
+<!-- prettier-ignore-end -->
 
 ### Creating Your First Release
 
