@@ -83,7 +83,7 @@ To set up for development:
 
 ```bash
 git clone git@github.com:isaac-cf-wong/python-package-template.git
-ce python-package-template
+cd python-package-template
 
 # Create a virtual environment (recommended with uv)
 uv venv --python 3.10
