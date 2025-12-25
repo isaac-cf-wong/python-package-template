@@ -394,6 +394,12 @@ Follow [semantic versioning](https://semver.org/):
 - `v1.0.1` - Bug fixes only
 - `v2.0.0` - Breaking changes
 
+**Pre-releases** (optional):
+
+- `v1.0.0-alpha` - Alpha release for early testing
+- `v1.0.0-beta.1` - Beta release with patch number
+- `v1.0.0-rc.1` - Release candidate for final testing
+
 **Step 2: Create and push the tag**
 
 ```bash
