@@ -41,7 +41,9 @@ def setup_logger(
     logger.propagate = False
     logger.setLevel(level)
 
-    if not any(isinstance(h, logging.StreamHandler) for h in logger.handlers):
+    if not any(
+        isinstance(h, logging.StreamHandler) and not isinstance(h, logging.FileHandler) for h in logger.handlers
+    ):
         stream_handler = logging.StreamHandler()
         stream_handler.setFormatter(
             logging.Formatter("%(asctime)s %(name)s %(levelname)-8s: %(message)s", datefmt="%H:%M")
