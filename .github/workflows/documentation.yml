@@ -34,7 +34,7 @@ jobs:
             ${{ runner.os }}-pip-
       - run: pip install -e ".[docs]"
       - run: mkdocs build --site-dir site
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v4
         with:
           path: site
       - id: deployment
