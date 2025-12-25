@@ -13,25 +13,25 @@ def say_hello(name: str) -> None:
 
 
 def hello_world() -> None:
-    """Hello World Function.
-
-    Returns:
-        A string output.
-    """
+    """Hello World Function."""
     say_hello("world")
 
 
-def good_night() -> str:
-    """Good Night Function.
+def say_goodbye(name: str):
+    """Good bye Function.
 
-    Returns:
-        A string output.
+    Args:
+        name: Name to bid farewell.
     """
-    print("Good night!")
-    return "string"
+    print(f"Goodbye, {name}!")
+
+
+def goodbye_world():
+    """Goodbye World Function."""
+    say_goodbye("world")
 
 
 def hello_goodbye() -> None:
     """Hello Goodbye Function."""
     hello_world()
-    good_night()
+    goodbye_world()
