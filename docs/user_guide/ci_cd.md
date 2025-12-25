@@ -530,7 +530,6 @@ If security scanning isn't critical for your project and you want to speed up CI
 
 1. Remove the `codeql` job from `.github/workflows/CI.yml`
 2. Bandit will still run in pre-commit hooks for basic security checks
-<!-- prettier-ignore-end -->
 
 ## Troubleshooting
 
