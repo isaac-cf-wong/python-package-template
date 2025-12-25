@@ -449,7 +449,7 @@ After pushing the tag:
 
 ### Fixing Release Mistakes
 
-**Mistake: Wrong tag created**
+#### Mistake: Wrong tag created
 
 If you created the tag on the wrong commit:
 
@@ -465,7 +465,7 @@ git tag v1.0.0
 git push origin v1.0.0
 ```
 
-**Mistake: Forgot to push the tag**
+#### Mistake: Forgot to push the tag
 
 If you created the tag but forgot to push:
 
@@ -474,7 +474,7 @@ If you created the tag but forgot to push:
 git push origin v1.0.0
 ```
 
-**Mistake: Need to fix the release notes**
+#### Mistake: Need to fix the release notes
 
 GitHub allows editing release notes after creation:
 
