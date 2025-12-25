@@ -45,7 +45,7 @@ The recommended way to install `python_package_template` is from PyPI:
 ```bash
 # Create a virtual environment (recommended with uv)
 uv venv --python 3.10
-source .venv/bin/activate  # On Windows: .venv/Scripts\activate
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 uv pip install python_package_template
 ```
 
