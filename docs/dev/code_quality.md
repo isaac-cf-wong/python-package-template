@@ -346,7 +346,10 @@ Keep tools current:
 pre-commit autoupdate
 
 # Update Python packages
-pip install --upgrade ruff bandit cspell
+pip install --upgrade ruff bandit
+
+# Update Node.js packages
+npm update cspell
 ```
 
 For more information, see the documentation for individual tools: [Ruff](https://docs.astral.sh/ruff/), [Bandit](https://bandit.readthedocs.io/), [CSpell](https://cspell.org/), [Pyright](https://microsoft.github.io/pyright/).
