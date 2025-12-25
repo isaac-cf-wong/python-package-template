@@ -35,7 +35,6 @@ def test_hello_world(capsys):
 
     Args:
         capsys: Pytest fixture to capture stdout and stderr.
-        some_integer: An integer input from fixture.
     """
     hello_world()
     captured = capsys.readouterr()
