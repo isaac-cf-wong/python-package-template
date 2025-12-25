@@ -6,7 +6,11 @@
 # See https://keats.github.io/tera/docs/#introduction
 body = """
 {%- macro remote_url() -%}
-  https://github.com/{{ remote.github.owner }}/{{ remote.github.repo }}
+    {% if env.GITHUB_REPO -%}
+        https://github.com/{{ env.GITHUB_REPO }}
+    {%- else -%}
+        https://github.com/{{ remote.github.owner }}/{{ remote.github.repo }}
+    {%- endif -%}
 {%- endmacro -%}
 
 {% macro print_commit(commit) -%}
