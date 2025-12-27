@@ -426,6 +426,14 @@ Before creating a release:
 
 <!-- prettier-ignore-end -->
 
+<!-- prettier-ignore-start -->
+
+!!!note
+    Most teams can rely on the monthly scheduled release.
+    Manually trigger only when you need a release outside the regular schedule (e.g., urgent hotfixes).
+
+<!-- prettier-ignore-end -->
+
 Releases are managed automatically by two workflows working together:
 
 #### Automatic Release (Scheduled)

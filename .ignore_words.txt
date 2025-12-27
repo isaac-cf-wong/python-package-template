@@ -25,6 +25,7 @@ envlist
 envpython
 getrecursionlimit
 glightbox
+hotfixes
 htmlcov
 inlinevar
 isort
