@@ -426,9 +426,10 @@ Before creating a release:
 
 <!-- prettier-ignore-start -->
 
-!!!note "Manual Tag Creation is Discouraged"
-    Do **not** manually create git tags with `git tag` and `git push`.
-    The tag workflow automatically manages versioning and tagging.
+!!!tip "Prefer Automated Tagging"
+    For most releases, use the automated Tag workflow rather than manual `git tag` commands.
+    This ensures consistent versioning and changelog generation.
+    Manual tagging is available as a fallback if needed (see Troubleshooting section).
 
 <!-- prettier-ignore-end -->
 
@@ -525,6 +526,25 @@ If the workflow created a release on the wrong commit:
 5. Wait for the next scheduled release or manually trigger the workflow again
 
 <!-- prettier-ignore-end -->
+
+#### Workflow Failed During Execution
+
+If the Tag or Release workflow fails:
+
+<!-- prettier-ignore-start -->
+
+1. **Check the workflow logs** in the Actions tab to identify the failure
+2. **If tag was NOT created**: Simply re-run the workflow using "Re-run all jobs"
+3. **If tag was created but release failed**:
+
+    - The Release workflow should automatically trigger when you push the tag
+    - Or manually trigger the Release workflow if workflow_dispatch is enabled
+
+4. **If both failed partially**: Delete the tag (see above) and retry
+
+<!-- prettier-ignore-end -->
+
+Most failures can be resolved by re-running the workflow without manual intervention.
 
 #### Mistake: Need to fix the release notes
 
