@@ -77,7 +77,6 @@ Creates GitHub releases when version tags are pushed:
 **What it does:**
 
 - Triggers automatically when a version tag is pushed
-- Can be triggered manually via `workflow_dispatch`
 - Calls the CI workflow to ensure tests pass
 - Generates changelog using git-cliff
 - Deletes any existing draft release
