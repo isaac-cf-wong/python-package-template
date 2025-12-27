@@ -31,3 +31,10 @@ jobs:
           release_branches: main
           default_bump: patch
           tag_prefix: v
+
+      - name: Output tag information
+        run: |
+          echo "### Tag Created :rocket:" >> $GITHUB_STEP_SUMMARY
+          echo "- **New tag**: ${{ steps.tag_version.outputs.new_tag }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Previous tag**: ${{ steps.tag_version.outputs.previous_tag }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Changelog**: ${{ steps.tag_version.outputs.changelog }}" >> $GITHUB_STEP_SUMMARY
