@@ -3,6 +3,7 @@ module.exports = {
   extends: ["@commitlint/config-conventional"],
   // Optional: make it stricter (recommended)
   rules: {
+    "breaking-change-exclamation-mark": [2, "always"],
     "subject-case": [
       2,
       "always",
