@@ -323,20 +323,13 @@ strategy:
 The tag workflow uses scheduled and manual triggers. To customize:
 
 ```yaml
-on:
-  schedule:
-    - cron: "0 0 * * 0" # Runs on every Sunday at midnight UTC
-  workflow_dispatch: # Allow manual trigger
+--8<-- ".github/workflows/create_tag.yml:3:6"
 ```
 
 The release workflow is triggered by tags. To customize:
 
 ```yaml
-on:
-  push:
-    tags:
-      - "v[0-9]+.[0-9]+.[0-9]+*" # Pattern for version tags
-  workflow_dispatch: # Allow manual trigger
+--8<-- ".github/workflows/release.yml:3:6"
 ```
 
 ### Documentation Deployment
