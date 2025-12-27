@@ -50,12 +50,12 @@ Runs validation on pushes and pull requests:
 - Uploads coverage to Codecov
 - Can be called by other workflows as a reusable workflow
 
-### Tag Workflow (`.github/workflows/create_tag.yml`)
+### Release Workflow (`.github/workflows/release.yml`)
 
-Automates version bumping and tag creation on a monthly schedule:
+Automates versioning, tagging, and release creation:
 
 ```yaml
---8<-- ".github/workflows/create_tag.yml"
+--8<-- ".github/workflows/release.yml"
 ```
 
 **What it does:**
@@ -65,22 +65,10 @@ Automates version bumping and tag creation on a monthly schedule:
 - Calls the CI workflow to ensure tests pass
 - Automatically bumps version using semantic versioning based on conventional commits
 - Creates a git tag and pushes it
-
-### Release Workflow (`.github/workflows/release.yml`)
-
-Creates GitHub releases when version tags are pushed:
-
-```yaml
---8<-- ".github/workflows/release.yml"
-```
-
-**What it does:**
-
-- Triggers automatically when a version tag is pushed
-- Calls the CI workflow to ensure tests pass
 - Generates changelog using git-cliff
 - Deletes any existing draft release
 - Creates a new GitHub release with the changelog
+- Optionally publishes to PyPI (if enabled)
 
 ### Draft Release Workflow (`.github/workflows/draft_release.yml`)
 
@@ -158,32 +146,28 @@ git commit -m "refactor: improve code structure"
 
 ### Version Management
 
-Versions are automatically managed using a two-step workflow process:
+Versions are automatically managed using a unified release workflow:
 
 **Automatic Release Schedule:**
 
-- Tag creation runs automatically on the **1st of every month** at midnight UTC
-- Manual tag creation can be triggered via GitHub Actions workflow dispatch
-- Release creation happens automatically when the tag is pushed
+- Release workflow runs automatically on the **1st of every month** at midnight UTC
+- Manual releases can be triggered via GitHub Actions workflow dispatch
 
 **Automatic actions:**
 
-1. **Tag workflow** starts (scheduled or manual)
+1. Release workflow starts (scheduled or manual)
 2. Runs full test suite via CI workflow
 3. Automatically bumps version using semantic versioning based on conventional commits (patch/minor/major)
 4. Creates and pushes a git tag (e.g., `v1.2.3`)
-5. **Release workflow** is triggered by the new tag
-6. Runs CI workflow again to ensure tests pass
-7. Generates changelog using git-cliff
-8. Deletes any existing draft release
-9. Creates GitHub release with generated changelog
-10. Optionally publishes to PyPI (if publish workflow is enabled)
+5. Generates changelog using git-cliff
+6. Deletes any existing draft release
+7. Creates GitHub release with generated changelog
+8. Optionally publishes to PyPI (if publish workflow is enabled)
 
 **Manual trigger:**
 
-- Go to your repository → Actions → Tag workflow
-- Click "Run workflow" to trigger an immediate tag creation outside the monthly schedule
-- The release workflow will automatically run when the tag is created
+- Go to your repository → Actions → Release workflow
+- Click "Run workflow" to trigger an immediate release outside the monthly schedule
 
 ### Draft Releases
 
@@ -320,16 +304,13 @@ strategy:
 
 ### Modifying Release Triggers
 
-The tag workflow uses scheduled and manual triggers. To customize:
+The release workflow uses scheduled and manual triggers. To customize:
 
 ```yaml
---8<-- ".github/workflows/create_tag.yml:3:6"
-```
-
-The release workflow is triggered by tags. To customize:
-
-```yaml
---8<-- ".github/workflows/release.yml:3:6"
+on:
+  schedule:
+    - cron: "0 0 1 * *" # Runs on 1st of every month at midnight UTC
+  workflow_dispatch: # Allow manual trigger
 ```
 
 ### Documentation Deployment
@@ -419,9 +400,8 @@ Before creating a release:
 
 <!-- prettier-ignore-start -->
 
-!!!tip "Prefer Automated Tagging"
-    For most releases, use the automated Tag workflow rather than manual `git tag` commands.
-    This ensures consistent versioning and changelog generation.
+!!!note "Fully Automated Release Process"
+    The release workflow handles all aspects of creating a release: versioning, tagging, changelog generation, and publishing.
     Manual tagging is available as a fallback if needed (see Troubleshooting section).
 
 <!-- prettier-ignore-end -->
@@ -434,19 +414,18 @@ Before creating a release:
 
 <!-- prettier-ignore-end -->
 
-Releases are managed automatically by two workflows working together:
+Releases are fully automated:
 
 #### Automatic Release (Scheduled)
 
-The tag workflow runs automatically on the **1st of every month at midnight UTC**:
+The release workflow runs automatically on the **1st of every month at midnight UTC**:
 
 1. Runs full test suite via CI workflow
 2. Automatically bumps the version using semantic versioning based on conventional commits
 3. Creates and pushes a git tag (e.g., `v1.2.3`)
-4. The release workflow is automatically triggered by the new tag
-5. Generates changelog from commit messages
-6. Creates a GitHub release with the changelog
-7. Optionally publishes to PyPI (if enabled)
+4. Generates changelog from commit messages
+5. Creates a GitHub release with the changelog
+6. Optionally publishes to PyPI (if enabled)
 
 No action needed - just make sure your commits follow [conventional commits](https://www.conventionalcommits.org/) format.
 
@@ -456,24 +435,19 @@ To create a release before the scheduled date:
 
 1. Go to your GitHub repository
 2. Click **Actions** tab
-3. Find the **Tag** workflow
+3. Find the **Release** workflow
 4. Click **Run workflow**
 5. Confirm the trigger
 
-The tag workflow will:
+The release workflow will:
 
 1. Run all tests via CI workflow
 2. Automatically bump the version using semantic versioning (based on commit types)
 3. Create and push a git tag
-4. Trigger the release workflow automatically
-
-The release workflow will then:
-
-1. Run CI workflow again to validate the tag
-2. Generate changelog from commit messages
-3. Delete the "next-release" draft
-4. Create a new GitHub release with the changelog
-5. Optionally publish to PyPI (if enabled)
+4. Generate changelog from commit messages
+5. Delete the "next-release" draft
+6. Create a new GitHub release with the changelog
+7. Optionally publish to PyPI (if enabled)
 
 You can monitor progress in the **Actions** tab on GitHub.
 
@@ -485,9 +459,8 @@ After pushing the tag:
 
 1. **Check GitHub Actions**: Go to **Actions** tab
 
-    - Look for the "Tag" workflow (creates the tag)
-    - Look for the "Release" workflow (creates the GitHub release)
-    - Verify both completed successfully (green checkmark)
+    - Look for the "Release" workflow
+    - Verify it completed successfully (green checkmark)
 
 2. **Check GitHub Releases**: Go to **Releases** page
 
@@ -530,22 +503,26 @@ If the workflow created a release on the wrong commit:
 
 #### Workflow Failed During Execution
 
-If the Tag or Release workflow fails:
+If the Release workflow fails:
 
 <!-- prettier-ignore-start -->
 
 1. **Check the workflow logs** in the Actions tab to identify the failure
-2. **If tag was NOT created**: Simply re-run the workflow using "Re-run all jobs"
-3. **If tag was created but release failed**:
+2. **Common causes**:
+   - Conventional commit format not followed (check commit messages)
+   - git-cliff configuration issues (check `cliff.toml`)
+   - PyPI publishing misconfiguration (if enabled)
+   - GitHub API rate limits or permissions issues
 
-    - The Release workflow should automatically trigger when you push the tag
-    - Or manually trigger the Release workflow if workflow_dispatch is enabled
-
-4. **If both failed partially**: Delete the tag (see above) and retry
+3. **To retry**: Click "Re-run all jobs" in the Actions tab
+4. **If tag was created but other steps failed**:
+   - Delete the tag (see "Mistake: Wrong release was created" above)
+   - Fix the underlying issue
+   - Re-run the workflow
 
 <!-- prettier-ignore-end -->
 
-Most failures can be resolved by re-running the workflow without manual intervention.
+Most failures can be resolved by fixing the underlying cause and re-running the workflow.
 
 #### Mistake: Need to fix the release notes
 
@@ -647,13 +624,11 @@ If security scanning isn't critical for your project and you want to speed up CI
 ### Common Issues
 
 - **CI workflow fails**: Check test logs and ensure dependencies are correct
-- **Tag workflow fails**: Check conventional commit formats and CI test results
-- **Release workflow fails**: Verify git-cliff configuration and tag format
+- **Release workflow fails**: Verify conventional commit formats, git-cliff configuration, and tag format
 - **Draft release not updating**: Check concurrency settings and workflow permissions
 - **Documentation deployment fails**: Verify MkDocs configuration and GitHub Pages setup
 - **Publishing fails**: Ensure PyPI trusted publishers are configured correctly (or API tokens if using fallback method)
-- **Tag not recognized**: Ensure tag format matches `v[0-9]+.[0-9]+.[0-9]+*`
-- **Release doesn't trigger after tag**: Check that the tag pattern matches the release workflow trigger
+- **Version not bumped correctly**: Ensure commits follow conventional commit format (e.g., `feat:`, `fix:`, `feat!:`)
 
 ### Debugging Workflows
 
