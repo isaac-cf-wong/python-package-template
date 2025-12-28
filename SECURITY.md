@@ -8,8 +8,11 @@ Please ensure you are using the most recent version before reporting a security 
 | Latest  | ✅        |
 | < 1.0   | ❌        |
 
-!!!note
-Update this table when you release version 1.0 or later.
+**Notes**:
+
+- Update this table when you release version 1.0 or later
+- Consider your project's versioning strategy and support policy
+- For pre-1.0 versions, you may want to support multiple recent versions
 
 ## Reporting a Vulnerability
 
