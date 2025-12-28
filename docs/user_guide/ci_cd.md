@@ -1,707 +1,277 @@
 # CI/CD and Releases
 
-This guide explains the continuous integration and deployment setup in this Python package template,
-including GitHub Actions workflows, release automation, and best practices.
+This guide explains the continuous integration and deployment setup in this Python package template.
 
 ## Overview
 
-The template includes comprehensive CI/CD using GitHub Actions with:
+The template includes:
 
-- **Automated testing**: Runs on every push and pull request
-- **Multi-Python support**: Tests across multiple Python versions
-- **Code quality checks**: Linting, formatting, security scanning
-- **Release automation**: Automatic publishing on tags with changelog generation
-- **Draft releases**: Preview upcoming changes before tagging
-- **Documentation deployment**: GitHub Pages integration
-- **Package publishing**: Optional PyPI publishing (requires setup)
+- **Automated testing** on every push and pull request (3.10, 3.11, 3.12)
+- **Code quality checks** (linting, formatting, CodeQL security scanning)
+- **Automated monthly releases** with semantic versioning and changelog generation
+- **Draft releases** to preview upcoming changes before publishing
+- **Documentation deployment** to GitHub Pages
+- **Dependency updates** via Dependabot
+- **Package publishing** (optional, requires setup)
 
-## Quick Setup (TL;DR)
+## Quick Start
 
-For the impatient developer - here's the minimal setup to get CI/CD working:
+1. **No setup required** - CI runs automatically on pushes and pull requests
+2. **Releases happen monthly** on the 1st of each month (automated)
+3. **Optional: Enable PyPI publishing** - See [Publishing](#publishing) section
 
-### One-Time Setup Checklist
+## Workflows
 
-- [ ] **Enable PyPI trusted publishing** (optional, for package publishing):
-  - Go to [pypi.org](https://pypi.org) → your project → Settings → Publishing
-  - Add GitHub as trusted publisher: `your-username/your-repo` workflow `publish.yml`
-- [ ] **Enable package publishing**: Rename `.github/workflows/publish.example.yml` to `publish.yml`
-- [ ] **Set branch protection**:
-  - Go to repository Settings → Branches → Add rule for `main`
-  - Require status checks: `test (3.10)`, `test (3.11)`, `test (3.12)`
-- [ ] **Install pre-commit.ci**: Go to [pre-commit.ci](https://pre-commit.ci/) and install the GitHub App
-- [ ] **Test it**: Push a commit and watch the workflows run!
+### CI (`.github/workflows/CI.yml`)
 
-**Time to first release**: ~10 minutes. See detailed instructions below for each step.
+**Triggers:** Every push, pull request, or manual trigger
 
-## GitHub Actions Workflows
-
-### CI Workflow (`.github/workflows/CI.yml`)
-
-Runs validation on pushes and pull requests:
-
-```yaml
---8<-- ".github/workflows/CI.yml"
-```
-
-**What it does:**
-
-- Tests across multiple Python versions (3.10, 3.11, 3.12)
+- Tests across Python 3.10, 3.11, 3.12
 - Runs pytest with coverage reporting
 - Uploads coverage to Codecov
-- Can be called by other workflows as a reusable workflow
+- Security scanning with CodeQL
 
-### Tag Workflow (`.github/workflows/create_tag.yml`)
+**Status checks to require:** `test (3.10)`, `test (3.11)`, `test (3.12)`
 
-Automates version bumping and tag creation on a monthly schedule:
+### Tag (`.github/workflows/create_tag.yml`)
 
-```yaml
---8<-- ".github/workflows/create_tag.yml"
-```
+**Triggers:** Monthly (1st of month at UTC midnight) or manual trigger
 
-**What it does:**
+1. Runs CI workflow to ensure tests pass
+2. Automatically bumps version using semantic versioning
+3. Creates and pushes git tag (e.g., `v1.2.3`)
+4. Calls Release workflow with the new tag
 
-- Runs automatically on the 1st of every month at midnight UTC
-- Can be triggered manually via `workflow_dispatch`
-- Calls the CI workflow to ensure tests pass
-- Automatically bumps version using semantic versioning based on conventional commits
-- Creates a git tag and pushes it
+### Release (`.github/workflows/release.yml`)
 
-### Release Workflow (`.github/workflows/release.yml`)
+**Triggers:** When called by Tag workflow, or manually with a tag
 
-Creates GitHub releases when version tags are pushed:
+1. Checks out the specified tag
+2. Generates changelog from conventional commits
+3. Deletes old draft release
+4. Creates GitHub release with changelog
+5. Optionally calls Publish workflow (requires setup)
 
-```yaml
---8<-- ".github/workflows/release.yml"
-```
+### Draft Release (`.github/workflows/draft_release.yml`)
 
-**What it does:**
+**Triggers:** Every push to `main`
 
-- Triggers automatically when a version tag is pushed
-- Calls the CI workflow to ensure tests pass
-- Generates changelog using git-cliff
-- Deletes any existing draft release
-- Creates a new GitHub release with the changelog
-
-### Draft Release Workflow (`.github/workflows/draft_release.yml`)
-
-Creates draft releases for unreleased changes:
-
-```yaml
---8<-- ".github/workflows/draft_release.yml"
-```
-
-**What it does:**
-
-- Runs on pushes and pull requests to main
 - Generates changelog for unreleased changes
-- Creates/updates a draft release named "next-release"
-- Uses concurrency control to avoid conflicts
+- Creates/updates `next-release` draft on GitHub Releases
+- Auto-deleted when a real release is created
+- Helps preview what's in the next release
 
-### Documentation Workflow (`.github/workflows/documentation.yml`)
+### Documentation (`.github/workflows/documentation.yml`)
 
-Deploys documentation to GitHub Pages:
+**Triggers:** Every push to `main` or manual trigger
 
-```yaml
---8<-- ".github/workflows/documentation.yml"
-```
+- Builds documentation with MkDocs
+- Deploys to GitHub Pages
+- Uses pip caching for faster builds
 
-**What it does:**
+### Publish (`.github/workflows/publish.yml` & `publish_testpypi.yml`)
 
-- Triggers on pushes to main branch
-- Builds and deploys MkDocs documentation
-- Updates GitHub Pages automatically
+**Triggers:** Manual via `workflow_dispatch` or called by Release workflow
 
-### Publish Workflow (`.github/workflows/publish.example.yml`)
-
-Handles package publishing to PyPI (disabled by default):
-
-```yaml
---8<-- ".github/workflows/publish.example.yml"
-```
-
-**What it does:**
-
-- Builds distribution packages
-- Publishes to PyPI on release publication
-- Publishes to TestPyPI on manual workflow dispatch
-
-<!-- prettier-ignore-start -->
-
-!!!note
-    Rename this file from `publish.example.yml` to `publish.yml` to enable PyPI publishing
-
-<!-- prettier-ignore-end -->
+- Builds Python distribution packages
+- Publishes to PyPI or TestPyPI
+- Requires setup (see [Publishing](#publishing))
+- **Enabled when environments are configured** (requires `pypi` or `testpypi` environments)
 
 ## Release Process
 
 ### Conventional Commits
 
-The template uses conventional commits for automated changelog generation:
+Format commits to trigger automatic changelog generation:
 
 ```bash
-# Examples
-git commit -m "feat: add new feature"
-git commit -m "fix: resolve bug in module"
-git commit -m "docs: update documentation"
-git commit -m "refactor: improve code structure"
+feat: add new feature          # Triggers minor version bump
+fix: fix a bug                 # Triggers patch version bump
+feat!: breaking change         # Triggers major version bump
+docs: update documentation     # No version bump
+chore: update dependencies     # No version bump
 ```
 
-**Types:**
+[Learn more about Conventional Commits](https://www.conventionalcommits.org/)
 
-- `feat`: New features
-- `fix`: Bug fixes
-- `docs`: Documentation changes
-- `style`: Code style changes
-- `refactor`: Code refactoring
-- `test`: Test additions
-- `chore`: Maintenance tasks
+### Automatic Release (Monthly)
 
-### Version Management
+The Tag workflow runs automatically on the **1st of every month at midnight UTC**:
 
-Versions are automatically managed using a two-step workflow process:
+1. CI passes ✅
+2. Version is bumped (e.g., 1.0.0 → 1.0.1)
+3. Git tag is created and pushed
+4. Release workflow creates a GitHub Release
+5. Changelog is auto-generated from commits
 
-**Automatic Release Schedule:**
+**No action required** - just use conventional commits.
 
-- Tag creation runs automatically on the **1st of every month** at midnight UTC
-- Manual tag creation can be triggered via GitHub Actions workflow dispatch
-- Release creation happens automatically when the tag is pushed
+### Manual Release
 
-**Automatic actions:**
+Trigger a release anytime:
 
-1. **Tag workflow** starts (scheduled or manual)
-2. Runs full test suite via CI workflow
-3. Automatically bumps version using semantic versioning based on conventional commits (patch/minor/major)
-4. Creates and pushes a git tag (e.g., `v1.2.3`)
-5. **Release workflow** is triggered by the new tag
-6. Runs CI workflow again to ensure tests pass
-7. Generates changelog using git-cliff
-8. Deletes any existing draft release
-9. Creates GitHub release with generated changelog
-10. Optionally publishes to PyPI (if publish workflow is enabled)
+1. Go to your repository → **Actions** tab
+2. Click the **Tag** workflow
+3. Click **Run workflow** → **Confirm**
 
-**Manual trigger:**
+Or manually specify a tag for Release workflow:
 
-- Go to your repository → Actions → Tag workflow
-- Click "Run workflow" to trigger an immediate tag creation outside the monthly schedule
-- The release workflow will automatically run when the tag is created
-
-### Draft Releases
-
-The template includes automatic draft release creation:
-
-- **Triggers**: On every push to main
-- **Purpose**: Preview upcoming changes before creating a version tag
-- **Content**: Shows all unreleased changes using git-cliff
-- **Cleanup**: Draft releases are automatically deleted when real releases are created
-
-### Changelog Generation
-
-Uses git-cliff for automatic changelog creation:
-
-```bash
-# Generate changelog for latest release
-git cliff --latest --strip header
-
-# Update CHANGELOG.md with all history
-git cliff -o CHANGELOG.md
-```
-
-Configuration in `cliff.toml` defines:
-
-- Commit grouping (Features, Bug Fixes, etc.)
-- Release formatting
-- Conventional commit parsing
-
-## Setting Up CI/CD
-
-### Repository Secrets
-
-For PyPI publishing, use [trusted publishing](https://docs.pypi.org/trusted-publishers/) (recommended) instead of API tokens:
-
-**Trusted Publishing (Recommended):**
-
-- No API tokens needed - GitHub Actions authenticates directly with PyPI
-- More secure - no long-lived secrets to manage
-- Easier setup - just configure in PyPI/TestPyPI project settings
-
-**API Tokens (Fallback):**
-
-- **`PYPI_API_TOKEN`**: PyPI API token for publishing to production PyPI
-- **`TEST_PYPI_API_TOKEN`**: TestPyPI API token for testing publishing
-
-<!-- prettier-ignore-start -->
-
-!!! tip "Decision Guide"
-    Use trusted publishing unless you have a specific reason for API tokens.
-    Trusted publishing is more secure and easier to set up.
-
-<!-- prettier-ignore-end -->
-
-### Enabling PyPI Publishing
-
-The publish workflow is disabled by default. To enable it:
-
-1. Rename `.github/workflows/publish.example.yml` to `publish.yml`
-
-2. **Set up trusted publishing (recommended):**
-
-   - Go to your PyPI project settings → Publishing
-   - Add GitHub as a trusted publisher:
-     - Publisher: GitHub
-     - Owner: `your-username`
-     - Repository: `your-repo-name`
-     - Workflow: `publish.yml`
-   - Repeat for TestPyPI if needed
-
-3. **Or use API tokens (fallback):**
-   - Set up the required API tokens in repository secrets
-   - Create PyPI and TestPyPI environments in repository settings
-   - Grant appropriate permissions for publishing
-
-**Benefits of trusted publishing:**
-
-- No secrets management required
-- Automatic authentication from GitHub Actions
-- More secure than API tokens
-- Follows PyPI's security best practices
-
-### Setting Up Pre-commit.ci
-
-For automated code quality checks on pull requests:
-
-1. Go to [pre-commit.ci](https://pre-commit.ci/) and install the GitHub App on your repository
-2. Pre-commit.ci will automatically run all pre-commit hooks on every PR
-3. It can auto-fix issues and commit changes back to the PR branch
-4. Configuration is already set up in `.pre-commit-config.yaml`
-
-### Branch Protection
-
-Set up branch protection for `main`:
-
-1. Go to Settings → Branches
-2. Add rule for `main` branch
-3. Require status checks to pass
-4. Require branches to be up to date
-
-### Required Status Checks
-
-Configure required checks:
-
-- `test (3.10)`
-- `test (3.11)`
-- `test (3.12)`
-
-## Workflow Customization
-
-### Adding New Checks
-
-Modify `.github/workflows/CI.yml`:
-
-```yaml
-jobs:
-  test:
-    steps:
-      - uses: actions/checkout@v5
-      - name: New Check
-        run: |
-          # Your custom check here
-```
-
-### Testing on Different OS
-
-Add matrix for operating systems:
-
-```yaml
-strategy:
-  matrix:
-    os: [ubuntu-latest, windows-latest, macos-latest]
-    python-version: ["3.10", "3.11", "3.12"]
-```
-
-### Modifying Release Triggers
-
-The tag workflow uses scheduled and manual triggers. To customize:
-
-```yaml
---8<-- ".github/workflows/create_tag.yml:3:6"
-```
-
-The release workflow is triggered by tags. To customize:
-
-```yaml
---8<-- ".github/workflows/release.yml:3:6"
-```
-
-### Documentation Deployment
-
-The documentation workflow deploys on every push to main. To customize:
-
-```yaml
-on:
-  push:
-    branches: [main]
-  pull_request: # Add PR previews
-    branches: [main]
-```
-
-### Draft Release Configuration
-
-Customize draft release behavior:
-
-```yaml
-concurrency:
-  group: draft-release
-  cancel-in-progress: false # Set to true to cancel in-progress runs
-```
-
-## CI Status
-
-Monitor CI status:
-
-- **Pull requests**: Check status checks pass
-- **Main branch**: Ensure all validations pass
-- **Releases**: Verify publishing succeeds
-
-## Release Management
-
-### Understanding Draft Releases
-
-Before creating a real release, you can preview what changes will be included:
-
-1. Go to your GitHub repository **Releases** page
-2. Look for a release named **"Next Release (Draft)"** with tag `next-release`
-3. This shows all unreleased changes based on your commits since the last tag
-4. Review the changelog to ensure everything is correct
-
-The draft release helps you:
-
-- Verify the changelog looks good
-- Catch any missing changes before tagging
-- See what's going into the next version
-- Plan when to release (gather feedback first if needed)
-
-### Pre-release Checklist
-
-Before creating a release:
-
-<!-- prettier-ignore-start -->
-
-1. **Review draft release**: Go to GitHub Releases and check the "Next Release (Draft)"
-
-    - Verify all important changes are included
-    - Check that the changelog is well-organized
-    - Ensure no accidental commits snuck in
-
-2. **Verify you're on the right commit**:
-
-    ```bash
-    git log --oneline -1  # Shows current commit
-    git branch -v        # Verify you're on main
-    ```
-
-3. **Ensure main branch is up to date**:
-
-    ```bash
-    git pull origin main
-    ```
-
-4. **Verify all tests pass locally** (optional, but recommended):
-
-    ```bash
-    pytest
-    ```
-
-5. **Check documentation**: Ensure documentation is current and reflects new changes
-
-<!-- prettier-ignore-end -->
-
-### Creating Your First Release
-
-<!-- prettier-ignore-start -->
-
-!!!tip "Prefer Automated Tagging"
-    For most releases, use the automated Tag workflow rather than manual `git tag` commands.
-    This ensures consistent versioning and changelog generation.
-    Manual tagging is available as a fallback if needed (see Troubleshooting section).
-
-<!-- prettier-ignore-end -->
-
-<!-- prettier-ignore-start -->
-
-!!!note
-    Most teams can rely on the monthly scheduled release.
-    Manually trigger only when you need a release outside the regular schedule (e.g., urgent hotfixes).
-
-<!-- prettier-ignore-end -->
-
-Releases are managed automatically by two workflows working together:
-
-#### Automatic Release (Scheduled)
-
-The tag workflow runs automatically on the **1st of every month at midnight UTC**:
-
-1. Runs full test suite via CI workflow
-2. Automatically bumps the version using semantic versioning based on conventional commits
-3. Creates and pushes a git tag (e.g., `v1.2.3`)
-4. The release workflow is automatically triggered by the new tag
-5. Generates changelog from commit messages
-6. Creates a GitHub release with the changelog
-7. Optionally publishes to PyPI (if enabled)
-
-No action needed - just make sure your commits follow [conventional commits](https://www.conventionalcommits.org/) format.
-
-#### Manual Release Trigger
-
-To create a release before the scheduled date:
-
-1. Go to your GitHub repository
-2. Click **Actions** tab
-3. Find the **Tag** workflow
+1. Go to **Actions** → **Release** workflow
+2. Click **Run workflow**
+3. Enter tag name (e.g., `v1.2.3`)
 4. Click **Run workflow**
-5. Confirm the trigger
 
-The tag workflow will:
+### Verify Release
 
-1. Run all tests via CI workflow
-2. Automatically bump the version using semantic versioning (based on commit types)
-3. Create and push a git tag
-4. Trigger the release workflow automatically
+After the workflow completes:
 
-The release workflow will then:
+1. **Actions tab** - Workflow should show ✅
+2. **Releases page** - New release should appear with auto-generated changelog
+3. **GitHub Pages** - Docs should be updated (if configured)
 
-1. Run CI workflow again to validate the tag
-2. Generate changelog from commit messages
-3. Delete the "next-release" draft
-4. Create a new GitHub release with the changelog
-5. Optionally publish to PyPI (if enabled)
+## Publishing
 
-You can monitor progress in the **Actions** tab on GitHub.
+### Setup PyPI Publishing (Optional)
 
-### Verifying the Release
+Publishing is **disabled by default** — it only runs when you create the required environments.
 
-After pushing the tag:
+#### To Enable Publishing
 
-<!-- prettier-ignore-start -->
+1. Go to your repository → **Settings** → **Environments**
+2. Create an environment named `pypi` (for PyPI) and/or `testpypi` (for TestPyPI)
+3. For each environment, optionally add deployment rules:
+   - **Deployment branches**: Select `main` or `Selected branches`
+   - **Environment secrets** (optional): Only needed if not using trusted publishing
 
-1. **Check GitHub Actions**: Go to **Actions** tab
+#### Manual Publish
 
-    - Look for the "Tag" workflow (creates the tag)
-    - Look for the "Release" workflow (creates the GitHub release)
-    - Verify both completed successfully (green checkmark)
+Publish manually when ready:
 
-2. **Check GitHub Releases**: Go to **Releases** page
+1. Go to **Actions** → **Publish** workflow
+2. Click **Run workflow** → Enter tag name
+3. Select environment from the dropdown
+4. Click **Run workflow**
 
-    - New release should appear with your tag
-    - Changelog should be auto-generated
-    - Release should show "Latest" if it's the newest
+#### Auto-Publish on Release
 
-3. **Verify PyPI** (if publishing enabled):
-
-    ```bash
-    pip install your-package==1.0.0  # Should work
-    ```
-
-<!-- prettier-ignore-end -->
-
-### Fixing Release Mistakes
-
-#### Mistake: Wrong release was created
-
-If the workflow created a release on the wrong commit:
+The Release workflow is already configured to call the Publish workflow.
+Once you create the `pypi` environment, releases will automatically publish to PyPI.
 
 <!-- prettier-ignore-start -->
+<!-- markdownlint-disable MD046 -->
 
-1. Go to **Releases** page
-2. Find the incorrect release
-3. Click the three dots ⋯ and select **Delete**
-4. Manually delete the tag:
+!!!important "For Production Packages"
+    This template includes `continue-on-error: true` in the publish workflows
+    to handle the case where environments are not created.
+    When you fork this template for production use, **remove these lines** from:
 
-    ```bash
-    # Delete local tag
-    git tag -d v1.0.0
+    - `.github/workflows/publish.yml` (line 78)
+    - `.github/workflows/publish_testpypi.yml` (line 78)
 
-    # Delete remote tag
-    git push origin --delete v1.0.0
-    ```
+    This ensures your package will fail loudly if publishing encounters errors, rather than silently skipping the publish step.
 
-5. Wait for the next scheduled release or manually trigger the workflow again
-
+<!-- markdownlint-enable MD046 -->
 <!-- prettier-ignore-end -->
 
-#### Workflow Failed During Execution
+### Configure Trusted Publishing (Recommended)
 
-If the Tag or Release workflow fails:
+Use [PyPI trusted publishing](https://docs.pypi.org/trusted-publishers/) instead of API tokens:
 
-<!-- prettier-ignore-start -->
+1. Go to [PyPI](https://pypi.org) or [TestPyPI](https://test.pypi.org)
+2. Go to your project → Settings → Publishing
+3. Add GitHub as trusted publisher:
+   - Owner: `your-username`
+   - Repository: `your-repo-name`
+   - Workflow: `publish.yml`
+   - Environment: `production` (or `testpypi` for TestPyPI)
 
-1. **Check the workflow logs** in the Actions tab to identify the failure
-2. **If tag was NOT created**: Simply re-run the workflow using "Re-run all jobs"
-3. **If tag was created but release failed**:
+No secrets or tokens needed!
 
-    - The Release workflow should automatically trigger when you push the tag
-    - Or manually trigger the Release workflow if workflow_dispatch is enabled
+## Customization
 
-4. **If both failed partially**: Delete the tag (see above) and retry
+### Change Release Schedule
 
-<!-- prettier-ignore-end -->
-
-Most failures can be resolved by re-running the workflow without manual intervention.
-
-#### Mistake: Need to fix the release notes
-
-GitHub allows editing release notes after creation:
-
-1. Go to **Releases** page
-2. Click the three dots ⋯ next to your release
-3. Select **Edit release**
-4. Update the description
-5. Save changes
-
-### Release Conventions
-
-**Commit message format:**
-
-The changelog is auto-generated from commit messages using
-[conventional commits](https://www.conventionalcommits.org/).
-Use these formats:
-
-```bash
-# New features (appear in changelog as "Features")
-git commit -m "feat: add new API endpoint"
-
-# Bug fixes (appear as "Bug Fixes")
-git commit -m "fix: resolve issue with data validation"
-
-# Documentation (usually not in changelog)
-git commit -m "docs: update installation guide"
-
-# Breaking changes (important!)
-git commit -m "feat!: change API response format"  # The ! indicates breaking
-```
-
-Conventional commits help:
-
-- Auto-generate meaningful changelogs
-- Determine version bumps (major/minor/patch)
-- Quickly see what changed
-
-### Post-release
-
-- **Verify release**: Check that the GitHub release was created with correct changelog
-- **Test installation**: `pip install your-package==1.2.3` (if publishing to PyPI)
-- **Announce**: Update relevant channels with the new release
-
-## Advanced Features
-
-### Scheduled Builds
-
-Run periodic checks:
+Edit `.github/workflows/create_tag.yml`:
 
 ```yaml
 on:
   schedule:
-    - cron: "0 0 * * 0" # Weekly on Sundays
+    - cron: "0 0 1 * *" # Change to your preferred time
 ```
 
-### Dependency Updates
+**Cron format:** `minute hour day month weekday`
 
-Use Dependabot for automated updates:
+- `"0 0 1 * *"` = 1st of month, midnight UTC
+- `"0 0 * * 0"` = Every Sunday, midnight UTC
+- `"0 12 * * *"` = Every day at noon UTC
+
+### Require Additional Status Checks
+
+Edit `.github/workflows/CI.yml` to add custom checks, then add them to branch protection:
+
+1. Go to Settings → Branches → main
+2. Under "Require status checks to pass before merging"
+3. Add your new check names
+
+### Change Python Versions
+
+Edit `.github/workflows/CI.yml`:
 
 ```yaml
---8<-- ".github/dependabot.yml:1:7"
+matrix:
+  python-version: ["3.10", "3.11", "3.12"] # Modify as needed
 ```
 
-### CodeQL Security
+### Disable CodeQL (Optional)
 
-GitHub's advanced security analysis is **enabled by default** in the CI workflow (complements existing Bandit scans):
-
-```yaml
---8<-- ".github/workflows/CI.yml:44:60"
-```
-
-**What it adds beyond Bandit:**
-
-- Advanced data flow analysis for complex vulnerabilities
-- Cross-file and cross-function security issues
-- Integration with GitHub Security tab and alerts
-- Automated dependency vulnerability scanning
-- More comprehensive coverage of security issues
-
-<!-- prettier-ignore-start -->
-
-!!!note
-    Bandit already runs in pre-commit hooks for basic security scanning.
-    CodeQL provides deeper analysis but uses more CI resources (~2-3 minutes per run).
-
-<!-- prettier-ignore-end -->
-
-**Disabling CodeQL:**
-
-If security scanning isn't critical for your project and you want to speed up CI:
-
-1. Remove the `codeql` job from `.github/workflows/CI.yml`
-2. Bandit will still run in pre-commit hooks for basic security checks
+If security scanning isn't needed, remove the `codeql` job from `.github/workflows/CI.yml`.
 
 ## Troubleshooting
 
-### Common Issues
+### CI workflow fails
 
-- **CI workflow fails**: Check test logs and ensure dependencies are correct
-- **Tag workflow fails**: Check conventional commit formats and CI test results
-- **Release workflow fails**: Verify git-cliff configuration and tag format
-- **Draft release not updating**: Check concurrency settings and workflow permissions
-- **Documentation deployment fails**: Verify MkDocs configuration and GitHub Pages setup
-- **Publishing fails**: Ensure PyPI trusted publishers are configured correctly (or API tokens if using fallback method)
-- **Tag not recognized**: Ensure tag format matches `v[0-9]+.[0-9]+.[0-9]+*`
-- **Release doesn't trigger after tag**: Check that the tag pattern matches the release workflow trigger
+- Check test logs in Actions tab
+- Verify dependencies in `pyproject.toml`
+- Ensure tests pass locally: `pytest`
 
-### Debugging Workflows
+### Release workflow fails
 
-- **Re-run failed jobs**: Click "Re-run jobs" in Actions tab
-- **Debug logs**: Enable debug logging with `ACTIONS_RUNNER_DEBUG=true` secret
-- **Local simulation**: Use `act` tool for local testing of workflows
-- **Check draft releases**: Look for "next-release" in GitHub Releases to see unreleased changes
+- Check commits use conventional commit format
+- Verify `cliff.toml` changelog configuration
+- See Actions logs for detailed error
 
-### Performance Optimization
+### Version not bumped correctly
 
-- **Cache dependencies**: Already configured for pip and Python packages
-- **Parallel jobs**: CI runs tests in parallel across Python versions
-- **Skip CI**: Add `[skip ci]` to commit messages for documentation-only changes
-- **Concurrency control**: Draft releases use queuing to avoid conflicts
+- Ensure commits start with `feat:`, `fix:`, `feat!:`, etc.
+- Check [Conventional Commits](https://www.conventionalcommits.org/) format
+
+### Draft release not updating
+
+- Check workflow concurrency settings in `.github/workflows/draft_release.yml`
+
+### PyPI publishing fails
+
+- Verify trusted publishing is configured on PyPI/TestPyPI
+- Check that the environment name matches your workflow
+- See Actions logs for authentication errors
+
+### CodeQL configuration error
+
+- Remove `security-events: write` permission from workflows without CodeQL scanning
+- Only `.github/workflows/CI.yml` should have this permission
 
 ## Best Practices
 
-### Commit Hygiene
+- **Use conventional commits** - Ensures correct version bumping and meaningful changelogs
+- **Review draft releases** - Check "next-release" to preview what will be published
+- **Keep commits atomic** - One logical change per commit
+- **Require status checks** - Prevent merging broken code to main
+- **Use branch protection** - Require pull requests and passing checks before merging
 
-- **Conventional commits**: Follow the format strictly for automated changelog generation and semantic versioning
-- **Atomic commits**: One change per commit
-- **Clear messages**: Describe what and why
+## Resources
 
-### Release Strategy
-
-- **Let the workflow handle releases**: The workflow automatically determines version bumps based on commit types
-- **Release often**: Smaller, frequent releases are managed automatically or manually via workflow
-- **Use conventional commits**: Proper commit types ensure correct version bumping
-- **Draft releases**: Use the automated draft release to preview changes before tagging
-
-### Documentation
-
-- **Keep docs updated**: Documentation deploys automatically on main branch pushes
-- **Use MkDocs**: Leverage the built-in documentation system
-- **Preview changes**: Check documentation builds in pull requests
-
-### Workflow Management
-
-- **Reusable workflows**: CI workflow can be called by other workflows
-- **Concurrency control**: Draft releases avoid conflicts with queuing
-- **Optional publishing**: PyPI publishing is opt-in via workflow file renaming
-- **Security**: Use repository secrets and environments for sensitive operations
-
-### Security
-
-- **Dependabot**: Keep dependencies updated (configured in `.github/dependabot.yml`)
-- **CodeQL**: Regular security scans via GitHub Advanced Security
-- **Access control**: Limit who can create releases and manage secrets
-- **Token security**: Use PyPI trusted publishing instead of API tokens when possible
-
-For more information, see [GitHub Actions documentation](https://docs.github.com/en/actions) and [Conventional Commits](https://conventionalcommits.org/).
+- [GitHub Actions documentation](https://docs.github.com/en/actions)
+- [Conventional Commits](https://www.conventionalcommits.org/)
+- [Semantic Versioning](https://semver.org/)
+- [git-cliff documentation](https://github.com/orhun/git-cliff)
+- [MkDocs documentation](https://www.mkdocs.org/)

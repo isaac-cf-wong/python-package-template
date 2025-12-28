@@ -1,20 +1,24 @@
 name: Release
 
 on:
-  push:
-    tags:
-      - "v[0-9]+.[0-9]+.[0-9]+*"
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: "Tag name for the release (e.g., v1.2.3)"
+        required: true
+        type: string
+  workflow_call:
+    inputs:
+      tag_name:
+        description: "Tag name for the release (e.g., v1.2.3)"
+        required: true
+        type: string
 
 permissions:
   contents: write
-  security-events: write
 
 jobs:
-  ci:
-    uses: ./.github/workflows/CI.yml
-
   release:
-    needs: ci
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -22,13 +26,14 @@ jobs:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
+          ref: ${{ inputs.tag_name || github.event.inputs.tag_name }}
 
       - name: Generate changelog
         id: changelog
         uses: orhun/git-cliff-action@v4.7.0
         with:
           config: cliff.toml
-          args: --latest --verbose
+          args: --current --verbose
         env:
           OUTPUT: CHANGELOG.md
           GITHUB_REPO: ${{ github.repository }}
@@ -43,6 +48,13 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ inputs.tag_name || github.event.inputs.tag_name }}
           body: ${{ steps.changelog.outputs.content }}
           draft: false
-          prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') }}
+          prerelease: ${{ contains(inputs.tag_name || github.event.inputs.tag_name, 'alpha') || contains(inputs.tag_name || github.event.inputs.tag_name, 'beta') }}
+
+  publish:
+    needs: release
+    uses: ./.github/workflows/publish.yml
+    with:
+      tag_name: ${{ inputs.tag_name || github.event.inputs.tag_name }}

@@ -61,6 +61,7 @@ softprops
 subpackages
 Tera
 testpaths
+testpypi
 tkinter
 venv
 xunit
