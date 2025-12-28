@@ -5,25 +5,17 @@
 # A Tera template to be rendered for each release in the changelog.
 # See https://keats.github.io/tera/docs/#introduction
 body = """
-{%- macro remote_url() -%}
-    {% if env.GITHUB_REPO -%}
-        https://github.com/{{ env.GITHUB_REPO }}
-    {%- else -%}
-        https://github.com/{{ remote.github.owner }}/{{ remote.github.repo }}
-    {%- endif -%}
-{%- endmacro -%}
-
 {% macro print_commit(commit) -%}
     - {% if commit.scope %}*({{ commit.scope }})* {% endif %}\
         {% if commit.breaking %}[**breaking**] {% endif %}\
         {{ commit.message | upper_first }} - \
-        ([{{ commit.id | truncate(length=7, end="") }}]({{ self::remote_url() }}/commit/{{ commit.id }}))\
+        ([{{ commit.id | truncate(length=7, end="") }}](<REPO>/commit/{{ commit.id }}))\
 {% endmacro -%}
 
 {% if version %}\
     {% if previous.version %}\
         ## [{{ version | trim_start_matches(pat="v") }}]\
-          ({{ self::remote_url() }}/compare/{{ previous.version }}..{{ version }}) - {{ timestamp | date(format="%Y-%m-%d") }}
+          (<REPO>/compare/{{ previous.version }}..{{ version }}) - {{ timestamp | date(format="%Y-%m-%d") }}
     {% else %}\
         ## [{{ version | trim_start_matches(pat="v") }}] - {{ timestamp | date(format="%Y-%m-%d") }}
     {% endif %}\
@@ -52,19 +44,11 @@ body = """
 # A Tera template to be rendered as the changelog's footer.
 # See https://keats.github.io/tera/docs/#introduction
 footer = """
-{%- macro remote_url() -%}
-    {% if env.GITHUB_REPO -%}
-        https://github.com/{{ env.GITHUB_REPO }}
-    {%- else -%}
-        https://github.com/{{ remote.github.owner }}/{{ remote.github.repo }}
-    {%- endif -%}
-{%- endmacro -%}
-
 ---
 
-**Contributing**: We welcome contributions! Please see our [Contributing Guide]({{ self::remote_url() }}/blob/main/CONTRIBUTING.md) for details.
+**Contributing**: We welcome contributions! Please see our [Contributing Guide](<REPO>/blob/main/CONTRIBUTING.md) for details.
 
-**Questions?** Open an issue on [GitHub]({{ self::remote_url() }}/issues) or join our discussions.
+**Questions?** Open an issue on [GitHub](<REPO>/issues) or join our discussions.
 """
 
 # Remove leading and trailing whitespaces from the changelog's body.

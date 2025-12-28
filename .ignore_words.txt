@@ -39,6 +39,7 @@ oneline
 optparse
 overgeneral
 posargs
+postprocessors
 pycache
 pycodestyle
 pydantic
