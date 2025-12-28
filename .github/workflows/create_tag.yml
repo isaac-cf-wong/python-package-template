@@ -44,5 +44,8 @@ jobs:
     needs: create_tag
     if: needs.create_tag.outputs.new_tag != '' && needs.create_tag.outputs.new_tag != 'undefined'
     uses: ./.github/workflows/release.yml
+    permissions:
+      content: write
+      id-token: write
     with:
       tag_name: ${{ needs.create_tag.outputs.new_tag }}
