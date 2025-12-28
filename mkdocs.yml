@@ -91,6 +91,7 @@ nav:
       - Contributing: CONTRIBUTING.md
       - Code Quality: dev/code_quality.md
       - Changelog: dev/changelog.md
+  - Security: SECURITY.md
   - Troubleshooting: dev/troubleshooting.md
 
 markdown_extensions:

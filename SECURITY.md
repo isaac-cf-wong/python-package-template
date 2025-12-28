@@ -5,32 +5,44 @@ Please ensure you are using the most recent version before reporting a security 
 
 | Version | Supported |
 | ------- | --------- |
-| 0.1.x   | ✅        |
-| < 0.1   | ❌        |
+| Latest  | ✅        |
+| < 1.0   | ❌        |
+
+!!!note
+Update this table when you release version 1.0 or later.
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability in `python-package-template`, we encourage you to report it responsibly.
+If you discover a security vulnerability in `python-package-template`,
+please report it using **GitHub's private vulnerability reporting feature**:
 
-**Please do not open a public issue.** Instead, contact us directly via email:
+<!-- prettier-ignore-start -->
 
-📧 [support.contact@email.com](mailto:support.contact@email.com)
+1. Go to the [Security](https://github.com/isaac-cf-wong/python-package-template/security) tab of this repository
+2. Click **"Report a vulnerability"**
+3. Fill out the vulnerability report form with:
+    - A description of the vulnerability
+    - Steps to reproduce
+    - Affected versions
+    - Your operating system and Python version
+    - Any proof-of-concept code (if applicable)
 
-Include as much information as possible to help us understand and reproduce the issue quickly and accurately:
+**Please do not open a public issue or discussion.**
+GitHub's private vulnerability reporting keeps the issue confidential until a fix is available.
 
-- Description of the vulnerability
-- Steps to reproduce
-- Affected versions
-- Your operating system and Python version
+<!-- prettier-ignore-end -->
 
-We aim to respond to all security-related emails within **3–5 business days**.
+## Response Timeline
 
-## Responsible Disclosure Process
+We aim to:
 
-1. Submit the vulnerability report via email (see above).
-2. We will acknowledge receipt and begin investigation.
-3. We will work on a fix and prepare a patch release.
-4. Once the issue is resolved, we will publish an advisory and credit you (if desired).
+- Acknowledge receipt within **24 hours**
+- Investigate and assess the vulnerability within **3–5 business days**
+- Provide a security patch in a timely manner
+- Publish a security advisory once the fix is released
+- Credit the reporter (if desired)
+
+## Responsible Disclosure
 
 ## Thanks
 
