@@ -35,10 +35,12 @@ mkdocstrings
 noqa
 nssm
 numpy
+octocat
 oneline
 optparse
 overgeneral
 posargs
+postprocessors
 pycache
 pycodestyle
 pydantic

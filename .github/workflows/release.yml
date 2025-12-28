@@ -36,7 +36,6 @@ jobs:
           args: --current --verbose
         env:
           OUTPUT: CHANGELOG.md
-          GITHUB_REPO: ${{ github.repository }}
 
       - name: Delete draft release
         continue-on-error: true
@@ -56,5 +55,8 @@ jobs:
   publish:
     needs: release
     uses: ./.github/workflows/publish.yml
+    permissions:
+      contents: write
+      id-token: write
     with:
       tag_name: ${{ inputs.tag_name || github.event.inputs.tag_name }}

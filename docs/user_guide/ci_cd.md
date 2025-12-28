@@ -80,6 +80,17 @@ The template includes:
 
 ## Release Process
 
+### Setup: Configure Your Repository URL
+
+Before the first release, update `cliff.toml` with your repository information:
+
+1. Open `cliff.toml`
+2. Replace `https://github.com/isaac-cf-wong/python-package-template` (line 61)
+   with your actual GitHub repository (e.g., `octocat/hello-world`)
+3. Commit and push this change
+
+This is used by `git-cliff` to generate links in the changelog (commits, comparisons, etc.).
+
 ### Conventional Commits
 
 Format commits to trigger automatic changelog generation:
