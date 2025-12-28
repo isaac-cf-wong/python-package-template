@@ -337,7 +337,7 @@ This guide covers common issues you might encounter when using this template and
 4. For publishing:
    - Check trusted publishers are configured in PyPI
    - Or verify API tokens are set as secrets
-   - See [CI/CD guide - PyPI Publishing](../user_guide/ci_cd.md#enabling-pypi-publishing)
+   - See [CI/CD guide - PyPI Publishing](../user_guide/ci_cd.md#setup-pypi-publishing-optional)
 
 ## Documentation Issues
 
