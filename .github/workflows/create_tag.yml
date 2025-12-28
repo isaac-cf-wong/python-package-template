@@ -7,10 +7,11 @@ on:
 
 permissions:
   contents: write
-  security-events: write
 
 jobs:
   ci:
+    permissions:
+      security-events: write
     uses: ./.github/workflows/CI.yml
 
   create_tag:
@@ -18,8 +19,6 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       new_tag: ${{ steps.tag_version.outputs.new_tag }}
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v6
         with:
