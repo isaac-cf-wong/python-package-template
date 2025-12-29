@@ -161,7 +161,6 @@ Commit messages are validated using commitlint:
    ```
 
 2. **GitHub Actions will**:
-
    - Generate changelog
    - Create release
    - Publish to PyPI
