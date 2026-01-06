@@ -6,6 +6,11 @@ on:
     branches: [main]
   workflow_dispatch:
   workflow_call:
+    inputs:
+      run_codeql:
+        required: false
+        type: boolean
+        default: true
 
 jobs:
   test:
@@ -42,6 +47,8 @@ jobs:
         uses: codecov/codecov-action@v5
 
   codeql:
+    if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' || (github.event_name == 'workflow_call' && inputs.run_codeql) }}
+    name: codeql
     runs-on: ubuntu-latest
     permissions:
       security-events: write
