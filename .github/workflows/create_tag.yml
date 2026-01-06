@@ -10,9 +10,9 @@ permissions:
 
 jobs:
   ci:
-    permissions:
-      security-events: write
     uses: ./.github/workflows/CI.yml
+    with:
+      run_codeql: false
 
   create_tag:
     needs: ci
