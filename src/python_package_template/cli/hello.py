@@ -1,4 +1,4 @@
-# pylint: disable=import-outside-toplevel
+# ruff: noqa PL0415
 """Hello command module."""
 
 from __future__ import annotations

@@ -45,22 +45,6 @@ ruff check --fix src/
 ruff format src/
 ```
 
-### Pylint
-
-Pylint provides detailed code analysis and style checking.
-
-**Configuration** (`pyproject.toml`):
-
-```toml
---8<-- "pyproject.toml:161:178"
-```
-
-**Usage:**
-
-```bash
-pylint src/your_package/
-```
-
 ### Flake8
 
 Flake8 combines PyFlakes, pycodestyle, and McCabe for comprehensive checking.
