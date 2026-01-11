@@ -193,7 +193,7 @@ Use [PyPI trusted publishing](https://docs.pypi.org/trusted-publishers/) instead
 3. Add GitHub as trusted publisher:
    - Owner: `your-username`
    - Repository: `your-repo-name`
-   - Workflow: `publish.yml`
+   - Workflow: `create_tag.yml` (for automatic releases) and `publish.yml` (for manual publishes)
    - Environment: `production` (or `testpypi` for TestPyPI)
 
 No secrets or tokens needed!
