@@ -209,12 +209,6 @@ If no command-line interface needed:
 2. Remove ruff dependencies
 3. Keep flake8 configuration
 
-#### Remove Pylint
-
-1. Remove pylint from pre-commit config
-2. Remove pylint dependencies
-3. Keep other linters
-
 ## Structure Changes
 
 ### Flat Layout (No src/)

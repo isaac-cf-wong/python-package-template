@@ -1,4 +1,4 @@
-# pylint: disable=import-outside-toplevel
+# ruff: noqa PL0415
 """Main entry point for the python_package_template CLI application."""
 
 from __future__ import annotations
