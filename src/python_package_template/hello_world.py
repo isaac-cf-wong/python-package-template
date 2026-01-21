@@ -8,6 +8,7 @@ def say_hello(name: str) -> None:
 
     Args:
         name: Name to greet.
+
     """
     print(f"Hello, {name}!")
 
@@ -22,6 +23,7 @@ def say_goodbye(name: str) -> None:
 
     Args:
         name: Name to bid farewell.
+
     """
     print(f"Goodbye, {name}!")
 

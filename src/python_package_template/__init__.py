@@ -1,6 +1,4 @@
-"""
-Top-level package for python_package_template.
-"""
+"""Top-level package for python_package_template."""
 
 from __future__ import annotations
 
