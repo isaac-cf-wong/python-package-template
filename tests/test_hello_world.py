@@ -6,11 +6,11 @@ from python_package_template.hello_world import goodbye_world, hello_goodbye, he
 
 
 def test_goodbye_world(capsys):
-    """
-    Test goodbye_world function.
+    """Test goodbye_world function.
 
     Args:
         capsys: Pytest fixture to capture stdout and stderr.
+
     """
     goodbye_world()
     captured = capsys.readouterr()
@@ -22,6 +22,7 @@ def test_hello_goodbye(capsys):
 
     Args:
         capsys: Pytest fixture to capture stdout and stderr.
+
     """
     hello_goodbye()
     captured = capsys.readouterr()
@@ -29,12 +30,13 @@ def test_hello_goodbye(capsys):
 
 
 def test_hello_world(capsys):
-    """
-    Test hello_world function.
+    """Test hello_world function.
+
     It uses the some_integer fixture defined in conftest.py.
 
     Args:
         capsys: Pytest fixture to capture stdout and stderr.
+
     """
     hello_world()
     captured = capsys.readouterr()
@@ -42,13 +44,14 @@ def test_hello_world(capsys):
 
 
 def test_say_goodbye(capsys, some_name):
-    """
-    Test say_goodbye function.
+    """Test say_goodbye function.
+
     It uses the some_name fixture defined in conftest.py.
 
     Args:
         capsys: Pytest fixture to capture stdout and stderr.
         some_name: A string input from fixture.
+
     """
     say_goodbye(some_name)
     captured = capsys.readouterr()
@@ -56,13 +59,14 @@ def test_say_goodbye(capsys, some_name):
 
 
 def test_say_hello(capsys, some_name):
-    """
-    Test say_hello function.
+    """Test say_hello function.
+
     It uses the some_name fixture defined in conftest.py.
 
     Args:
         capsys: Pytest fixture to capture stdout and stderr.
         some_name: A string input from fixture.
+
     """
     say_hello(some_name)
     captured = capsys.readouterr()
