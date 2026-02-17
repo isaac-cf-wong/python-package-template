@@ -1,6 +1,7 @@
 # Troubleshooting
 
-This guide covers common issues you might encounter when using this template and how to resolve them.
+This guide covers common issues you might encounter when using this template and
+how to resolve them.
 
 ## Setup Issues
 
@@ -101,7 +102,8 @@ This guide covers common issues you might encounter when using this template and
 
 ### Python Version Mismatch
 
-**Problem:** `python -m venv .venv` fails or tests don't run with wrong Python version.
+**Problem:** `python -m venv .venv` fails or tests don't run with wrong Python
+version.
 
 **Solutions:**
 
@@ -226,7 +228,7 @@ This guide covers common issues you might encounter when using this template and
 3. Run specific hooks:
 
     ```bash
-    pre-commit run black --all-files  # Just black
+    pre-commit run ruff --all-files  # Just ruff
     ```
 
 <!-- prettier-ignore-end -->
@@ -251,7 +253,7 @@ This guide covers common issues you might encounter when using this template and
 4. Disable specific hooks temporarily:
 
     ```bash
-    SKIP=black,ruff pre-commit run --all-files
+    SKIP=ruff pre-commit run --all-files
     ```
 
 <!-- prettier-ignore-end -->
@@ -337,7 +339,8 @@ This guide covers common issues you might encounter when using this template and
 4. For publishing:
    - Check trusted publishers are configured in PyPI
    - Or verify API tokens are set as secrets
-   - See [CI/CD guide - PyPI Publishing](../user_guide/ci_cd.md#setup-pypi-publishing-optional)
+   - See
+     [CI/CD guide - PyPI Publishing](../user_guide/ci_cd.md#setup-pypi-publishing-optional)
 
 ## Documentation Issues
 
@@ -419,9 +422,11 @@ This guide covers common issues you might encounter when using this template and
 
 ### MkDocs Warning: "GET /versions.json HTTP/1.1" code 404
 
-**Problem:** You see a warning about missing `versions.json` file when running `mkdocs serve`.
+**Problem:** You see a warning about missing `versions.json` file when running
+`mkdocs serve`.
 
-**This is benign** - it's the Material theme looking for version switcher functionality (for multi-version documentation).
+**This is benign** - it's the Material theme looking for version switcher
+functionality (for multi-version documentation).
 
 **Solutions:**
 
@@ -455,7 +460,8 @@ This is only needed if you're maintaining multiple documentation versions.
 
 **Option 3: Just ignore it**
 
-The warning doesn't affect functionality - your docs build and serve normally. It's safe to ignore if you're not using versioning.
+The warning doesn't affect functionality - your docs build and serve normally.
+It's safe to ignore if you're not using versioning.
 
 ## Dependencies & Package Issues
 

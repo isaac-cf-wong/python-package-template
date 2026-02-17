@@ -1,7 +1,8 @@
 # Customization
 
-This guide explains how to customize this Python package template for your specific project needs,
-including renaming, configuration changes, and removing unwanted features.
+This guide explains how to customize this Python package template for your
+specific project needs, including renaming, configuration changes, and removing
+unwanted features.
 
 ## Overview
 
@@ -105,29 +106,6 @@ docs = [
 
 ## Tool Configuration
 
-### Code Formatting (Black)
-
-Customize in `pyproject.toml`:
-
-```toml
-[tool.black]
-line-length = 100  # Change from default 120
-target-version = ['py38', 'py39', 'py310']  # Specify Python versions
-include = '\.pyi?$'  # File patterns to include
-exclude = '''
-/(
-    \.git
-    | \.mypy_cache
-    | \.tox
-    | \.venv
-    | _build
-    | buck-out
-    | build
-    | dist
-)/
-'''
-```
-
 ### Linting (Ruff)
 
 Configure rules in `pyproject.toml`:
@@ -201,14 +179,6 @@ If no command-line interface needed:
 3. Remove script entry points
 4. Update `__main__.py`
 
-### Remove Specific Tools
-
-#### Remove Ruff (keep Flake8)
-
-1. Remove `ruff` from `.pre-commit-config.yaml`
-2. Remove ruff dependencies
-3. Keep flake8 configuration
-
 ## Structure Changes
 
 ### Flat Layout (No src/)
@@ -252,12 +222,26 @@ Add project-specific ignores:
 Modify hook configurations:
 
 ```yaml
-repos:
-  - repo: https://github.com/psf/black
-    rev: 23.12.1
-    hooks:
-      - id: black
-        args: [--line-length=100] # Match your settings
+- repo: https://github.com/streetsidesoftware/cspell-cli
+  rev: v9.6.0 # Keep this version or update to the latest stable
+  hooks:
+    - id: cspell
+      name: Check spelling in Python, reSt, and Markdown files.
+      args: ["--config", "cspell.json"]
+      files: ^.*\.(py|rst|md)$ # Add additional file types to check typos
+      stages: [pre-commit]
+    - id: cspell
+      name: Check commit message spelling.
+      args:
+        - --config
+        - cspell.json
+        - --no-must-find-files
+        - --no-progress
+        - --no-summary
+        - --files
+        - .git/COMMIT_EDITMSG
+      stages: [commit-msg]
+      always_run: true
 ```
 
 ### Update CI Workflows
@@ -404,4 +388,5 @@ If you encounter issues:
 3. Search existing issues in the template repository
 4. Ask in relevant communities
 
-Remember to test thoroughly after each major change, and consider updating your documentation to reflect customizations.
+Remember to test thoroughly after each major change, and consider updating your
+documentation to reflect customizations.
