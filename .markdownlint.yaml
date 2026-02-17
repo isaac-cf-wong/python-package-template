@@ -13,7 +13,7 @@ MD003:
 
 # Enforce consistent list indentation
 MD007:
-  indent: 2
+  indent: 4
 
 # Allow multiple consecutive blank lines for flexibility
 MD012: false
