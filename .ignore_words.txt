@@ -68,3 +68,4 @@ tkinter
 venv
 xunit
 pycln
+taplo

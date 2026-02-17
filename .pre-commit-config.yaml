@@ -77,6 +77,12 @@ repos:
             stages: [commit-msg]
             always_run: true
 
+    - repo: https://github.com/nikaro/taplo-pre-commit
+      rev: 0.1.0
+      hooks:
+          - id: taplo-lint
+          - id: taplo-format
+
     - repo: https://github.com/pre-commit/pygrep-hooks
       rev: v1.10.0
       hooks:
@@ -111,12 +117,14 @@ repos:
           - id: prettier
             stages: [pre-commit]
 
-    - repo: https://github.com/igorshubovych/markdownlint-cli
-      rev: v0.47.0
+    - repo: https://github.com/DavidAnson/markdownlint-cli2
+      rev: v0.20.0
       hooks:
-          - id: markdownlint
-            args: [--config, .markdownlint.yaml]
+          - id: markdownlint-cli2
             stages: [pre-commit]
+            args:
+                - --config
+                - .markdownlint.yaml
 
     - repo: https://github.com/Yelp/detect-secrets
       rev: v1.5.0 # Use the latest stable version
