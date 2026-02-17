@@ -1,7 +1,8 @@
 # Documentation
 
-This guide explains how documentation is set up in this Python package template, including MkDocs configuration,
-API reference generation, and best practices for writing docs.
+This guide explains how documentation is set up in this Python package template,
+including MkDocs configuration, API reference generation, and best practices for
+writing docs.
 
 ## Overview
 
@@ -73,8 +74,8 @@ Add metadata to pages:
 title: Page Title
 description: Page description for SEO
 tags:
-  - tag1
-  - tag2
+    - tag1
+    - tag2
 ---
 ```
 
@@ -241,9 +242,9 @@ Support multiple versions:
 
 ```yaml
 plugins:
-  - mike:
-      version_selector: true
-      canonical_version: latest
+    - mike:
+          version_selector: true
+          canonical_version: latest
 ```
 
 ### Custom Theme
@@ -252,8 +253,8 @@ Extend Material theme:
 
 ```yaml
 theme:
-  name: material
-  custom_dir: docs/overrides
+    name: material
+    custom_dir: docs/overrides
 ```
 
 ### Plugins
@@ -262,9 +263,9 @@ Additional useful plugins:
 
 ```yaml
 plugins:
-  - mkdocs-minify-plugin
-  - mkdocs-git-revision-date-localized-plugin
-  - mkdocs-glightbox
+    - mkdocs-minify-plugin
+    - mkdocs-git-revision-date-localized-plugin
+    - mkdocs-glightbox
 ```
 
 ## Customization
@@ -275,7 +276,7 @@ Switch to other themes:
 
 ```yaml
 theme:
-  name: readthedocs
+    name: readthedocs
 ```
 
 ### Adding Pages
@@ -290,10 +291,10 @@ Add custom styles:
 
 ```yaml
 extra_css:
-  - styles/custom.css
+    - styles/custom.css
 
 extra_javascript:
-  - js/custom.js
+    - js/custom.js
 ```
 
 ## CI/CD Integration
@@ -313,8 +314,8 @@ To deploy your documentation to GitHub Pages, follow these steps:
 1. Go to your repository on GitHub
 2. Navigate to **Settings** → **Pages**
 3. Under "Build and deployment":
-   - **Source**: Select "GitHub Actions"
-   - This allows the documentation workflow to deploy directly
+    - **Source**: Select "GitHub Actions"
+    - This allows the documentation workflow to deploy directly
 4. Click **Save**
 
 ### 2. Configure Site URL (Optional but Recommended)
@@ -342,7 +343,8 @@ The documentation is deployed automatically by the GitHub Actions workflow:
 After the first successful deployment:
 
 1. Go back to **Settings** → **Pages**
-2. You'll see a message like "Your site is live at: `https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/`"
+2. You'll see a message like "Your site is live at:
+   `https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/`"
 3. Click the link to view your published documentation
 4. Bookmark this URL for future reference
 
@@ -363,9 +365,9 @@ If you want to use a custom domain:
 **Solution:**
 
 1. Verify the documentation workflow succeeded:
-   - Check **Actions** tab
-   - Look for "Deploy mkdocs documentation to Pages" workflow
-   - Re-run if it failed
+    - Check **Actions** tab
+    - Look for "Deploy mkdocs documentation to Pages" workflow
+    - Re-run if it failed
 2. Clear browser cache (hard refresh: Ctrl+Shift+R or Cmd+Shift+R)
 3. Wait 1-2 minutes for GitHub Pages to rebuild
 4. Verify changes were committed and pushed to main branch
@@ -423,4 +425,5 @@ mkdocs build -v
 mkdocs serve  # Visit http://localhost:8000
 ```
 
-For more information, see the [MkDocs documentation](https://www.mkdocs.org/) and [Material theme docs](https://squidfunk.github.io/mkdocs-material/).
+For more information, see the [MkDocs documentation](https://www.mkdocs.org/)
+and [Material theme docs](https://squidfunk.github.io/mkdocs-material/).

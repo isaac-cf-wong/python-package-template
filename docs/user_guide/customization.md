@@ -225,23 +225,23 @@ Modify hook configurations:
 - repo: https://github.com/streetsidesoftware/cspell-cli
   rev: v9.6.0 # Keep this version or update to the latest stable
   hooks:
-    - id: cspell
-      name: Check spelling in Python, reSt, and Markdown files.
-      args: ["--config", "cspell.json"]
-      files: ^.*\.(py|rst|md)$ # Add additional file types to check typos
-      stages: [pre-commit]
-    - id: cspell
-      name: Check commit message spelling.
-      args:
-        - --config
-        - cspell.json
-        - --no-must-find-files
-        - --no-progress
-        - --no-summary
-        - --files
-        - .git/COMMIT_EDITMSG
-      stages: [commit-msg]
-      always_run: true
+      - id: cspell
+        name: Check spelling in Python, reSt, and Markdown files.
+        args: ['--config', 'cspell.json']
+        files: ^.*\.(py|rst|md)$ # Add additional file types to check typos
+        stages: [pre-commit]
+      - id: cspell
+        name: Check commit message spelling.
+        args:
+            - --config
+            - cspell.json
+            - --no-must-find-files
+            - --no-progress
+            - --no-summary
+            - --files
+            - .git/COMMIT_EDITMSG
+        stages: [commit-msg]
+        always_run: true
 ```
 
 ### Update CI Workflows
@@ -250,11 +250,11 @@ Modify `.github/workflows/CI.yml`:
 
 ```yaml
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.9", "3.10"] # Remove versions you don't support
+    test:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                python-version: ['3.9', '3.10'] # Remove versions you don't support
 ```
 
 ## Documentation Customization
@@ -267,9 +267,9 @@ site_description: Documentation for your package
 repo_url: https://github.com/yourusername/your-repo
 
 theme:
-  name: material
-  palette:
-    primary: blue # Change theme colors
+    name: material
+    palette:
+        primary: blue # Change theme colors
 ```
 
 ### Update Navigation
@@ -278,11 +278,11 @@ Modify `mkdocs.yml` nav to match your structure:
 
 ```yaml
 nav:
-  - Home: index.md
-  - User Guide:
-      - Installation: installation.md
-      - API: api.md
-  - API Reference: reference/
+    - Home: index.md
+    - User Guide:
+          - Installation: installation.md
+          - API: api.md
+    - API Reference: reference/
 ```
 
 ## Advanced Customizations
@@ -315,16 +315,16 @@ Add new GitHub Actions workflows in `.github/workflows/`:
 # .github/workflows/custom.yml
 name: Custom Workflow
 on:
-  push:
-    branches: [main]
+    push:
+        branches: [main]
 
 jobs:
-  custom:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Custom Step
-        run: echo "Custom workflow"
+    custom:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Custom Step
+              run: echo "Custom workflow"
 ```
 
 ### Environment-Specific Configs

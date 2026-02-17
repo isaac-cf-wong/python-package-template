@@ -320,8 +320,8 @@ version.
 
 1. This is normal (~2-3 minutes per run)
 2. To disable CodeQL:
-   - Remove the `codeql` job from `.github/workflows/CI.yml`
-   - Keep Bandit in pre-commit for basic security
+    - Remove the `codeql` job from `.github/workflows/CI.yml`
+    - Keep Bandit in pre-commit for basic security
 3. Or check if it's necessary for your project
 4. CodeQL provides value for security-critical projects
 
@@ -332,15 +332,15 @@ version.
 **Solutions:**
 
 1. Verify tag format matches pattern: `v[0-9]+.[0-9]+.[0-9]+*`
-   - Good: `v1.0.0`, `v1.2.3-alpha`
-   - Bad: `1.0.0`, `release-1.0.0`
+    - Good: `v1.0.0`, `v1.2.3-alpha`
+    - Bad: `1.0.0`, `release-1.0.0`
 2. Check CI workflow passed first (required by release workflow)
 3. Verify git-cliff configuration in `cliff.toml`
 4. For publishing:
-   - Check trusted publishers are configured in PyPI
-   - Or verify API tokens are set as secrets
-   - See
-     [CI/CD guide - PyPI Publishing](../user_guide/ci_cd.md#setup-pypi-publishing-optional)
+    - Check trusted publishers are configured in PyPI
+    - Or verify API tokens are set as secrets
+    - See
+      [CI/CD guide - PyPI Publishing](../user_guide/ci_cd.md#setup-pypi-publishing-optional)
 
 ## Documentation Issues
 
@@ -376,12 +376,12 @@ version.
 **Solutions:**
 
 1. Verify GitHub Pages is enabled:
-   - Go to repository Settings → Pages
-   - Under "Build and deployment", select "GitHub Actions" as the source
-   - This allows the documentation workflow to deploy directly
+    - Go to repository Settings → Pages
+    - Under "Build and deployment", select "GitHub Actions" as the source
+    - This allows the documentation workflow to deploy directly
 2. Check documentation workflow ran successfully:
-   - Go to Actions tab
-   - Look for "Deploy mkdocs documentation to Pages" workflow
+    - Go to Actions tab
+    - Look for "Deploy mkdocs documentation to Pages" workflow
 3. Verify changes were pushed to the correct branch
 4. Wait 1-2 minutes for Pages to build
 5. Hard refresh browser (Ctrl+Shift+R or Cmd+Shift+R)
@@ -438,11 +438,11 @@ Add this to `mkdocs.yml`:
 
 ```yaml
 theme:
-  name: material
-  features:
-    # ... other features
-  version:
-    provider: mike # Or remove this section entirely
+    name: material
+    features:
+        # ... other features
+    version:
+        provider: mike # Or remove this section entirely
 ```
 
 **Option 2: Create a versions.json file (for multi-version docs)**
@@ -451,8 +451,8 @@ Create `docs/versions.json`:
 
 ```json
 {
-  "1.0": "1.0",
-  "dev": "dev"
+    "1.0": "1.0",
+    "dev": "dev"
 }
 ```
 

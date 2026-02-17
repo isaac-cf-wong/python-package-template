@@ -1,7 +1,7 @@
 # Testing
 
-This guide explains the testing setup in this Python package template, including how to write tests, run them,
-and measure coverage.
+This guide explains the testing setup in this Python package template, including
+how to write tests, run them, and measure coverage.
 
 ## Overview
 
@@ -312,4 +312,5 @@ def test_data(request):
     return create_test_data(request.param)
 ```
 
-For more information, see the [Pytest documentation](https://docs.pytest.org/) and [Coverage.py docs](https://coverage.readthedocs.io/).
+For more information, see the [Pytest documentation](https://docs.pytest.org/)
+and [Coverage.py docs](https://coverage.readthedocs.io/).
