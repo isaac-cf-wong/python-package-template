@@ -11,8 +11,7 @@ This template includes:
 
 - **Modern Python Packaging**: Uses `pyproject.toml` with Hatchling and
   Hatch-VCS for version management
-- **Development Tools**: Pre-configured with Black, Ruff, Pylint, Pre-commit
-  hooks, and more
+- **Development Tools**: Pre-configured with Ruff, Pre-commit hooks, and more
 - **Testing Framework**: Pytest with coverage reporting and fixtures
 - **Documentation**: MkDocs with Material theme for API docs and user guides
 - **CI/CD**: GitHub Actions workflows for validation, testing, and publishing
@@ -85,8 +84,8 @@ pre-commit install --hook-type commit-msg
 
 This sets up automatic checks that run before each commit, including:
 
-- Code formatting (Black)
-- Linting (Ruff, Pylint)
+- Code formatting Ruff)
+- Linting (Ruff)
 - Security scanning (Bandit)
 - Spell checking (CSpell)
 - Commit message validation (commitlint)
@@ -128,7 +127,7 @@ Your package code goes in `src/YOUR_PACKAGE_NAME/`:
 
 ### Writing Code
 
-1. **Follow the Style**: Code is automatically formatted with Black (120 char
+1. **Follow the Style**: Code is automatically formatted with Ruff (120 char
    line length)
 2. **Add Type Hints**: Use modern Python typing
 3. **Write Tests**: Add tests in `tests/` directory
