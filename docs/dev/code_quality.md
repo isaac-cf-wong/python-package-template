@@ -9,7 +9,7 @@ checking.
 Code quality is maintained through a combination of automated tools and manual
 reviews. The template includes:
 
-- **Linting**: Ruff, Pylint, Flake8 for code style and errors
+- **Linting**: Ruff for code style and errors
 - **Security scanning**: Bandit for vulnerability detection
 - **Spell checking**: CSpell for documentation and comments
 - **Type checking**: Pyright for static analysis
