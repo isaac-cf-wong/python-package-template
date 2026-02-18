@@ -8,12 +8,15 @@
 
 <!-- prettier-ignore-end -->
 
-We recommend using `uv` to manage virtual environments for installing `python_package_template`.
+We recommend using `uv` to manage virtual environments for installing
+`python_package_template`.
 
-If you don't have `uv` installed, you can install it with pip. See the project pages for more details:
+If you don't have `uv` installed, you can install it with pip. See the project
+pages for more details:
 
 - Install via pip: `pip install --upgrade pip && pip install uv`
-- Project pages: [uv on PyPI](https://pypi.org/project/uv/) | [uv on GitHub](https://github.com/astral-sh/uv)
+- Project pages: [uv on PyPI](https://pypi.org/project/uv/) |
+  [uv on GitHub](https://github.com/astral-sh/uv)
 - Full documentation and usage guide: [uv docs](https://docs.astral.sh/uv/)
 
 ## Requirements

@@ -3,8 +3,8 @@
 🎉 Thank you for your interest in contributing to `python-package-template`!
 Your ideas, fixes, and improvements are welcome and appreciated.
 
-Whether you’re fixing a typo, reporting a bug, suggesting a feature,
-or submitting a pull request—this guide will help you get started.
+Whether you’re fixing a typo, reporting a bug, suggesting a feature, or
+submitting a pull request—this guide will help you get started.
 
 ## How to Contribute
 
@@ -93,8 +93,9 @@ or submitting a pull request—this guide will help you get started.
 
 ## Commit Message Guidelines
 
-**Why this matters:** Our changelog is automatically generated from commit messages using git-cliff.
-Commit messages must follow the Conventional Commits format and adhere to strict rules.
+**Why this matters:** Our changelog is automatically generated from commit
+messages using git-cliff. Commit messages must follow the Conventional Commits
+format and adhere to strict rules.
 
 ### Rules
 
@@ -167,7 +168,8 @@ more fixes (no type/scope)
 
 ## Licensing
 
-By contributing, you agree that your contributions will be licensed under the project’s MIT License.
+By contributing, you agree that your contributions will be licensed under the
+project’s MIT License.
 
 ---
 

@@ -1,6 +1,7 @@
 # CI/CD and Releases
 
-This guide explains the continuous integration and deployment setup in this Python package template.
+This guide explains the continuous integration and deployment setup in this
+Python package template.
 
 ## Overview
 
@@ -8,7 +9,8 @@ The template includes:
 
 - **Automated testing** on every push and pull request (3.10, 3.11, 3.12)
 - **Code quality checks** (linting, formatting, CodeQL security scanning)
-- **Automated monthly releases** with semantic versioning and changelog generation
+- **Automated monthly releases** with semantic versioning and changelog
+  generation
 - **Draft releases** to preview upcoming changes before publishing
 - **Documentation deployment** to GitHub Pages
 - **Dependency updates** via Dependabot
@@ -76,7 +78,8 @@ The template includes:
 - Builds Python distribution packages
 - Publishes to PyPI or TestPyPI
 - Requires setup (see [Publishing](#publishing))
-- **Enabled when environments are configured** (requires `pypi` or `testpypi` environments)
+- **Enabled when environments are configured** (requires `pypi` or `testpypi`
+  environments)
 
 ## Release Process
 
@@ -89,7 +92,8 @@ Before the first release, update `cliff.toml` with your repository information:
    with your actual GitHub repository (e.g., `octocat/hello-world`)
 3. Commit and push this change
 
-This is used by `git-cliff` to generate links in the changelog (commits, comparisons, etc.).
+This is used by `git-cliff` to generate links in the changelog (commits,
+comparisons, etc.).
 
 ### Conventional Commits
 
@@ -107,7 +111,8 @@ chore: update dependencies     # No version bump
 
 ### Automatic Release (Monthly)
 
-The Tag workflow runs automatically on the **1st of every month at midnight UTC**:
+The Tag workflow runs automatically on the **1st of every month at midnight
+UTC**:
 
 1. CI passes ✅
 2. Version is bumped (e.g., 1.0.0 → 1.0.1)
@@ -144,15 +149,18 @@ After the workflow completes:
 
 ### Setup PyPI Publishing (Optional)
 
-Publishing is **disabled by default** — it only runs when you create the required environments.
+Publishing is **disabled by default** — it only runs when you create the
+required environments.
 
 #### To Enable Publishing
 
 1. Go to your repository → **Settings** → **Environments**
-2. Create an environment named `pypi` (for PyPI) and/or `testpypi` (for TestPyPI)
+2. Create an environment named `pypi` (for PyPI) and/or `testpypi` (for
+   TestPyPI)
 3. For each environment, optionally add deployment rules:
-   - **Deployment branches**: Select `main` or `Selected branches`
-   - **Environment secrets** (optional): Only needed if not using trusted publishing
+    - **Deployment branches**: Select `main` or `Selected branches`
+    - **Environment secrets** (optional): Only needed if not using trusted
+      publishing
 
 #### Manual Publish
 
@@ -165,8 +173,8 @@ Publish manually when ready:
 
 #### Auto-Publish on Release
 
-The Release workflow is already configured to call the Publish workflow.
-Once you create the `pypi` environment, releases will automatically publish to PyPI.
+The Release workflow is already configured to call the Publish workflow. Once
+you create the `pypi` environment, releases will automatically publish to PyPI.
 
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable MD046 -->
@@ -186,15 +194,17 @@ Once you create the `pypi` environment, releases will automatically publish to P
 
 ### Configure Trusted Publishing (Recommended)
 
-Use [PyPI trusted publishing](https://docs.pypi.org/trusted-publishers/) instead of API tokens:
+Use [PyPI trusted publishing](https://docs.pypi.org/trusted-publishers/) instead
+of API tokens:
 
 1. Go to [PyPI](https://pypi.org) or [TestPyPI](https://test.pypi.org)
 2. Go to your project → Settings → Publishing
 3. Add GitHub as trusted publisher:
-   - Owner: `your-username`
-   - Repository: `your-repo-name`
-   - Workflow: `create_tag.yml` (for automatic releases) and `publish.yml` (for manual publishes)
-   - Environment: `production` (or `testpypi` for TestPyPI)
+    - Owner: `your-username`
+    - Repository: `your-repo-name`
+    - Workflow: `create_tag.yml` (for automatic releases) and `publish.yml` (for
+      manual publishes)
+    - Environment: `pypi` (or `testpypi` for TestPyPI)
 
 No secrets or tokens needed!
 
@@ -206,8 +216,8 @@ Edit `.github/workflows/create_tag.yml`:
 
 ```yaml
 on:
-  schedule:
-    - cron: "0 0 1 * *" # Change to your preferred time
+    schedule:
+        - cron: '0 0 1 * *' # Change to your preferred time
 ```
 
 **Cron format:** `minute hour day month weekday`
@@ -218,7 +228,8 @@ on:
 
 ### Require Additional Status Checks
 
-Edit `.github/workflows/CI.yml` to add custom checks, then add them to branch protection:
+Edit `.github/workflows/CI.yml` to add custom checks, then add them to branch
+protection:
 
 1. Go to Settings → Branches → main
 2. Under "Require status checks to pass before merging"
@@ -230,12 +241,13 @@ Edit `.github/workflows/CI.yml`:
 
 ```yaml
 matrix:
-  python-version: ["3.10", "3.11", "3.12"] # Modify as needed
+    python-version: ['3.10', '3.11', '3.12'] # Modify as needed
 ```
 
 ### Disable CodeQL (Optional)
 
-If security scanning isn't needed, remove the `codeql` job from `.github/workflows/CI.yml`.
+If security scanning isn't needed, remove the `codeql` job from
+`.github/workflows/CI.yml`.
 
 ## Troubleshooting
 
@@ -268,16 +280,20 @@ If security scanning isn't needed, remove the `codeql` job from `.github/workflo
 
 ### CodeQL configuration error
 
-- Remove `security-events: write` permission from workflows without CodeQL scanning
+- Remove `security-events: write` permission from workflows without CodeQL
+  scanning
 - Only `.github/workflows/CI.yml` should have this permission
 
 ## Best Practices
 
-- **Use conventional commits** - Ensures correct version bumping and meaningful changelogs
-- **Review draft releases** - Check "next-release" to preview what will be published
+- **Use conventional commits** - Ensures correct version bumping and meaningful
+  changelogs
+- **Review draft releases** - Check "next-release" to preview what will be
+  published
 - **Keep commits atomic** - One logical change per commit
 - **Require status checks** - Prevent merging broken code to main
-- **Use branch protection** - Require pull requests and passing checks before merging
+- **Use branch protection** - Require pull requests and passing checks before
+  merging
 
 ## Resources
 

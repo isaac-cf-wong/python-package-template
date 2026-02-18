@@ -1,13 +1,15 @@
 # Code Quality
 
-This guide covers the code quality assurance tools and practices used in this Python package template,
-including linting, security scanning, and spell checking.
+This guide covers the code quality assurance tools and practices used in this
+Python package template, including linting, security scanning, and spell
+checking.
 
 ## Overview
 
-Code quality is maintained through a combination of automated tools and manual reviews. The template includes:
+Code quality is maintained through a combination of automated tools and manual
+reviews. The template includes:
 
-- **Linting**: Ruff, Pylint, Flake8 for code style and errors
+- **Linting**: Ruff for code style and errors
 - **Security scanning**: Bandit for vulnerability detection
 - **Spell checking**: CSpell for documentation and comments
 - **Type checking**: Pyright for static analysis
@@ -43,22 +45,6 @@ ruff check --fix src/
 
 # Format code
 ruff format src/
-```
-
-### Flake8
-
-Flake8 combines PyFlakes, pycodestyle, and McCabe for comprehensive checking.
-
-**Configuration** (`pyproject.toml`):
-
-```toml
---8<-- "pyproject.toml:87:102"
-```
-
-**Usage:**
-
-```bash
-flake8 src/ tests/
 ```
 
 ## Security Scanning
@@ -297,10 +283,7 @@ def custom_check(context):
 
 ```json
 {
-  "python.linting.enabled": true,
-  "python.linting.ruffEnabled": true,
-  "python.linting.banditEnabled": true,
-  "cSpell.words": ["pypi", "mkdocs"]
+    "cSpell.words": ["pypi", "mkdocs"]
 }
 ```
 

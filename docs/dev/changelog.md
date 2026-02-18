@@ -1,11 +1,12 @@
 # Changelog
 
-This guide explains how changelogs are automatically generated in this Python package template
-using git-cliff and conventional commits.
+This guide explains how changelogs are automatically generated in this Python
+package template using git-cliff and conventional commits.
 
 ## Overview
 
-The template uses git-cliff for automated changelog generation based on conventional commit messages. This ensures:
+The template uses git-cliff for automated changelog generation based on
+conventional commit messages. This ensures:
 
 - **Consistent formatting**: Standardized changelog structure
 - **Automatic updates**: No manual changelog maintenance
@@ -14,7 +15,8 @@ The template uses git-cliff for automated changelog generation based on conventi
 
 ## Conventional Commits
 
-All commits must follow the [Conventional Commits](https://conventionalcommits.org/) specification:
+All commits must follow the
+[Conventional Commits](https://conventionalcommits.org/) specification:
 
 ```text
 <type>[optional scope]: <description>
@@ -113,11 +115,11 @@ Changelog generation can be automated via pre-commit:
 
 ```yaml
 repos:
-  - repo: https://github.com/orhun/git-cliff
-    rev: v2.4.0
-    hooks:
-      - id: git-cliff
-        args: [--latest, --strip header]
+    - repo: https://github.com/orhun/git-cliff
+      rev: v2.4.0
+      hooks:
+          - id: git-cliff
+            args: [--latest, --strip header]
 ```
 
 ### CI/CD Integration
@@ -128,7 +130,7 @@ Changelogs are automatically generated during releases:
 # In release workflow
 - name: Generate Changelog
   run: |
-    git cliff --latest --strip header > changelog.md
+      git cliff --latest --strip header > changelog.md
 ```
 
 ## Commit Message Validation
@@ -155,15 +157,15 @@ Commit messages are validated using commitlint:
 
 1. **Create annotated tag**:
 
-   ```bash
-   git tag -a v1.2.3 -m "Release v1.2.3"
-   git push origin v1.2.3
-   ```
+    ```bash
+    git tag -a v1.2.3 -m "Release v1.2.3"
+    git push origin v1.2.3
+    ```
 
 2. **GitHub Actions will**:
-   - Generate changelog
-   - Create release
-   - Publish to PyPI
+    - Generate changelog
+    - Create release
+    - Publish to PyPI
 
 ### Automated Changelog
 
@@ -174,12 +176,12 @@ The changelog is automatically included in GitHub releases:
 - name: Create Release
   uses: actions/create-release@v1
   env:
-    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   with:
-    tag_name: ${{ github.ref }}
-    release_name: Release ${{ github.ref }}
-    body: |
-      $(git cliff --latest --strip header)
+      tag_name: ${{ github.ref }}
+      release_name: Release ${{ github.ref }}
+      body: |
+          $(git cliff --latest --strip header)
 ```
 
 ## Customizing Changelog
@@ -286,22 +288,22 @@ git cliff --with-commit "feat: test feature"
 ```yaml
 name: Release
 on:
-  push:
-    tags: ["v*"]
+    push:
+        tags: ['v*']
 
 jobs:
-  release:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Generate Changelog
-        run: git cliff --latest --strip header > changelog.md
-      - name: Create Release
-        uses: softprops/action-gh-release@v1
-        with:
-          body_path: changelog.md
+    release:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+            - name: Generate Changelog
+              run: git cliff --latest --strip header > changelog.md
+            - name: Create Release
+              uses: softprops/action-gh-release@v1
+              with:
+                  body_path: changelog.md
 ```
 
 ### With Release Drafter
@@ -309,16 +311,17 @@ jobs:
 ```yaml
 name: Release Drafter
 on:
-  push:
-    branches: [main]
+    push:
+        branches: [main]
 
 jobs:
-  update_release_draft:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: release-drafter/release-drafter@v6
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    update_release_draft:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: release-drafter/release-drafter@v6
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-For more information, see the [git-cliff documentation](https://git-cliff.org/) and [Conventional Commits specification](https://conventionalcommits.org/).
+For more information, see the [git-cliff documentation](https://git-cliff.org/)
+and [Conventional Commits specification](https://conventionalcommits.org/).

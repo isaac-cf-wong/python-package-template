@@ -1,12 +1,13 @@
 # Packaging
 
 This guide explains the packaging setup in this Python package template,
-including how dependencies are managed, the build system,
-and how to customize it for your project.
+including how dependencies are managed, the build system, and how to customize
+it for your project.
 
 ## Overview
 
-This template uses modern Python packaging standards with `pyproject.toml` as the configuration file. It leverages:
+This template uses modern Python packaging standards with `pyproject.toml` as
+the configuration file. It leverages:
 
 - **Hatchling**: A fast, modern build backend
 - **Hatch-VCS**: For automatic version management from Git tags
@@ -65,7 +66,8 @@ pip install your-package[dev,docs]
 --8<-- "pyproject.toml:55:56"
 ```
 
-Defines command-line scripts. This creates the `python_package_template` command.
+Defines command-line scripts. This creates the `python_package_template`
+command.
 
 ### URLs
 
@@ -168,5 +170,6 @@ Create a new key under `[project.optional-dependencies]` with the feature name.
 - **Version not updating**: Check Git tags match the expected format
 - **Dependencies not found**: Verify extras are installed correctly
 
-For more details, see the [PyPA packaging guide](https://packaging.python.org/en/latest/tutorials/packaging-projects/)
+For more details, see the
+[PyPA packaging guide](https://packaging.python.org/en/latest/tutorials/packaging-projects/)
 and [Hatch documentation](https://hatch.pypa.io/).

@@ -1,6 +1,7 @@
 # Troubleshooting
 
-This guide covers common issues you might encounter when using this template and how to resolve them.
+This guide covers common issues you might encounter when using this template and
+how to resolve them.
 
 ## Setup Issues
 
@@ -101,7 +102,8 @@ This guide covers common issues you might encounter when using this template and
 
 ### Python Version Mismatch
 
-**Problem:** `python -m venv .venv` fails or tests don't run with wrong Python version.
+**Problem:** `python -m venv .venv` fails or tests don't run with wrong Python
+version.
 
 **Solutions:**
 
@@ -226,7 +228,7 @@ This guide covers common issues you might encounter when using this template and
 3. Run specific hooks:
 
     ```bash
-    pre-commit run black --all-files  # Just black
+    pre-commit run ruff --all-files  # Just ruff
     ```
 
 <!-- prettier-ignore-end -->
@@ -251,7 +253,7 @@ This guide covers common issues you might encounter when using this template and
 4. Disable specific hooks temporarily:
 
     ```bash
-    SKIP=black,ruff pre-commit run --all-files
+    SKIP=ruff pre-commit run --all-files
     ```
 
 <!-- prettier-ignore-end -->
@@ -318,8 +320,8 @@ This guide covers common issues you might encounter when using this template and
 
 1. This is normal (~2-3 minutes per run)
 2. To disable CodeQL:
-   - Remove the `codeql` job from `.github/workflows/CI.yml`
-   - Keep Bandit in pre-commit for basic security
+    - Remove the `codeql` job from `.github/workflows/CI.yml`
+    - Keep Bandit in pre-commit for basic security
 3. Or check if it's necessary for your project
 4. CodeQL provides value for security-critical projects
 
@@ -330,14 +332,15 @@ This guide covers common issues you might encounter when using this template and
 **Solutions:**
 
 1. Verify tag format matches pattern: `v[0-9]+.[0-9]+.[0-9]+*`
-   - Good: `v1.0.0`, `v1.2.3-alpha`
-   - Bad: `1.0.0`, `release-1.0.0`
+    - Good: `v1.0.0`, `v1.2.3-alpha`
+    - Bad: `1.0.0`, `release-1.0.0`
 2. Check CI workflow passed first (required by release workflow)
 3. Verify git-cliff configuration in `cliff.toml`
 4. For publishing:
-   - Check trusted publishers are configured in PyPI
-   - Or verify API tokens are set as secrets
-   - See [CI/CD guide - PyPI Publishing](../user_guide/ci_cd.md#setup-pypi-publishing-optional)
+    - Check trusted publishers are configured in PyPI
+    - Or verify API tokens are set as secrets
+    - See
+      [CI/CD guide - PyPI Publishing](../user_guide/ci_cd.md#setup-pypi-publishing-optional)
 
 ## Documentation Issues
 
@@ -373,12 +376,12 @@ This guide covers common issues you might encounter when using this template and
 **Solutions:**
 
 1. Verify GitHub Pages is enabled:
-   - Go to repository Settings → Pages
-   - Under "Build and deployment", select "GitHub Actions" as the source
-   - This allows the documentation workflow to deploy directly
+    - Go to repository Settings → Pages
+    - Under "Build and deployment", select "GitHub Actions" as the source
+    - This allows the documentation workflow to deploy directly
 2. Check documentation workflow ran successfully:
-   - Go to Actions tab
-   - Look for "Deploy mkdocs documentation to Pages" workflow
+    - Go to Actions tab
+    - Look for "Deploy mkdocs documentation to Pages" workflow
 3. Verify changes were pushed to the correct branch
 4. Wait 1-2 minutes for Pages to build
 5. Hard refresh browser (Ctrl+Shift+R or Cmd+Shift+R)
@@ -419,9 +422,11 @@ This guide covers common issues you might encounter when using this template and
 
 ### MkDocs Warning: "GET /versions.json HTTP/1.1" code 404
 
-**Problem:** You see a warning about missing `versions.json` file when running `mkdocs serve`.
+**Problem:** You see a warning about missing `versions.json` file when running
+`mkdocs serve`.
 
-**This is benign** - it's the Material theme looking for version switcher functionality (for multi-version documentation).
+**This is benign** - it's the Material theme looking for version switcher
+functionality (for multi-version documentation).
 
 **Solutions:**
 
@@ -433,11 +438,11 @@ Add this to `mkdocs.yml`:
 
 ```yaml
 theme:
-  name: material
-  features:
-    # ... other features
-  version:
-    provider: mike # Or remove this section entirely
+    name: material
+    features:
+        # ... other features
+    version:
+        provider: mike # Or remove this section entirely
 ```
 
 **Option 2: Create a versions.json file (for multi-version docs)**
@@ -446,8 +451,8 @@ Create `docs/versions.json`:
 
 ```json
 {
-  "1.0": "1.0",
-  "dev": "dev"
+    "1.0": "1.0",
+    "dev": "dev"
 }
 ```
 
@@ -455,7 +460,8 @@ This is only needed if you're maintaining multiple documentation versions.
 
 **Option 3: Just ignore it**
 
-The warning doesn't affect functionality - your docs build and serve normally. It's safe to ignore if you're not using versioning.
+The warning doesn't affect functionality - your docs build and serve normally.
+It's safe to ignore if you're not using versioning.
 
 ## Dependencies & Package Issues
 

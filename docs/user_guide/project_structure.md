@@ -1,13 +1,14 @@
 # Project Structure
 
-This guide explains the recommended project structure used in this Python package template,
-including the rationale behind the `src/` layout and how to organize your code effectively.
+This guide explains the recommended project structure used in this Python
+package template, including the rationale behind the `src/` layout and how to
+organize your code effectively.
 
 ## Overview
 
-This template follows modern Python packaging best practices with a `src/` layout.
-This structure separates your package code from development files and tools,
-providing better isolation and avoiding common packaging issues.
+This template follows modern Python packaging best practices with a `src/`
+layout. This structure separates your package code from development files and
+tools, providing better isolation and avoiding common packaging issues.
 
 ## Directory Structure
 
@@ -44,8 +45,10 @@ your-project/
 The `src/` layout offers several advantages:
 
 - **Clean separation**: Package code is isolated from development files
-- **Avoid import issues**: Prevents accidental imports of development dependencies
-- **Better testing**: Easier to test the installed package vs. local development version
+- **Avoid import issues**: Prevents accidental imports of development
+  dependencies
+- **Better testing**: Easier to test the installed package vs. local development
+  version
 - **Standard practice**: Recommended by Python packaging guides
 
 ## Package Organization
@@ -119,7 +122,8 @@ utils/
 
 - **`conftest.py`**: Shared fixtures and configuration
 - **`test_*.py`**: Test files matching module names
-- **Structure mirrors package**: `tests/test_utils.py` for `src/your_package/utils/`
+- **Structure mirrors package**: `tests/test_utils.py` for
+  `src/your_package/utils/`
 
 ### Example Test Structure
 
@@ -215,5 +219,7 @@ If migrating from a flat layout (no `src/`):
 - **Test discovery**: Configure pytest with correct paths
 - **Documentation**: Update API reference generation for new structure
 
-For more information, see the [Python Packaging Guide](https://packaging.python.org/en/latest/tutorials/packaging-projects/)
-and [src layout discussion](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/).
+For more information, see the
+[Python Packaging Guide](https://packaging.python.org/en/latest/tutorials/packaging-projects/)
+and
+[src layout discussion](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/).

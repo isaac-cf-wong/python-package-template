@@ -67,3 +67,5 @@ testpypi
 tkinter
 venv
 xunit
+pycln
+taplo

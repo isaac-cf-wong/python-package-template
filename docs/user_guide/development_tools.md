@@ -1,16 +1,16 @@
 # Development Tools
 
-This guide covers the development tools configured in this template,
-including pre-commit hooks, code quality tools, and how to use them effectively.
+This guide covers the development tools configured in this template, including
+pre-commit hooks, code quality tools, and how to use them effectively.
 
 ## Overview
 
-The template includes a comprehensive set of tools for maintaining code quality, consistency, and reliability:
+The template includes a comprehensive set of tools for maintaining code quality,
+consistency, and reliability:
 
 - **Pre-commit hooks**: Automated checks before commits
-- **Code formatting**: Black for consistent style
-- **Linting**: Ruff and Pylint for code quality
-- **Type checking**: Pyright for static analysis
+- **Code formatting**: Ruff for consistent style
+- **Linting**: Ruff for code quality
 - **Spell checking**: CSpell for documentation
 - **Security scanning**: Bandit for vulnerability detection
 
@@ -29,9 +29,8 @@ pre-commit install --hook-type commit-msg  # For commit message validation
 
 The configuration includes hooks for:
 
-- **Code formatting**: Black, isort
-- **Linting**: Ruff, Pylint
-- **Type checking**: Pyright
+- **Code formatting**: Ruff
+- **Linting**: Ruff
 - **Security**: Bandit
 - **Spell checking**: CSpell
 - **General**: Trailing whitespace, end-of-file fixes
@@ -43,33 +42,13 @@ The configuration includes hooks for:
 pre-commit run --all-files
 
 # Run specific hook
-pre-commit run black --all-files
+pre-commit run ruff --all-files
 
 # Run on staged files (automatic on commit)
 pre-commit run
 ```
 
 ## Code Formatting
-
-### Black
-
-Black is an uncompromising code formatter that ensures consistent style.
-
-**Configuration** (in `pyproject.toml`):
-
-```toml
---8<-- "pyproject.toml:77:79"
-```
-
-**Usage**:
-
-```bash
-# Format files
-black src/ tests/
-
-# Check formatting without changes
-black --check src/ tests/
-```
 
 ### Ruff
 
@@ -89,42 +68,6 @@ ruff check --fix src/ tests/
 
 # Format code
 ruff format src/ tests/
-```
-
-## Linting and Code Quality
-
-### Flake8
-
-Flake8 combines PyFlakes, pycodestyle, and McCabe for comprehensive checking.
-
-**Configuration** (in `pyproject.toml`):
-
-```toml
---8<-- "pyproject.toml:87:102"
-```
-
-**Usage**:
-
-```bash
-flake8 src/ tests/
-```
-
-## Type Checking
-
-### Pyright
-
-Pyright provides static type checking for Python.
-
-**Configuration** (in `pyproject.toml`):
-
-```toml
---8<-- "pyproject.toml:104:115"
-```
-
-**Usage**:
-
-```bash
-pyright
 ```
 
 ## Spell Checking
@@ -195,8 +138,8 @@ Coverage.py measures code coverage.
 --8<-- "pyproject.toml:81:85"
 ```
 
-The default minimum coverage is set to 0%.
-You should aim for higher coverage as you add tests.
+The default minimum coverage is set to 0%. You should aim for higher coverage as
+you add tests.
 
 ## Additional Tools
 
@@ -243,7 +186,7 @@ Edit configurations in `pyproject.toml`:
 Comment out or remove from `.pre-commit-config.yaml`:
 
 ```yaml
-# - repo: https://github.com/psf/black
+# - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
 #   ...
 ```
 
@@ -265,7 +208,7 @@ Check `.github/workflows/` for details.
 
 ### Tool Conflicts
 
-- **Multiple formatters**: Choose one (Black recommended)
+- **Multiple formatters**: Choose one (Ruff recommended)
 - **Conflicting rules**: Adjust configurations to avoid conflicts
 
 ### Performance
@@ -280,4 +223,5 @@ Check `.github/workflows/` for details.
 - **Regular updates**: Update tool versions periodically
 - **Team alignment**: Ensure all developers use the same tools
 
-For more information, see the [Pre-commit documentation](https://pre-commit.com/) and individual tool docs.
+For more information, see the
+[Pre-commit documentation](https://pre-commit.com/) and individual tool docs.
