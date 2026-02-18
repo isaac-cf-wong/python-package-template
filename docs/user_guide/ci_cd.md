@@ -204,7 +204,7 @@ of API tokens:
     - Repository: `your-repo-name`
     - Workflow: `create_tag.yml` (for automatic releases) and `publish.yml` (for
       manual publishes)
-    - Environment: `production` (or `testpypi` for TestPyPI)
+    - Environment: `pypi` (or `testpypi` for TestPyPI)
 
 No secrets or tokens needed!
 
