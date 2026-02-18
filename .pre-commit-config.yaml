@@ -110,6 +110,12 @@ repos:
             stages: [pre-commit]
             additional_dependencies: ['.[toml]']
 
+    - repo: https://github.com/rbubley/mirrors-prettier
+      rev: v3.8.1
+      hooks:
+          - id: prettier
+            stages: [pre-commit]
+
     - repo: https://github.com/pre-commit/mirrors-prettier
       rev: v4.0.0-alpha.8
       hooks:
