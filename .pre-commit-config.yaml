@@ -77,10 +77,11 @@ repos:
             stages: [commit-msg]
             always_run: true
 
-    - repo: https://github.com/quantco/pre-commit-mirrors-taplo
-      rev: 0.10.0 # Use the sha / tag you want to point at
+    - repo: https://github.com/ComPWA/taplo-pre-commit
+      rev: v0.9.3
       hooks:
-          - id: taplo-conda
+          - id: taplo-format
+          - id: taplo-lint
 
     - repo: https://github.com/pre-commit/pygrep-hooks
       rev: v1.10.0
