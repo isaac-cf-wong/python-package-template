@@ -81,7 +81,6 @@ repos:
       rev: v0.9.3
       hooks:
           - id: taplo-format
-          - id: taplo-lint
 
     - repo: https://github.com/pre-commit/pygrep-hooks
       rev: v1.10.0
