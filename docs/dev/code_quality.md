@@ -283,9 +283,6 @@ def custom_check(context):
 
 ```json
 {
-    "python.linting.enabled": true,
-    "python.linting.ruffEnabled": true,
-    "python.linting.banditEnabled": true,
     "cSpell.words": ["pypi", "mkdocs"]
 }
 ```
