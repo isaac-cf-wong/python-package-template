@@ -94,9 +94,6 @@ This sets up automatic checks that run before each commit, including:
 Hooks will automatically fix many issues or prevent commits that violate rules,
 helping maintain code quality.
 
-This will run formatting, linting, and other checks automatically on each
-commit.
-
 ### 4. Run Tests
 
 Verify everything works:
