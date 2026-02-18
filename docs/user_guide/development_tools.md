@@ -9,9 +9,8 @@ The template includes a comprehensive set of tools for maintaining code quality,
 consistency, and reliability:
 
 - **Pre-commit hooks**: Automated checks before commits
-- **Code formatting**: Black for consistent style
-- **Linting**: Ruff and Pylint for code quality
-- **Type checking**: Pyright for static analysis
+- **Code formatting**: Ruff for consistent style
+- **Linting**: Ruff for code quality
 - **Spell checking**: CSpell for documentation
 - **Security scanning**: Bandit for vulnerability detection
 
@@ -30,9 +29,8 @@ pre-commit install --hook-type commit-msg  # For commit message validation
 
 The configuration includes hooks for:
 
-- **Code formatting**: Black, isort
-- **Linting**: Ruff, Pylint
-- **Type checking**: Pyright
+- **Code formatting**: Ruff
+- **Linting**: Ruff
 - **Security**: Bandit
 - **Spell checking**: CSpell
 - **General**: Trailing whitespace, end-of-file fixes
@@ -210,7 +208,7 @@ Check `.github/workflows/` for details.
 
 ### Tool Conflicts
 
-- **Multiple formatters**: Choose one (Black recommended)
+- **Multiple formatters**: Choose one (Ruff recommended)
 - **Conflicting rules**: Adjust configurations to avoid conflicts
 
 ### Performance
