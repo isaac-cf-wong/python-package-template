@@ -84,7 +84,7 @@ pre-commit install --hook-type commit-msg
 
 This sets up automatic checks that run before each commit, including:
 
-- Code formatting Ruff)
+- Code formatting (Ruff)
 - Linting (Ruff)
 - Security scanning (Bandit)
 - Spell checking (CSpell)
