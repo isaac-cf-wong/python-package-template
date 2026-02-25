@@ -41,6 +41,7 @@ docs = [
   "mkdocs-section-index",
   "mike",
 ]
+build = ["hatch>=1.16.3"]
 
 [project.scripts]
 python_package_template = "python_package_template.cli.main:app"
