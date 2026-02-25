@@ -33,9 +33,6 @@ jobs:
               run: uv sync --extra docs --frozen
 
             - run: uv run --frozen mkdocs build --site-dir site
-            - uses: actions/upload-pages-artifact@v4
-              with:
-                  path: site
 
             - uses: actions/upload-pages-artifact@v4
               with:
