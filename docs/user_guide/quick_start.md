@@ -13,7 +13,7 @@ This template includes:
   Hatch-VCS for version management
 - **Development Tools**: Pre-configured with Ruff, Pre-commit hooks, and more
 - **Testing Framework**: Pytest with coverage reporting and fixtures
-- **Documentation**: MkDocs with Material theme for API docs and user guides
+- **Documentation**: Zensical theme for API docs and user guides
 - **CI/CD**: GitHub Actions workflows for validation, testing, and publishing
 - **Code Quality**: Linting, formatting, spell checking, and security scanning
 - **Example Code**: A sample `hello_world` module with CLI
