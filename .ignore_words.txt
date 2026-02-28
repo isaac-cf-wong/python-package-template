@@ -69,3 +69,4 @@ venv
 xunit
 pycln
 taplo
+Zensical

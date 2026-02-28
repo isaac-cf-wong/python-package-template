@@ -344,27 +344,27 @@ version.
 
 ## Documentation Issues
 
-### MkDocs Site Won't Build
+### Zensical Site Won't Build
 
-**Problem:** `mkdocs serve` or `mkdocs build` fails.
+**Problem:** `zensical serve` or `zensical build` fails.
 
 **Solutions:**
 
 <!-- prettier-ignore-start -->
 
-1. Verify MkDocs is installed:
+1. Verify Zensical is installed:
 
     ```bash
     pip install -e ".[docs]"
     ```
 
-2. Check `mkdocs.yml` syntax (must be valid YAML)
+2. Check `zensical.toml` syntax (must be valid TOML)
 3. Verify markdown files exist and paths are correct
 4. Check for circular includes or missing includes
 5. Run with verbose output:
 
     ```bash
-    mkdocs build --verbose
+    zensical build --verbose
     ```
 
 <!-- prettier-ignore-end -->
@@ -381,7 +381,7 @@ version.
     - This allows the documentation workflow to deploy directly
 2. Check documentation workflow ran successfully:
     - Go to Actions tab
-    - Look for "Deploy mkdocs documentation to Pages" workflow
+    - Look for "Deploy Zensical documentation to Pages" workflow
 3. Verify changes were pushed to the correct branch
 4. Wait 1-2 minutes for Pages to build
 5. Hard refresh browser (Ctrl+Shift+R or Cmd+Shift+R)
@@ -409,7 +409,7 @@ version.
     pip install mkdocstrings[python]
     ```
 
-3. Verify navigation in `mkdocs.yml` includes API section
+3. Verify navigation in `zensical.toml` includes API section
 4. Check `gen_ref_pages.py` script ran successfully:
 
     ```bash
@@ -419,49 +419,6 @@ version.
 5. Ensure modules are properly imported in `__init__.py`
 
 <!-- prettier-ignore-end -->
-
-### MkDocs Warning: "GET /versions.json HTTP/1.1" code 404
-
-**Problem:** You see a warning about missing `versions.json` file when running
-`mkdocs serve`.
-
-**This is benign** - it's the Material theme looking for version switcher
-functionality (for multi-version documentation).
-
-**Solutions:**
-
-If you want to remove the warning:
-
-**Option 1: Disable version switcher (recommended for single version)**
-
-Add this to `mkdocs.yml`:
-
-```yaml
-theme:
-    name: material
-    features:
-        # ... other features
-    version:
-        provider: mike # Or remove this section entirely
-```
-
-**Option 2: Create a versions.json file (for multi-version docs)**
-
-Create `docs/versions.json`:
-
-```json
-{
-    "1.0": "1.0",
-    "dev": "dev"
-}
-```
-
-This is only needed if you're maintaining multiple documentation versions.
-
-**Option 3: Just ignore it**
-
-The warning doesn't affect functionality - your docs build and serve normally.
-It's safe to ignore if you're not using versioning.
 
 ## Dependencies & Package Issues
 

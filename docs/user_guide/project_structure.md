@@ -36,7 +36,7 @@ your-project/
 │   └── workflows/
 ├── pyproject.toml
 ├── .pre-commit-config.yaml
-├── mkdocs.yml
+├── zensical.toml
 └── other config files...
 ```
 
@@ -158,7 +158,7 @@ def test_main_function(sample_data):
 
 - **`pyproject.toml`**: Packaging and tool configuration
 - **`.pre-commit-config.yaml`**: Pre-commit hooks
-- **`mkdocs.yml`**: Documentation configuration
+- **`zensical.toml`**: Documentation configuration
 - **`.github/workflows/`**: CI/CD pipelines
 
 ## Customizing the Structure
@@ -168,7 +168,7 @@ def test_main_function(sample_data):
 1. Rename `src/python_package_template/` to `src/your_package_name/`
 2. Update all imports throughout the codebase
 3. Update `pyproject.toml` name and entry points
-4. Update `mkdocs.yml` and documentation references
+4. Update `zensical.toml` and documentation references
 
 ### Adding New Modules
 

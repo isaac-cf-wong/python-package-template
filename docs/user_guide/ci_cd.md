@@ -7,9 +7,9 @@ Python package template.
 
 The template includes:
 
-- **Automated testing** on every push and pull request (3.10, 3.11, 3.12)
+- **Automated testing** on every push and pull request (3.12, 3.13, 3.14)
 - **Code quality checks** (linting, formatting, CodeQL security scanning)
-- **Automated monthly releases** with semantic versioning and changelog
+- **Automated weekly releases** with semantic versioning and changelog
   generation
 - **Draft releases** to preview upcoming changes before publishing
 - **Documentation deployment** to GitHub Pages
@@ -19,7 +19,7 @@ The template includes:
 ## Quick Start
 
 1. **No setup required** - CI runs automatically on pushes and pull requests
-2. **Releases happen monthly** on the 1st of each month (automated)
+2. **Releases happen weekly** on the Tuesday of each week (automated)
 3. **Optional: Enable PyPI publishing** - See [Publishing](#publishing) section
 
 ## Workflows
@@ -28,16 +28,16 @@ The template includes:
 
 **Triggers:** Every push, pull request, or manual trigger
 
-- Tests across Python 3.10, 3.11, 3.12
+- Tests across Python 3.12, 3.13, 3.14
 - Runs pytest with coverage reporting
 - Uploads coverage to Codecov
 - Security scanning with CodeQL
 
-**Status checks to require:** `test (3.10)`, `test (3.11)`, `test (3.12)`
+**Status checks to require:** `test (3.12)`, `test (3.13)`, `test (3.14)`
 
 ### Tag (`.github/workflows/create_tag.yml`)
 
-**Triggers:** Monthly (1st of month at UTC midnight) or manual trigger
+**Triggers:** Weekly (Tuesday at UTC midnight) or manual trigger
 
 1. Runs CI workflow to ensure tests pass
 2. Automatically bumps version using semantic versioning
@@ -67,7 +67,7 @@ The template includes:
 
 **Triggers:** Every push to `main` or manual trigger
 
-- Builds documentation with MkDocs
+- Builds documentation with Zensical
 - Deploys to GitHub Pages
 - Uses pip caching for faster builds
 
@@ -109,9 +109,9 @@ chore: update dependencies     # No version bump
 
 [Learn more about Conventional Commits](https://www.conventionalcommits.org/)
 
-### Automatic Release (Monthly)
+### Automatic Release (Weekly)
 
-The Tag workflow runs automatically on the **1st of every month at midnight
+The Tag workflow runs automatically on **Tuesday of every week at midnight
 UTC**:
 
 1. CI passes ✅
@@ -301,4 +301,4 @@ If security scanning isn't needed, remove the `codeql` job from
 - [Conventional Commits](https://www.conventionalcommits.org/)
 - [Semantic Versioning](https://semver.org/)
 - [git-cliff documentation](https://github.com/orhun/git-cliff)
-- [MkDocs documentation](https://www.mkdocs.org/)
+- [Zensical documentation](https://zensical.org/)

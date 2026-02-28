@@ -13,7 +13,7 @@ This template includes:
   Hatch-VCS for version management
 - **Development Tools**: Pre-configured with Ruff, Pre-commit hooks, and more
 - **Testing Framework**: Pytest with coverage reporting and fixtures
-- **Documentation**: MkDocs with Material theme for API docs and user guides
+- **Documentation**: Zensical theme for API docs and user guides
 - **CI/CD**: GitHub Actions workflows for validation, testing, and publishing
 - **Code Quality**: Linting, formatting, spell checking, and security scanning
 - **Example Code**: A sample `hello_world` module with CLI
@@ -108,7 +108,7 @@ You should see all tests pass with coverage reporting.
 Generate and view the documentation:
 
 ```bash
-mkdocs serve
+zensical serve
 ```
 
 Open [http://localhost:8000](http://localhost:8000) in your browser to see the
@@ -162,7 +162,7 @@ When ready to release:
 - **.pre-commit-config.yaml**: Pre-commit hooks for code quality
 - **cliff.toml**: Configuration for automatic changelog generation using
   git-cliff
-- **mkdocs.yml**: Documentation configuration
+- **zensical.toml**: Documentation configuration
 - **.github/workflows/**: CI/CD pipelines
 
 ## Next Steps

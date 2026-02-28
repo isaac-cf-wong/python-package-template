@@ -57,7 +57,7 @@ Ruff is a fast Python linter and formatter, alternative to Flake8.
 **Configuration** (in `pyproject.toml`):
 
 ```toml
---8<-- "pyproject.toml:287:289"
+--8<-- "pyproject.toml:110:145"
 ```
 
 **Usage**:
@@ -97,7 +97,7 @@ Bandit finds common security issues in Python code.
 **Configuration** (in `pyproject.toml`):
 
 ```toml
---8<-- "pyproject.toml:71:75"
+--8<-- "pyproject.toml:54:58"
 ```
 
 **Usage**:
@@ -115,7 +115,7 @@ Pytest is the testing framework with coverage reporting.
 **Configuration** (in `pyproject.toml`):
 
 ```toml
---8<-- "pyproject.toml:117:129"
+--8<-- "pyproject.toml:66:78"
 ```
 
 **Usage**:
@@ -135,7 +135,7 @@ Coverage.py measures code coverage.
 **Configuration** (in `pyproject.toml`):
 
 ```toml
---8<-- "pyproject.toml:81:85"
+--8<-- "pyproject.toml:60:64"
 ```
 
 The default minimum coverage is set to 0%. You should aim for higher coverage as
@@ -170,9 +170,7 @@ shellcheck scripts/*.sh
 Edit configurations in `pyproject.toml`:
 
 ```toml
---8<-- "pyproject.toml:77:78"
-
---8<-- "pyproject.toml:287:289"
+--8<-- "pyproject.toml:113:131"
 ```
 
 ### Adding New Tools

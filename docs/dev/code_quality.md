@@ -31,7 +31,7 @@ Ruff is a fast Python linter written in Rust that combines multiple tools.
 **Configuration** (`pyproject.toml`):
 
 ```toml
---8<-- "pyproject.toml:287:314"
+--8<-- "pyproject.toml:110:145"
 ```
 
 **Usage:**
@@ -56,7 +56,7 @@ Bandit finds common security issues in Python code.
 **Configuration** (`pyproject.toml`):
 
 ```toml
---8<-- "pyproject.toml:71:75"
+--8<-- "pyproject.toml:54:58"
 ```
 
 **Common security issues detected:**
@@ -89,24 +89,6 @@ CSpell checks spelling in code comments, documentation, and strings.
 
 ```bash
 cspell "**/*.{py,md,yml,yaml}"
-```
-
-## Type Checking
-
-### Pyright
-
-Pyright provides static type checking for Python.
-
-**Configuration** (`pyproject.toml`):
-
-```toml
---8<-- "pyproject.toml:104:115"
-```
-
-**Usage:**
-
-```bash
-pyright
 ```
 
 ## Pre-commit Integration
