@@ -420,49 +420,6 @@ version.
 
 <!-- prettier-ignore-end -->
 
-### MkDocs Warning: "GET /versions.json HTTP/1.1" code 404
-
-**Problem:** You see a warning about missing `versions.json` file when running
-`zensical serve`.
-
-**This is benign** - it's the Material theme looking for version switcher
-functionality (for multi-version documentation).
-
-**Solutions:**
-
-If you want to remove the warning:
-
-**Option 1: Disable version switcher (recommended for single version)**
-
-Add this to `zensical.toml`:
-
-```yaml
-theme:
-    name: material
-    features:
-        # ... other features
-    version:
-        provider: mike # Or remove this section entirely
-```
-
-**Option 2: Create a versions.json file (for multi-version docs)**
-
-Create `docs/versions.json`:
-
-```json
-{
-    "1.0": "1.0",
-    "dev": "dev"
-}
-```
-
-This is only needed if you're maintaining multiple documentation versions.
-
-**Option 3: Just ignore it**
-
-The warning doesn't affect functionality - your docs build and serve normally.
-It's safe to ignore if you're not using versioning.
-
 ## Dependencies & Package Issues
 
 ### "ModuleNotFoundError" When Running CLI

@@ -9,7 +9,7 @@ The template includes:
 
 - **Automated testing** on every push and pull request (3.12, 3.13, 3.14)
 - **Code quality checks** (linting, formatting, CodeQL security scanning)
-- **Automated monthly releases** with semantic versioning and changelog
+- **Automated weekly releases** with semantic versioning and changelog
   generation
 - **Draft releases** to preview upcoming changes before publishing
 - **Documentation deployment** to GitHub Pages
@@ -19,7 +19,7 @@ The template includes:
 ## Quick Start
 
 1. **No setup required** - CI runs automatically on pushes and pull requests
-2. **Releases happen monthly** on the 1st of each month (automated)
+2. **Releases happen weekly** on the Tuesday of each week (automated)
 3. **Optional: Enable PyPI publishing** - See [Publishing](#publishing) section
 
 ## Workflows
@@ -109,9 +109,9 @@ chore: update dependencies     # No version bump
 
 [Learn more about Conventional Commits](https://www.conventionalcommits.org/)
 
-### Automatic Release (Monthly)
+### Automatic Release (Weekly)
 
-The Tag workflow runs automatically on the **1st of every month at midnight
+The Tag workflow runs automatically on **Tuesday of every week at midnight
 UTC**:
 
 1. CI passes ✅
