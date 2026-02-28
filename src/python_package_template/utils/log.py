@@ -12,7 +12,7 @@ def get_version_information() -> str:
     """Get the version information.
 
     Returns:
-        str: Version information.
+        Version information.
 
     """
     return __version__
