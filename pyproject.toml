@@ -22,7 +22,7 @@ dependencies = ["typer>=0.24.1"]
 
 [project.optional-dependencies]
 test = [
-  "bandit[toml]>=1.9.3",
+  "bandit[toml]>=1.9.4",
   "ruff>=0.15.2",
   "pre-commit>=4.5.1",
   "pytest-cov>=7.0.0",
