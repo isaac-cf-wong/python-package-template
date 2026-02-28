@@ -57,7 +57,7 @@ Core runtime dependencies. Add your package's dependencies here.
 Extras allow users to install additional features:
 
 ```bash
-uv pip install your-package[dev,docs]
+uv pip install "your-package[dev,docs]"
 ```
 
 ### Scripts/Entry Points
