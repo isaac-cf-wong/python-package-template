@@ -87,7 +87,7 @@ tags:
 The template uses mkdocstrings for automatic API docs with Zensical integration:
 
 ```toml
---8<-- "zensical.toml:316:324"
+--8<-- "zensical.toml:332:334"
 ```
 
 ### Writing Docstrings
