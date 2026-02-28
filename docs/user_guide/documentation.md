@@ -1,38 +1,39 @@
 # Documentation
 
 This guide explains how documentation is set up in this Python package template,
-including MkDocs configuration, API reference generation, and best practices for
-writing docs.
+including Zensical configuration, API reference generation, and best practices
+for writing docs.
 
 ## Overview
 
-The template uses MkDocs with Material theme for documentation, featuring:
+The template uses Zensical for documentation, featuring:
 
-- **Material Design**: Modern, responsive theme
+- **Modern, responsive theme**: Built-in dark mode support
 - **API Documentation**: Auto-generated from docstrings
 - **Multi-page Structure**: Organized user guides and developer docs
-- **Search**: Built-in search functionality
+- **Search**: Built-in search functionality with advanced filtering
 - **Versioning**: Support for multiple versions
+- **Customizable**: Easy customization of colors, fonts, and layout
 
-## MkDocs Configuration
+## Zensical Configuration
 
-### Basic Setup (`mkdocs.yml`)
+### Basic Setup (`zensical.toml`)
 
-```yaml
---8<-- "mkdocs.yml:1:63"
+```toml
+--8<-- "zensical.toml:1:30"
 ```
 
 ### Navigation Structure
 
-```yaml
---8<-- "mkdocs.yml:68:94"
+```toml
+--8<-- "zensical.toml:47:59"
 ```
 
 ## Writing Documentation
 
 ### Markdown Basics
 
-Use standard Markdown with MkDocs extensions:
+Use standard Markdown with Zensical extensions:
 
 ````markdown
 # Heading 1
@@ -83,10 +84,10 @@ tags:
 
 ### MkDocstrings Setup
 
-The template uses mkdocstrings for automatic API docs:
+The template uses mkdocstrings for automatic API docs with Zensical integration:
 
-```yaml
---8<-- "mkdocs.yml:32:63"
+```toml
+--8<-- "zensical.toml:316:324"
 ```
 
 ### Writing Docstrings
@@ -147,7 +148,7 @@ class MyClass:
 
 ```bash
 # Serve documentation locally
-mkdocs serve
+zensical serve
 
 # Open http://localhost:8000
 ```
@@ -156,7 +157,7 @@ mkdocs serve
 
 ```bash
 # Build static site
-mkdocs build
+zensical build
 
 # Output in site/ directory
 ```
@@ -200,7 +201,7 @@ Step-by-step guides for users:
 - **Advanced Usage**: Complex features
 - **Troubleshooting**: Common issues
 
-### API Reference (`docs/reference/`)
+### API Reference (`docs/api/`)
 
 Auto-generated API docs (handled by `gen_ref_pages.py`).
 
@@ -240,7 +241,7 @@ For contributors:
 
 Support multiple versions:
 
-```yaml
+```toml
 plugins:
     - mike:
           version_selector: true
@@ -249,19 +250,18 @@ plugins:
 
 ### Custom Theme
 
-Extend Material theme:
+Customize theme appearance:
 
-```yaml
-theme:
-    name: material
-    custom_dir: docs/overrides
+```toml
+[project.theme]
+variant = "classic"  # or "material"
 ```
 
 ### Plugins
 
 Additional useful plugins:
 
-```yaml
+```toml
 plugins:
     - mkdocs-minify-plugin
     - mkdocs-git-revision-date-localized-plugin
@@ -274,27 +274,27 @@ plugins:
 
 Switch to other themes:
 
-```yaml
-theme:
-    name: readthedocs
+```toml
+[project.theme]
+# Default Zensical theme
+variant = "material"
 ```
 
 ### Adding Pages
 
 1. Create `.md` file in appropriate directory
-2. Add to `mkdocs.yml` nav
+2. Add to `zensical.toml` nav
 3. Link from other pages
 
 ### Custom CSS/JavaScript
 
 Add custom styles:
 
-```yaml
-extra_css:
-    - styles/custom.css
+```toml
+[project]
+extra_css = ["styles/custom.css"]
 
-extra_javascript:
-    - js/custom.js
+extra_javascript = ["js/custom.js"]
 ```
 
 ## CI/CD Integration
@@ -320,11 +320,12 @@ To deploy your documentation to GitHub Pages, follow these steps:
 
 ### 2. Configure Site URL (Optional but Recommended)
 
-Update `mkdocs.yml` to use your GitHub Pages URL:
+Update `zensical.toml` to use your GitHub Pages URL:
 
-```yaml
-site_url: https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/
-site_name: Your Package Name
+```toml
+[project]
+site_url = "https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/"
+site_name = "Your Package Name"
 ```
 
 This ensures links and assets work correctly on GitHub Pages.
@@ -334,7 +335,7 @@ This ensures links and assets work correctly on GitHub Pages.
 The documentation is deployed automatically by the GitHub Actions workflow:
 
 1. Go to **Actions** tab in your repository
-2. Look for **"Deploy mkdocs documentation to Pages"** workflow
+2. Look for **"Deploy Zensical documentation to Pages"** workflow
 3. Verify it runs successfully on pushes to main branch
 4. Check the workflow logs if there are issues
 
@@ -366,7 +367,7 @@ If you want to use a custom domain:
 
 1. Verify the documentation workflow succeeded:
     - Check **Actions** tab
-    - Look for "Deploy mkdocs documentation to Pages" workflow
+    - Look for "Deploy Zensical documentation to Pages" workflow
     - Re-run if it failed
 2. Clear browser cache (hard refresh: Ctrl+Shift+R or Cmd+Shift+R)
 3. Wait 1-2 minutes for GitHub Pages to rebuild
@@ -374,18 +375,18 @@ If you want to use a custom domain:
 
 ### Workflow Fails with Build Error
 
-**Problem:** Documentation workflow fails with "MkDocs build failed".
+**Problem:** Documentation workflow fails with "Zensical build failed".
 
 **Solution:**
 
 <!-- prettier-ignore-start -->
 
 1. Check markdown file syntax
-2. Verify all navigation links in `mkdocs.yml` point to existing files
+2. Verify all navigation links in `zensical.toml` point to existing files
 3. Run locally to debug:
 
     ```bash
-    mkdocs build --strict
+    zensical build --strict
     ```
 
 4. Fix any errors and push again
@@ -416,14 +417,14 @@ If you want to use a custom domain:
 
 ```bash
 # Strict mode (catches all issues)
-mkdocs build --strict
+zensical build --strict
 
 # Verbose output (more details)
-mkdocs build -v
+zensical build -v
 
 # Local preview
-mkdocs serve  # Visit http://localhost:8000
+zensical serve  # Visit http://localhost:8000
 ```
 
-For more information, see the [MkDocs documentation](https://www.mkdocs.org/)
-and [Material theme docs](https://squidfunk.github.io/mkdocs-material/).
+For more information, see the [Zensical documentation](https://zensical.org/)
+and [MkDocs documentation](https://www.mkdocs.org/)

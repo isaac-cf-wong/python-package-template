@@ -108,7 +108,7 @@ You should see all tests pass with coverage reporting.
 Generate and view the documentation:
 
 ```bash
-mkdocs serve
+zensical serve
 ```
 
 Open [http://localhost:8000](http://localhost:8000) in your browser to see the
@@ -162,7 +162,7 @@ When ready to release:
 - **.pre-commit-config.yaml**: Pre-commit hooks for code quality
 - **cliff.toml**: Configuration for automatic changelog generation using
   git-cliff
-- **mkdocs.yml**: Documentation configuration
+- **zensical.toml**: Documentation configuration
 - **.github/workflows/**: CI/CD pipelines
 
 ## Next Steps

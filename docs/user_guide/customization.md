@@ -48,7 +48,7 @@ your-package-name = "your_package_name.cli.main:app"
 
 ### 4. Update Documentation
 
-- Change `mkdocs.yml` site name and URLs
+- Change `zensical.toml` site name and URLs
 - Update `README.md` and other docs
 - Rename references in code comments
 
@@ -92,7 +92,7 @@ dev = [
 ```toml
 [project.optional-dependencies]
 docs = [
-    "mkdocs",  # Already included
+    "zensical",  # Already included
     "mkdocs-new-plugin",
 ]
 ```
@@ -259,22 +259,24 @@ jobs:
 
 ## Documentation Customization
 
-### Update MkDocs Config
+### Update Zensical Config
 
-```yaml
-site_name: Your Package Docs
-site_description: Documentation for your package
-repo_url: https://github.com/yourusername/your-repo
+```toml
+[project]
+site_name = "Your Package Docs"
+site_description = "Documentation for your package"
+repo_url = "https://github.com/yourusername/your-repo"
 
-theme:
-    name: material
-    palette:
-        primary: blue # Change theme colors
+[project.theme]
+palette = [
+    { scheme = "default", primary = "blue" },
+    { scheme = "slate", primary = "blue" },
+]
 ```
 
 ### Update Navigation
 
-Modify `mkdocs.yml` nav to match your structure:
+Modify `zensical.toml` nav to match your structure:
 
 ```yaml
 nav:

@@ -43,7 +43,7 @@ Key fields:
 ### Dependencies
 
 ```toml
---8<-- "pyproject.toml:21:23"
+--8<-- "pyproject.toml:21:21"
 ```
 
 Core runtime dependencies. Add your package's dependencies here.
@@ -51,19 +51,19 @@ Core runtime dependencies. Add your package's dependencies here.
 ### Optional Dependencies
 
 ```toml
---8<-- "pyproject.toml:25:54"
+--8<-- "pyproject.toml:23:36"
 ```
 
 Extras allow users to install additional features:
 
 ```bash
-pip install your-package[dev,docs]
+uv pip install your-package[dev,docs]
 ```
 
 ### Scripts/Entry Points
 
 ```toml
---8<-- "pyproject.toml:55:56"
+--8<-- "pyproject.toml:38:39"
 ```
 
 Defines command-line scripts. This creates the `python_package_template`
@@ -72,7 +72,7 @@ command.
 ### URLs
 
 ```toml
---8<-- "pyproject.toml:58:63"
+--8<-- "pyproject.toml:41:46"
 ```
 
 Links for PyPI project page.
@@ -82,7 +82,7 @@ Links for PyPI project page.
 Version is managed automatically using Hatch-VCS:
 
 ```toml
---8<-- "pyproject.toml:65:66"
+--8<-- "pyproject.toml:48:49"
 ```
 
 Versions are derived from Git tags (e.g., tag `v1.2.3` → version `1.2.3`).
