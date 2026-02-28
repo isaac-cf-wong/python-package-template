@@ -6,7 +6,7 @@
         ":semanticCommitTypeAll(chore)"
     ],
     "dependencyDashboard": true,
-    "dependencyDashboardTitle": "Dependency Dashboard – python_package_template",
+    "dependencyDashboardTitle": "Dependency Dashboard",
     "lockFileMaintenance": {
         "enabled": true,
         "schedule": ["before 4am on monday"]
