@@ -33,7 +33,7 @@ test = [
 ]
 dev = ["pytest>=9.0.2", "pre-commit>=4.5.1", "ruff>=0.15.4"]
 docs = ["zensical>=0.0.24", "mkdocstrings-python>=2.0.3"]
-build = ["hatch>=1.16.4"]
+build = ["hatch>=1.16.5"]
 
 [project.scripts]
 python_package_template = "python_package_template.cli.main:app"
