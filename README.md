@@ -1,6 +1,6 @@
 # Python Project Template
 
-[![Python CI](https://github.com/isaac-cf-wong/python-package-template/actions/workflows/CI.yml/badge.svg)](https://github.com/isaac-cf-wong/python-package-template/actions/workflows/CI.yml)
+[![Python CI](https://github.com/isaac-cf-wong/python-package-template/actions/workflows/ci.yml/badge.svg)](https://github.com/isaac-cf-wong/python-package-template/actions/workflows/ci.yml)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/isaac-cf-wong/python-package-template/main.svg)](https://results.pre-commit.ci/latest/github/isaac-cf-wong/python-package-template/main)
 [![Documentation Status](https://github.com/isaac-cf-wong/python-package-template/actions/workflows/documentation.yml/badge.svg)](https://isaac-cf-wong.github.io/python-package-template/)
 [![codecov](https://codecov.io/gh/isaac-cf-wong/python-package-template/graph/badge.svg?token=COF8341N60)](https://codecov.io/gh/isaac-cf-wong/python-package-template)
