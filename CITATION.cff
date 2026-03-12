@@ -1,5 +1,6 @@
 cff-version: 1.2.0
-title: 'A GitHub template repository for a Python package'
+title:
+    'python-package-template: A GitHub template repository for a Python package'
 license: 'MIT'
 type: software
 authors:

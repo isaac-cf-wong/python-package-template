@@ -29,9 +29,9 @@ test = [
   "pytest-mock>=3.15.1",
   "pytest-runner>=6.0.1",
   "pytest>=9.0.2",
-  "pytest-github-actions-annotate-failures>=0.4.0",
 ]
-dev = ["pytest>=9.0.2", "pre-commit>=4.5.1", "ruff>=0.15.5"]
+ci = ["pytest-github-actions-annotate-failures>=0.4.0"]
+dev = ["pre-commit>=4.5.1", "python_package_template[test,docs]"]
 docs = ["zensical>=0.0.24", "mkdocstrings-python>=2.0.3"]
 build = ["hatch>=1.16.5"]
 
@@ -64,7 +64,7 @@ branch = true
 fail_under = 0
 
 [tool.pytest.ini_options]
-addopts = "--cov-report xml:coverage.xml --cov src --cov-append -m 'not integration'"
+addopts = "--cov-report xml:coverage.xml --cov src --cov-append -m 'not integration' --cov-report=term-missing"
 pythonpath = ["src"]
 testpaths = "tests"
 junit_family = "xunit2"
