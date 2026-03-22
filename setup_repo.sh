@@ -41,7 +41,9 @@ else
 fi
 
 # Replace old owner name with new owner name in cliff.toml
-sed "${SED_INPLACE[@]}" "s/$OLD_OWNER_NAME/$NEW_OWNER_NAME/g" cliff.toml
+OLD_REPO_URL="https://github.com/$OLD_OWNER_NAME/$OLD_REPO_NAME"
+NEW_REPO_URL="https://github.com/$NEW_OWNER_NAME/$NEW_REPO_NAME"
+sed "${SED_INPLACE[@]}" "s#${OLD_REPO_URL}#${NEW_REPO_URL}#g" cliff.toml
 
 find . -type d \( -name ".git" -o -name "__pycache__" -o -name ".venv" -o -name "node_modules" -o -name ".pytest_cache" \) -prune \
     -o -type f \( -name "*.py" -o -name "*.md" -o -name "*.toml" -o -name "LICENSE" \) \
