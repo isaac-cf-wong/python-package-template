@@ -1,4 +1,18 @@
 #!/bin/bash
+set -euo pipefail
+
+[[ -f "cliff.toml" ]] || {
+    echo "Missing cliff.toml" >&2
+    exit 1
+}
+[[ -d "src/$OLD_REPO_NAME_NORMALIZED" ]] || {
+    echo "Missing source package dir: src/$OLD_REPO_NAME_NORMALIZED" >&2
+    exit 1
+}
+[[ ! -e "src/$NEW_REPO_NAME_NORMALIZED" ]] || {
+    echo "Target package dir already exists: src/$NEW_REPO_NAME_NORMALIZED" >&2
+    exit 1
+}
 
 OLD_OWNER_NAME="isaac-cf-wong"
 
@@ -7,8 +21,13 @@ OLD_REPO_NAME_NORMALIZED="${OLD_REPO_NAME//-/_}"
 
 url=$(git config --get remote.origin.url)
 
-NEW_OWNER_NAME=$(echo "$url" | sed -E 's#.*[:/]([^/]+)/([^/]+)\.git#\1#')
-NEW_REPO_NAME=$(echo "$url" | sed -E 's#.*[:/]([^/]+)/([^/]+)\.git#\2#')
+if [[ "$url" =~ [:/]([^/]+)/([^/]+)(\.git)?$ ]]; then
+    NEW_OWNER_NAME="${BASH_REMATCH[1]}"
+    NEW_REPO_NAME="${BASH_REMATCH[2]%.git}"
+else
+    echo "Unable to parse owner/repo from remote.origin.url: $url" >&2
+    exit 1
+fi
 
 NEW_REPO_NAME_NORMALIZED="${NEW_REPO_NAME//-/_}"
 
