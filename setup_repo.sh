@@ -40,7 +40,7 @@ else
     SED_INPLACE=(-i '')
 fi
 
-# 4. Check if the owner is set. If not, use the original name.
+# Replace old owner name with new owner name in cliff.toml
 sed "${SED_INPLACE[@]}" "s/$OLD_OWNER_NAME/$NEW_OWNER_NAME/g" cliff.toml
 
 find . -type d \( -name ".git" -o -name "__pycache__" -o -name ".venv" -o -name "node_modules" -o -name ".pytest_cache" \) -prune \
