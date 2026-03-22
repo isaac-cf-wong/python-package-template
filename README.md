@@ -6,7 +6,7 @@
 [![codecov](https://codecov.io/gh/isaac-cf-wong/python-package-template/graph/badge.svg?token=COF8341N60)](https://codecov.io/gh/isaac-cf-wong/python-package-template)
 [![PyPI Version](https://img.shields.io/pypi/v/package-name-placeholder)](https://pypi.org/project/package-name-placeholder/)
 [![Python Versions](https://img.shields.io/pypi/pyversions/package-name-placeholder)](https://pypi.org/project/package-name-placeholder/)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](LICENSE)
 [![Security: bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
 [![DOI](https://zenodo.org/badge/924023559.svg)](https://doi.org/10.5281/zenodo.18017404)
 [![SPEC 0 — Minimum Supported Dependencies](https://img.shields.io/badge/SPEC-0-green?labelColor=%23004811&color=%235CA038)](https://scientific-python.org/specs/spec-0000/)
