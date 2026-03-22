@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 title:
     'python-package-template: A GitHub template repository for a Python package'
-license: 'MIT'
+license: 'BSD'
 type: software
 authors:
     - given-names: Isaac C. F.
