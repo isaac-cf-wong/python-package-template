@@ -1,19 +1,6 @@
 #!/bin/bash
 set -euo pipefail
 
-[[ -f "cliff.toml" ]] || {
-    echo "Missing cliff.toml" >&2
-    exit 1
-}
-[[ -d "src/$OLD_REPO_NAME_NORMALIZED" ]] || {
-    echo "Missing source package dir: src/$OLD_REPO_NAME_NORMALIZED" >&2
-    exit 1
-}
-[[ ! -e "src/$NEW_REPO_NAME_NORMALIZED" ]] || {
-    echo "Target package dir already exists: src/$NEW_REPO_NAME_NORMALIZED" >&2
-    exit 1
-}
-
 OLD_OWNER_NAME="isaac-cf-wong"
 
 OLD_REPO_NAME="python-package-template"
@@ -30,6 +17,20 @@ else
 fi
 
 NEW_REPO_NAME_NORMALIZED="${NEW_REPO_NAME//-/_}"
+
+# Preflight checks
+[[ -f "cliff.toml" ]] || {
+    echo "Missing cliff.toml" >&2
+    exit 1
+}
+[[ -d "src/$OLD_REPO_NAME_NORMALIZED" ]] || {
+    echo "Missing source package dir: src/$OLD_REPO_NAME_NORMALIZED" >&2
+    exit 1
+}
+[[ ! -e "src/$NEW_REPO_NAME_NORMALIZED" ]] || {
+    echo "Target package dir already exists: src/$NEW_REPO_NAME_NORMALIZED" >&2
+    exit 1
+}
 
 if sed --version >/dev/null 2>&1; then
     # GNU sed (Linux)
