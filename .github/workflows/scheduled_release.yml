@@ -1,4 +1,4 @@
-name: Create Tag
+name: Scheduled Release
 
 on:
     schedule:
@@ -54,7 +54,6 @@ jobs:
 
     release:
         needs: create_tag
-        if: needs.create_tag.outputs.has-changes == 'true'
         uses: ./.github/workflows/release.yml
         permissions:
             contents: write
@@ -63,10 +62,7 @@ jobs:
             tag_name: ${{ needs.create_tag.outputs.new_tag }}
 
     build:
-        needs:
-            - create_tag
-            - release
-        if: needs.create_tag.outputs.has-changes == 'true'
+        needs: release
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
