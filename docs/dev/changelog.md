@@ -41,7 +41,7 @@ All commits must follow the
 
 ### Examples
 
-<!--- cSpell:disable -->
+<!-- typos:off -->
 
 ```bash
 # Feature commit
@@ -63,7 +63,7 @@ The word 'recieve' was misspelled as 'receive'.
 Closes #123"
 ```
 
-<!--- cSpell:enable -->
+<!-- typos:on -->
 
 ## Git-cliff Configuration
 
