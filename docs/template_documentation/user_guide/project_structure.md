@@ -30,8 +30,15 @@ your-project/
 │   └── test_*.py
 ├── docs/
 │   ├── index.md
-│   ├── user_guide/
-│   └── dev/
+│   ├── contributing.md
+│   ├── security.md
+│   ├── template_documentation/
+│   │   ├── index.md
+│   │   ├── onboarding/
+│   │   ├── user_guide/
+│   │   └── development/
+│   ├── api/
+│   └── style/
 ├── .github/
 │   └── workflows/
 ├── pyproject.toml
@@ -56,7 +63,8 @@ The `src/` layout offers several advantages:
 ### Core Package (`src/your_package/`)
 
 - **`__init__.py`**: Package initialization, imports, and `__version__`
-- **`__main__.py`**: Entry point for `python -m your_package`
+- **`__main__.py`**: Entry point for `python -m your_package` (this template
+  wires it to the Typer CLI)
 - **Modules**: Your main code files
 - **Subpackages**: Organized by functionality (e.g., `cli/`, `utils/`)
 
@@ -102,7 +110,7 @@ cli/
 └── main.py
 ```
 
-- `main.py`: Typer/Fire CLI application
+- `main.py`: Typer CLI application
 - Keeps CLI logic separate from core functionality
 
 #### Utils (`utils/`)
@@ -147,10 +155,13 @@ def test_main_function(sample_data):
 
 ### `docs/` Directory
 
-- **`index.md`**: Home page
-- **`user_guide/`**: User-facing guides
-- **`dev/`**: Developer documentation
-- **`reference/`**: Auto-generated API docs
+- **`index.md`**: Public docs home for your package (placeholder you replace)
+- **`contributing.md`**, **`security.md`**: Standard project pages
+- **`template_documentation/`**: All guides that explain this template and its
+  tooling — **delete this folder** and the **`Template documentation`** `nav`
+  block in `zensical.toml` when you no longer need them
+- **`api/`**: API reference Markdown (often with mkdocstrings directives)
+- **`style/`**, **`javascripts/`**: Site assets for Zensical
 
 ## Configuration Files
 

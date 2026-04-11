@@ -34,35 +34,29 @@ submitting a pull request—this guide will help you get started.
     - Full documentation and usage guide: [uv docs](https://docs.astral.sh/uv/)
 
     ```shell
-    # Create a virtual environment (recommended with uv)
-    uv venv --python 3.10
-    source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-    pip install -e ".[dev]"
+    uv sync --extra dev
     ```
 
-4. Set Up Pre-commit Hooks and Commitlint
+4. Set Up Pre-commit Hooks
 
-    We use **pre-commit** to ensure code quality and consistency,
-    and **commitlint** to enforce commit message conventions.
-    After installing dependencies, run:
+    We use **pre-commit** to ensure code quality and consistency. After syncing
+    dependencies, run:
 
     ```shell
-    pre-commit install
-    pre-commit install --hook-type commit-msg
+    uv run pre-commit install
     ```
 
-    This ensures checks like code formatting, linting, and basic hygiene run automatically when you commit.
+    This installs hooks so formatting, linting, and other checks run when you
+    commit.
 
-    ```shell
-    npm install
-    ```
-
-    The project includes a `commitlint.config.js` configuration file that defines the commit message rules.
-    Once installed, commitlint will automatically validate your commit messages when pre-commit runs.
+    Pull request titles are validated in GitHub Actions (see
+    `.github/workflows/semantic_pull_request.yml`) using the same Conventional
+    Commit vocabulary described under [Commit Message Guidelines](#commit-message-guidelines).
 
     !!!important
-        Commit messages are validated in CI/CD pipelines, and the changelog is auto-generated from commits.
-        See section [Commit Message Guidelines](#commit-message-guidelines) below for details.
+        The changelog is auto-generated from commits. Use Conventional Commits
+        locally so `git-cliff` can classify changes, and match that style in PR
+        titles so CI passes.
 
 5. Create a New Branch
 
@@ -81,7 +75,7 @@ submitting a pull request—this guide will help you get started.
     Ensure that all tests pass before opening a pull request:
 
     ```shell
-    pytest
+    uv run pytest
     ```
 
 8. Open a Pull Request
@@ -135,7 +129,7 @@ format and adhere to strict rules.
         waveforms using PyCBC, enabling more realistic simulations.
         ```
 
-    - Commitlint will validate your message format automatically.
+    - PR titles are checked automatically in the **Lint PR** workflow.
 
 <!-- prettier-ignore-end -->
 
