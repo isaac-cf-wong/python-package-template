@@ -11,9 +11,8 @@ The template uses Zensical for documentation, featuring:
 - **Modern, responsive theme**: Built-in dark mode support
 - **API Documentation**: Auto-generated from docstrings
 - **Multi-page Structure**: Organized user guides and developer docs
-- **Search**: Built-in search functionality with advanced filtering
-- **Versioning**: Support for multiple versions
-- **Customizable**: Easy customization of colors, fonts, and layout
+- **Search**: Built-in search
+- **Customizable**: Theme palette, fonts, and layout via `zensical.toml`
 
 ## Zensical Configuration
 
@@ -26,7 +25,7 @@ The template uses Zensical for documentation, featuring:
 ### Navigation Structure
 
 ```toml
---8<-- "zensical.toml:47:59"
+--8<-- "zensical.toml:47:83"
 ```
 
 ## Writing Documentation
@@ -80,14 +79,15 @@ tags:
 ---
 ```
 
-## API Documentation
+## API documentation
 
-### MkDocstrings Setup
+### mkdocstrings (Python)
 
-The template uses mkdocstrings for automatic API docs with Zensical integration:
+API pages are written in Markdown under `docs/api/` and can embed objects from
+your package using mkdocstrings, configured in `zensical.toml`:
 
 ```toml
---8<-- "zensical.toml:332:334"
+--8<-- "zensical.toml:340:347"
 ```
 
 ### Writing Docstrings
@@ -168,51 +168,31 @@ The template includes GitHub Actions for automatic deployment:
 
 - **GitHub Pages**: Automatic deployment on pushes to main
 
-## Documentation Structure
+## Documentation layout in this repository
 
-### Home Page (`docs/index.md`)
+### Home page (`docs/index.md`)
 
-Introduction to your package:
+Placeholder aimed at **end users of your package** (API, contributing,
+security). Replace the title and bullets as your project grows.
 
-````markdown
-# Welcome to Your Package
+### Template documentation (`docs/template_documentation/`)
 
-Brief description of what your package does.
+Bundled guides that explain **this template’s** layout and tooling (onboarding,
+user guide, changelog tooling, troubleshooting). Remove this directory and its
+`nav` section when you no longer need them.
 
-## Quick Start
+### API reference (`docs/api/`)
 
-```bash
-pip install your-package
-```
+Hand-written or generated API pages (see `gen_ref_pages.py` if you use it).
 
-## Features
+### Standard pages
 
-- Feature 1
-- Feature 2
-- Feature 3
-````
+- **`docs/contributing.md`** — includes the root `CONTRIBUTING.md`
+- **`docs/security.md`** — security policy
 
-### User Guides (`docs/user_guide/`)
+### Assets
 
-Step-by-step guides for users:
-
-- **Installation**: How to install and set up
-- **Quick Start**: Basic usage examples
-- **Advanced Usage**: Complex features
-- **Troubleshooting**: Common issues
-
-### API Reference (`docs/api/`)
-
-Auto-generated API docs (handled by `gen_ref_pages.py`).
-
-### Developer Guide (`docs/dev/`)
-
-For contributors:
-
-- **Contributing**: How to contribute
-- **Development Setup**: For developers
-- **Architecture**: System design
-- **Changelog**: Version history
+- **`docs/style/`**, **`docs/javascripts/`** — extra CSS/JS for Zensical
 
 ## Best Practices
 
@@ -235,38 +215,13 @@ For contributors:
 - **Alt text**: For images
 - **Semantic HTML**: Proper headings hierarchy
 
-## Advanced Features
+## Advanced topics
 
-### Versioning
-
-Support multiple versions:
-
-```toml
-plugins:
-    - mike:
-          version_selector: true
-          canonical_version: latest
-```
-
-### Custom Theme
-
-Customize theme appearance:
-
-```toml
-[project.theme]
-variant = "classic"  # or "material"
-```
-
-### Plugins
-
-Additional useful plugins:
-
-```toml
-plugins:
-    - mkdocs-minify-plugin
-    - mkdocs-git-revision-date-localized-plugin
-    - mkdocs-glightbox
-```
+Zensical is configured in TOML rather than a `mkdocs.yml` file. Optional theme
+tweaks (for example `variant = "classic"` under `[project.theme]`) and extra
+Markdown extensions are already demonstrated in `zensical.toml`. For a full list
+of features and plugins supported by your Zensical version, see the
+[Zensical documentation](https://zensical.org/docs/).
 
 ## Customization
 
@@ -286,24 +241,18 @@ variant = "material"
 2. Add to `zensical.toml` nav
 3. Link from other pages
 
-### Custom CSS/JavaScript
+### Custom CSS and JavaScript
 
-Add custom styles:
-
-```toml
-[project]
-extra_css = ["styles/custom.css"]
-
-extra_javascript = ["js/custom.js"]
-```
+Paths are relative to the docs directory. In `zensical.toml`, uncomment and edit
+`extra_css` / `extra_javascript` under `[project]` (see the comments in that
+file), or add assets under `docs/` and reference them there.
 
 ## CI/CD Integration
 
-Documentation builds automatically:
-
-- **Pull requests**: Build check
-- **Main branch**: Deploy to GitHub Pages
-- **Releases**: Versioned documentation
+Documentation is built in CI when you push to `main` (see
+`.github/workflows/documentation.yml`): dependencies are installed with
+`uv sync --extra docs --frozen`, then `uv run zensical build` writes the static
+site to `site/`, which GitHub Pages deploys as an artifact.
 
 ## Setting Up GitHub Pages
 
@@ -335,7 +284,7 @@ This ensures links and assets work correctly on GitHub Pages.
 The documentation is deployed automatically by the GitHub Actions workflow:
 
 1. Go to **Actions** tab in your repository
-2. Look for **"Deploy Zensical documentation to Pages"** workflow
+2. Open the **Documentation** workflow
 3. Verify it runs successfully on pushes to main branch
 4. Check the workflow logs if there are issues
 
@@ -367,7 +316,7 @@ If you want to use a custom domain:
 
 1. Verify the documentation workflow succeeded:
     - Check **Actions** tab
-    - Look for "Deploy Zensical documentation to Pages" workflow
+    - Open the **Documentation** workflow
     - Re-run if it failed
 2. Clear browser cache (hard refresh: Ctrl+Shift+R or Cmd+Shift+R)
 3. Wait 1-2 minutes for GitHub Pages to rebuild
@@ -426,5 +375,4 @@ zensical build -v
 zensical serve  # Visit http://localhost:8000
 ```
 
-For more information, see the [Zensical documentation](https://zensical.org/)
-and [MkDocs documentation](https://www.mkdocs.org/)
+For more information, see the [Zensical documentation](https://zensical.org/).

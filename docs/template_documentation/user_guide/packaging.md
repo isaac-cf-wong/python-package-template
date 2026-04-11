@@ -89,13 +89,9 @@ Versions are derived from Git tags (e.g., tag `v1.2.3` → version `1.2.3`).
 
 ## Tool Configurations
 
-The file also includes configurations for various tools:
-
-- **Coverage**: Test coverage settings
-- **Flake8**: Linting rules
-- **Black**: Code formatting
-- **Pytest**: Test configuration
-- **Pyright**: Type checking
+The same file configures supporting tools, including **coverage**, **pytest**,
+and **Ruff** (lint + format). There is no separate Flake8, Black, or Pyright
+section in this template; extend `[tool.*]` tables if you add those tools.
 
 ## Customizing for Your Project
 
@@ -119,15 +115,14 @@ If your package has CLI commands, add them to `[project.scripts]`.
 
 ## Building and Publishing
 
-### Local Building
-
-Build the package locally:
+### Local builds
 
 ```bash
-python -m build
+uv build
 ```
 
-This creates `dist/` with wheel and source distributions.
+writes wheels and sdist under `dist/`. You can still use `python -m build` if
+you install the `build` frontend separately.
 
 ### Publishing to PyPI
 

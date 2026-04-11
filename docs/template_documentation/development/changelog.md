@@ -133,23 +133,17 @@ Changelogs are automatically generated during releases:
       git cliff --latest --strip header > changelog.md
 ```
 
-## Commit Message Validation
+## Conventional history for humans and tools
 
-### Commitlint Configuration
+- **Commits**: Write
+  [Conventional Commits](https://www.conventionalcommits.org/) messages so
+  git-cliff can classify changes and pick the next semantic version.
+- **Pull requests**: Titles are checked with
+  [action-semantic-pull-request](https://github.com/amannn/action-semantic-pull-request)
+  in `.github/workflows/semantic_pull_request.yml`. Match the same
+  `type(scope):` style you use in commits.
 
-Commit messages are validated using commitlint:
-
-**Configuration** (`commitlint.config.js`):
-
-```javascript
---8<-- "commitlint.config.js"
-```
-
-### Pre-commit Hook
-
-```yaml
---8<-- ".pre-commit-config.yaml:15:20"
-```
+There is no Node-based commitlint hook in this repository.
 
 ## Release Process
 
@@ -167,22 +161,12 @@ Commit messages are validated using commitlint:
     - Create release
     - Publish to PyPI
 
-### Automated Changelog
+### Automated changelog on GitHub
 
-The changelog is automatically included in GitHub releases:
-
-```yaml
-# In release workflow
-- name: Create Release
-  uses: actions/create-release@v1
-  env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  with:
-      tag_name: ${{ github.ref }}
-      release_name: Release ${{ github.ref }}
-      body: |
-          $(git cliff --latest --strip header)
-```
+Releases use `orhun/git-cliff-action` and `softprops/action-gh-release` in
+`.github/workflows/release.yml`. The body of each GitHub release is the markdown
+produced for the tagged version; see that workflow for the exact inputs and
+permissions.
 
 ## Customizing Changelog
 

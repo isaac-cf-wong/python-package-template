@@ -15,9 +15,10 @@ This project is a template for creating Python packages with a standardized
 structure and configuration. It includes the configurations for various
 development tools such as linters, formatters, type checkers, and test runners.
 
-## Getting Started
+## Getting started
 
-To get started with this template, simply 'Use This Template' to create a new
-repository and start building your project within the `src` directory. Try to
-open the project in GitHub Codespace, and to run the unit tests using the VS
-Code Test extension.
+Use **Use this template** on GitHub, then read
+[`docs/template_documentation/`](docs/template_documentation/) — onboarding,
+user guide, and development notes in one place. Delete that directory and the
+**Template documentation** `nav` block in `zensical.toml` when you no longer
+need them. Develop your library under `src/`.

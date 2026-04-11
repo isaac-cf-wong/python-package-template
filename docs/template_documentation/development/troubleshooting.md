@@ -21,7 +21,6 @@ how to resolve them.
     pip uninstall pre-commit
     pip install pre-commit
     pre-commit install
-    pre-commit install --hook-type commit-msg
     ```
 
 4. Check if `.git` directory exists (must be a git repository)
@@ -29,40 +28,18 @@ how to resolve them.
 
 <!-- prettier-ignore-end -->
 
-### commitlint Not Running
+### Pull request title check failed
 
-**Problem:** Commit messages aren't validated despite `npm install` being run.
+**Problem:** The **Lint PR** workflow reports that your pull request title does
+not follow Conventional Commits.
 
 **Solutions:**
 
-<!-- prettier-ignore-start -->
-
-1. Verify `npm install` was successful:
-
-    ```bash
-    npm list @commitlint/config-angular
-    ```
-
-2. Re-install commitlint dependencies:
-
-    ```bash
-    npm install --save-dev @commitlint/cli @commitlint/config-angular
-    ```
-
-3. Reinstall pre-commit hooks:
-
-    ```bash
-    pre-commit install --hook-type commit-msg
-    ```
-
-4. Test manually:
-
-    ```bash
-    echo "invalid message" | commitlint
-    echo "feat: valid message" | commitlint
-    ```
-
-<!-- prettier-ignore-end -->
+1. Rename the PR to use an allowed type and a short description, for example
+   `feat: add batch export` or `fix(cli): handle missing config`.
+2. Read the workflow log for the exact regular expression the action uses.
+3. Remember: this template does **not** run commitlint on local `git commit`;
+   only the PR title is enforced in GitHub Actions.
 
 ### Virtual Environment Issues
 
@@ -89,7 +66,7 @@ how to resolve them.
 3. Install dependencies:
 
     ```bash
-    pip install -e ".[dev,docs,test]"
+    uv sync --extra dev --extra docs --extra test
     ```
 
 4. Verify installation:
@@ -115,17 +92,18 @@ version.
     python --version
     ```
 
-2. Ensure Python 3.10 or higher is installed
-3. Use specific Python version when creating venv:
+2. Ensure Python **3.12 or newer** is installed (`requires-python` in
+   `pyproject.toml`)
+3. Use a specific interpreter when creating a venv:
 
     ```bash
-    python3.11 -m venv .venv
+    python3.12 -m venv .venv
     ```
 
 4. Or use uv for version management:
 
     ```bash
-    uv venv --python 3.11
+    uv venv --python 3.12
     source .venv/bin/activate
     ```
 
@@ -169,7 +147,7 @@ version.
 1. Install package in development mode:
 
     ```bash
-    pip install -e ".[dev,test]"
+    uv sync --extra dev --extra test
     ```
 
 2. Verify package structure (should have `src/your_package/`)
@@ -303,7 +281,7 @@ version.
 
 3. Common causes:
 
-    - Dependency installation failed: Check `pip install -e ".[dev,docs,test]"`
+    - Dependency installation failed: Check `uv sync --extra dev --extra docs --extra test`
     - Python version mismatch: Verify Python versions in workflow matrix
     - Missing dependencies: Add to `pyproject.toml`
     - Pre-commit failures: Fix locally first
@@ -319,9 +297,9 @@ version.
 **Solutions:**
 
 1. This is normal (~2-3 minutes per run)
-2. To disable CodeQL:
-    - Remove the `codeql` job from `.github/workflows/CI.yml`
-    - Keep Bandit in pre-commit for basic security
+2. To disable CodeQL in automation, remove or skip the `codeql` job from
+   `.github/workflows/scheduled_release.yml` (and/or disable `codeql.yml`), and
+   keep Bandit in pre-commit for basic security review
 3. Or check if it's necessary for your project
 4. CodeQL provides value for security-critical projects
 
@@ -339,8 +317,7 @@ version.
 4. For publishing:
     - Check trusted publishers are configured in PyPI
     - Or verify API tokens are set as secrets
-    - See
-      [CI/CD guide - PyPI Publishing](../user_guide/ci_cd.md#setup-pypi-publishing-optional)
+    - See [CI/CD guide — Publishing](../user_guide/ci_cd.md#publishing)
 
 ## Documentation Issues
 
@@ -355,7 +332,7 @@ version.
 1. Verify Zensical is installed:
 
     ```bash
-    pip install -e ".[docs]"
+    uv sync --extra docs
     ```
 
 2. Check `zensical.toml` syntax (must be valid TOML)
@@ -403,10 +380,10 @@ version.
         pass
     ```
 
-2. Check mkdocstrings plugin is installed:
+2. Ensure documentation extras are installed (they pull in `mkdocstrings-python`):
 
     ```bash
-    pip install mkdocstrings[python]
+    uv sync --extra docs
     ```
 
 3. Verify navigation in `zensical.toml` includes API section
@@ -433,7 +410,7 @@ version.
 1. Install package in development mode:
 
     ```bash
-    pip install -e "."
+    uv sync
     ```
 
 2. Verify entry points in `pyproject.toml`:
@@ -481,7 +458,7 @@ version.
 4. Install with verbose output to see conflict:
 
     ```bash
-    pip install -e ".[dev,docs,test]" -vv
+    uv sync --extra dev --extra docs --extra test -vv
     ```
 
 5. Check `pyproject.toml` for overly restrictive version constraints
