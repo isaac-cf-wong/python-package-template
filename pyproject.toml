@@ -20,17 +20,16 @@ requires-python = ">=3.12"
 dynamic = ["version"]
 dependencies = ["typer>=0.24.1"]
 
-[project.optional-dependencies]
-test = [
+[dependency-groups]
+dev = [
   "bandit[toml]>=1.9.4",
   "ruff>=0.15.11",
   "pre-commit>=4.5.1",
+  "pytest-github-actions-annotate-failures>=0.4.0",
   "pytest-cov>=7.1.0",
   "pytest-mock>=3.15.1",
   "pytest>=9.0.3",
 ]
-ci = ["pytest-github-actions-annotate-failures>=0.4.0"]
-dev = ["pre-commit>=4.5.1", "python_package_template[test,docs]"]
 docs = ["zensical>=0.0.33", "mkdocstrings-python>=2.0.3"]
 build = ["hatch>=1.16.5"]
 release = ["git-cliff>=2.12.0"]
