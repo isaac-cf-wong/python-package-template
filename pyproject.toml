@@ -30,7 +30,7 @@ dev = [
   "pytest-mock>=3.15.1",
   "pytest>=9.0.3",
 ]
-docs = ["zensical>=0.0.33", "mkdocstrings-python>=2.0.3"]
+docs = ["zensical>=0.0.34", "mkdocstrings-python>=2.0.3"]
 build = ["hatch>=1.16.5"]
 release = ["git-cliff>=2.12.0"]
 
