@@ -23,7 +23,7 @@ dependencies = ["typer>=0.24.2"]
 [dependency-groups]
 dev = [
   "bandit[toml]>=1.9.4",
-  "ruff>=0.15.11",
+  "ruff>=0.15.12",
   "pre-commit>=4.6.0",
   "pytest-github-actions-annotate-failures>=0.4.0",
   "pytest-cov>=7.1.0",
