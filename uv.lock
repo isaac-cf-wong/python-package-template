@@ -985,7 +985,7 @@ release = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "typer", specifier = ">=0.24.2" }]
+requires-dist = [{ name = "typer", specifier = ">=0.25.0" }]
 
 [package.metadata.requires-dev]
 build = [{ name = "hatch", specifier = ">=1.16.5" }]
