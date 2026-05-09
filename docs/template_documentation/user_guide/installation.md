@@ -26,7 +26,7 @@ source .venv/bin/activate   # Windows: .venv\Scripts\activate
 Install git hooks:
 
 ```bash
-pre-commit install
+uv run prek install
 ```
 
 ## Install from PyPI

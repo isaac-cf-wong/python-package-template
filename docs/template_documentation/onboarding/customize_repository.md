@@ -41,8 +41,8 @@ your package only.
 
 ## Optional: drop tooling you do not need
 
-- **Pre-commit**: delete `.pre-commit-config.yaml` and remove `pre-commit` from
-  optional dependencies if you do not want hooks.
+- **Git hooks**: delete `.pre-commit-config.yaml` and remove `prek` from the
+  `dev` dependency group in `pyproject.toml` if you do not want hooks.
 - **Documentation**: remove or replace the docs stack (for example drop Zensical
   and the `docs` extra) if you use something else.
 - **CLI**: remove `src/.../cli/`, Typer from dependencies, and

@@ -5,26 +5,31 @@ how to resolve them.
 
 ## Setup Issues
 
-### Pre-commit Hook Installation Fails
+### Git hook installation fails (prek)
 
-**Problem:** `pre-commit install` returns an error or hooks don't run on commit.
+**Problem:** `uv run prek install` returns an error or hooks don't run on
+commit.
 
 **Solutions:**
 
 <!-- prettier-ignore-start -->
 
 1. Ensure you're in the project root directory
-2. Verify Python virtual environment is activated
-3. Reinstall pre-commit:
+2. Sync dev dependencies so **prek** is installed:
 
     ```bash
-    pip uninstall pre-commit
-    pip install pre-commit
-    pre-commit install
+    uv sync --extra dev --extra docs --extra test
+    ```
+
+3. Reinstall hook shims:
+
+    ```bash
+    uv run prek uninstall
+    uv run prek install
     ```
 
 4. Check if `.git` directory exists (must be a git repository)
-5. Try running manually: `pre-commit run --all-files`
+5. Try running manually: `uv run prek run --all-files`
 
 <!-- prettier-ignore-end -->
 
@@ -177,11 +182,11 @@ version.
 
 <!-- prettier-ignore-end -->
 
-## Pre-commit Hook Issues
+## Git hook issues (prek)
 
 ### Hooks Running Too Slowly
 
-**Problem:** Pre-commit takes a very long time or times out.
+**Problem:** Hooks take a very long time or times out.
 
 **Solutions:**
 
@@ -190,7 +195,7 @@ version.
 1. Check which hooks are slow:
 
     ```bash
-    pre-commit run --all-files --verbose
+    uv run prek run --all-files --verbose
     ```
 
 2. Consider excluding large files:
@@ -206,14 +211,14 @@ version.
 3. Run specific hooks:
 
     ```bash
-    pre-commit run ruff --all-files  # Just ruff
+    uv run prek run ruff --all-files  # Just ruff
     ```
 
 <!-- prettier-ignore-end -->
 
 ### Formatting Changes After Commit
 
-**Problem:** Pre-commit auto-fixes files, but you didn't expect it.
+**Problem:** Hooks auto-fix files, but you didn't expect it.
 
 **Solutions:**
 
@@ -231,14 +236,14 @@ version.
 4. Disable specific hooks temporarily:
 
     ```bash
-    SKIP=ruff pre-commit run --all-files
+    uv run prek run --all-files --skip ruff
     ```
 
 <!-- prettier-ignore-end -->
 
 ### "Unstaged Changes" After Running Hooks
 
-**Problem:** Pre-commit modified files but they're not staged.
+**Problem:** Hooks modified files but they're not staged.
 
 **Solutions:**
 
@@ -276,7 +281,7 @@ version.
 
     ```bash
     pytest
-    pre-commit run --all-files
+    uv run prek run --all-files
     ```
 
 3. Common causes:
@@ -284,7 +289,7 @@ version.
     - Dependency installation failed: Check `uv sync --extra dev --extra docs --extra test`
     - Python version mismatch: Verify Python versions in workflow matrix
     - Missing dependencies: Add to `pyproject.toml`
-    - Pre-commit failures: Fix locally first
+    - Hook or pre-commit.ci failures: Fix locally with `uv run prek run --all-files` first
 
 4. Re-run failed jobs from GitHub Actions UI
 
@@ -299,7 +304,8 @@ version.
 1. This is normal (~2-3 minutes per run)
 2. To disable CodeQL in automation, remove or skip the `codeql` job from
    `.github/workflows/scheduled_release.yml` (and/or disable `codeql.yml`), and
-   keep Bandit in pre-commit for basic security review
+   keep security-oriented hooks (for example **Bandit** or **gitleaks**) in
+   `.pre-commit-config.yaml` for basic review
 3. Or check if it's necessary for your project
 4. CodeQL provides value for security-critical projects
 
@@ -467,7 +473,7 @@ version.
 
 ### Newer Version of Tool Breaks Things
 
-**Problem:** Pre-commit hooks or tools updated and now fail.
+**Problem:** Hooks or tools updated and now fail.
 
 **Solutions:**
 
@@ -476,19 +482,19 @@ version.
 1. Check what changed:
 
     ```bash
-    pre-commit autoupdate --dry-run
+    uv run prek auto-update --dry-run
     ```
 
 2. Update individual tool:
 
     ```bash
-    pre-commit autoupdate --repo https://github.com/tool-repo
+    uv run prek auto-update --repo https://github.com/tool-repo
     ```
 
 3. Test changes:
 
     ```bash
-   pre-commit run --all-files
+    uv run prek run --all-files
     ```
 
 4. Pin to known-good version in `.pre-commit-config.yaml`:

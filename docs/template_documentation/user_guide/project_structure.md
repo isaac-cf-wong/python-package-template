@@ -168,7 +168,8 @@ def test_main_function(sample_data):
 ### Root Level Files
 
 - **`pyproject.toml`**: Packaging and tool configuration
-- **`.pre-commit-config.yaml`**: Pre-commit hooks
+- **`.pre-commit-config.yaml`**: Hook definitions read by **prek** locally (and
+  by **pre-commit.ci** on pull requests)
 - **`zensical.toml`**: Documentation configuration
 - **`.github/workflows/`**: CI/CD pipelines
 

@@ -38,13 +38,13 @@ uv run ruff check --fix src tests
 uv run ruff format src tests
 ```
 
-## Pre-commit
+## Git hooks (prek)
 
 Hooks are listed in `.pre-commit-config.yaml`. Add or remove repos there, then:
 
 ```bash
-uv run pre-commit autoupdate
-uv run pre-commit run --all-files
+uv run prek auto-update
+uv run prek run --all-files
 ```
 
 ## Documentation site
@@ -60,6 +60,6 @@ settings described in [CI/CD and releases](ci_cd.md).
 
 ## Spell checking
 
-Typos are checked with [typos](https://github.com/crate-ci/typos) via
-pre-commit. Project-specific overrides go in `.typos.toml` at the repository
-root.
+Typos are checked with [typos](https://github.com/crate-ci/typos) via the hook
+in `.pre-commit-config.yaml` (run locally with **prek**). Project-specific
+overrides go in `.typos.toml` at the repository root.

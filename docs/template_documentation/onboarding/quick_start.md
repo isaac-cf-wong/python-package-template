@@ -23,16 +23,16 @@ uv sync --extra dev --extra docs --extra test
 That installs the package in editable mode with development, documentation, and
 test extras.
 
-## 3. Install pre-commit hooks
+## 3. Install Git hooks (prek)
 
 ```bash
-uv run pre-commit install
+uv run prek install
 ```
 
 Run all hooks once to confirm the tree is clean:
 
 ```bash
-uv run pre-commit run --all-files
+uv run prek run --all-files
 ```
 
 ## 4. Run tests

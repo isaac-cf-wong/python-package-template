@@ -1,36 +1,38 @@
 # Development tools
 
-This guide covers the development tools configured in this repository:
-pre-commit, Ruff, typos, Bandit, and pytest.
+This guide covers the development tools configured in this repository: prek,
+Ruff, typos, Bandit, and pytest.
 
 ## Overview
 
-- **Pre-commit**: runs hooks before each commit (and on pre-commit.ci for pull
-  requests)
+- **prek**: runs Git hooks locally before each commit (same config format as
+  [pre-commit](https://pre-commit.com/); pull requests can still be checked by
+  [pre-commit.ci](https://pre-commit.ci))
 - **Ruff**: linter and formatter for Python
 - **typos**: fast spell checker for text files (via
   [crate-ci/typos](https://github.com/crate-ci/typos))
 - **Bandit**: security-oriented static analysis for Python
 - **pytest**: test runner with coverage settings in `pyproject.toml`
 
-## Pre-commit
+## prek (local Git hooks)
 
 ### Setup
 
 ```bash
-uv run pre-commit install
+uv run prek install
 ```
 
 ### Configuration
 
-Hooks are defined in `.pre-commit-config.yaml` (Ruff, Taplo, typos, Bandit,
-Prettier, markdownlint, `uv-lock`, detect-secrets, and generic file checks).
+Hooks are defined in `.pre-commit-config.yaml` (Ruff, Taplo, typos, Prettier,
+markdownlint, `uv-lock`, gitleaks, and generic file checks). **prek** reads this
+file; you do not need the `pre-commit` Python package for local runs.
 
 ### Running hooks
 
 ```bash
-uv run pre-commit run --all-files
-uv run pre-commit run ruff --all-files
+uv run prek run --all-files
+uv run prek run ruff --all-files
 ```
 
 ## Ruff
@@ -54,7 +56,7 @@ The **typos** hook uses `.typos.toml` at the repository root for corrections and
 word allow-lists. Run the same check as CI:
 
 ```bash
-uv run pre-commit run typos --all-files
+uv run prek run typos --all-files
 ```
 
 ## Bandit
@@ -97,10 +99,10 @@ you want them on every push.
 Edit `pyproject.toml` and `.pre-commit-config.yaml`, then run:
 
 ```bash
-uv run pre-commit run --all-files
+uv run prek run --all-files
 ```
 
 For more detail, see the [Ruff](https://docs.astral.sh/ruff/),
 [Bandit](https://bandit.readthedocs.io/),
-[typos](https://github.com/crate-ci/typos), and
-[pre-commit](https://pre-commit.com/) documentation.
+[typos](https://github.com/crate-ci/typos), and [prek](https://prek.j178.dev/)
+documentation.

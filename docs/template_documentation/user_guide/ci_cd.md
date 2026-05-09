@@ -20,9 +20,9 @@ security analysis, releases, documentation, and optional PyPI publishing.
 - **Manual publish** — `publish.yml` and `publish_testpypi.yml` with
   `workflow_dispatch`
 
-Linting and formatting are enforced locally via **pre-commit** (and
-pre-commit.ci), not via a separate job in `ci.yml`. Add a workflow job if you
-want Ruff in CI as well.
+Linting and formatting are enforced locally via **prek** using
+`.pre-commit-config.yaml`, and on pull requests via **pre-commit.ci**, not via a
+separate job in `ci.yml`. Add a workflow job if you want Ruff in CI as well.
 
 ## Workflows
 

@@ -6,13 +6,13 @@ commands are also described in
 
 ## Tools
 
-| Concern        | Tool       | Configuration                         |
-| -------------- | ---------- | ------------------------------------- |
-| Lint & format  | Ruff       | `[tool.ruff]` in `pyproject.toml`     |
-| Security scans | Bandit     | `[tool.bandit]` in `pyproject.toml`   |
-| Spelling       | typos      | `.typos.toml`, hook in pre-commit     |
-| Hygiene        | pre-commit | `.pre-commit-config.yaml`             |
-| Tests          | pytest+cov | `[tool.pytest.ini_options]`, coverage |
+| Concern        | Tool       | Configuration                                    |
+| -------------- | ---------- | ------------------------------------------------ |
+| Lint & format  | Ruff       | `[tool.ruff]` in `pyproject.toml`                |
+| Security scans | Bandit     | `[tool.bandit]` in `pyproject.toml`              |
+| Spelling       | typos      | `.typos.toml`, hook in `.pre-commit-config.yaml` |
+| Hygiene        | prek       | `.pre-commit-config.yaml` (pre-commit format)    |
+| Tests          | pytest+cov | `[tool.pytest.ini_options]`, coverage            |
 
 There is **no** dedicated Pyright or mypy job in `pyproject.toml` today; add one
 if you want static typing in CI.
@@ -32,9 +32,9 @@ if you want static typing in CI.
 ## typos
 
 Project-specific spelling rules and allowed identifiers live in `.typos.toml`.
-The pre-commit hook ID is `typos`.
+The hook ID in `.pre-commit-config.yaml` is `typos`.
 
-## Pre-commit
+## prek (hooks)
 
 ```yaml
 --8<-- ".pre-commit-config.yaml:1:50"
@@ -43,7 +43,7 @@ The pre-commit hook ID is `typos`.
 Run everything locally:
 
 ```bash
-uv run pre-commit run --all-files
+uv run prek run --all-files
 ```
 
 ## Coverage
