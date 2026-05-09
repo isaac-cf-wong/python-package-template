@@ -14,7 +14,7 @@ uv sync --extra dev --extra docs --extra test
 ```
 
 That installs the package in editable mode with tooling for tests, docs, and
-pre-commit.
+**prek** (local Git hooks).
 
 ## Commands you will use often
 
@@ -22,8 +22,8 @@ pre-commit.
 # Unit tests and coverage (same as CI, without optional markers)
 uv run pytest
 
-# All pre-commit hooks on the full tree
-uv run pre-commit run --all-files
+# All Git hooks on the full tree (prek)
+uv run prek run --all-files
 
 # Documentation site locally
 uv run zensical serve
@@ -53,5 +53,5 @@ configuration is in `zensical.toml`.
 
 - [Project structure](project_structure.md) — how directories map to packaging
   and tests
-- [Development tools](development_tools.md) — Ruff, Bandit, typos, pre-commit
+- [Development tools](development_tools.md) — Ruff, Bandit, typos, prek
 - [CI/CD and releases](ci_cd.md) — what runs in GitHub Actions

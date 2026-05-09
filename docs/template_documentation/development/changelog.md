@@ -109,9 +109,11 @@ git cliff --tag v1.2.3
 git cliff --unreleased
 ```
 
-### Pre-commit Integration
+### Git hooks integration
 
-Changelog generation can be automated via pre-commit:
+Changelog generation can be automated by adding a hook to
+`.pre-commit-config.yaml` (the same file **prek** runs locally; you can also let
+[pre-commit.ci](https://pre-commit.ci) run it on pull requests):
 
 ```yaml
 repos:
