@@ -22,7 +22,7 @@ dependencies = ["typer>=0.26.2"]
 
 [dependency-groups]
 dev = [
-  "ruff>=0.15.14",
+  "ruff>=0.15.15",
   "prek>=0.4.3",
   "pytest-github-actions-annotate-failures>=0.4.0",
   "pytest-cov>=7.1.0",
