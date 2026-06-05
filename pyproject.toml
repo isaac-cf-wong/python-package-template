@@ -18,7 +18,7 @@ classifiers = [
 ]
 requires-python = ">=3.12"
 dynamic = ["version"]
-dependencies = ["typer>=0.26.5"]
+dependencies = ["typer>=0.26.6"]
 
 [dependency-groups]
 dev = [
