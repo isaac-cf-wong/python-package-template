@@ -43,6 +43,16 @@ Tracker = "https://github.com/isaac-cf-wong/python-package-template/issues"
 Home = "https://github.com/isaac-cf-wong/python-package-template"
 "Release Notes" = "https://github.com/isaac-cf-wong/python-package-template/releases"
 
+[tool.dependency-support-policy]
+# Rolling support floors (SPEC 0): runtime lower bounds are raised on a schedule
+# by the support_floor_update.yml workflow, not by Renovate. See renovate.json.
+policy = "spec0"
+groups = ["project"]
+lock = "minimal"
+# For packages with ecosystem siblings released in lockstep, exclude them here
+# and let Renovate keep them at latest, e.g.:
+# exclude = ["my-sibling-package"]
+
 [tool.hatch.version]
 source = "vcs"
 

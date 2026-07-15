@@ -147,7 +147,10 @@ uv publish --publish-url https://test.pypi.org/legacy/
 
 ### Adding a New Dependency
 
-1. Add to `dependencies` or an optional group in `pyproject.toml`
+1. Add to `dependencies` or an optional group in `pyproject.toml` with a
+   lower-bound pin (`pkg>=X.Y`) — runtime floors are governed by the SPEC 0
+   support policy (see
+   [CI/CD and releases](ci_cd.md#dependency-management-spec-0))
 2. Update your environment: `uv pip install -e ".[dev]"` (or equivalent)
 3. Test that it works
 
