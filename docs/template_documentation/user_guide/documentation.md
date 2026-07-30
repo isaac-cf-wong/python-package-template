@@ -266,6 +266,11 @@ To deploy your documentation to GitHub Pages, follow these steps:
     - **Source**: Select "GitHub Actions"
     - This allows the documentation workflow to deploy directly
 4. Click **Save**
+5. Navigate to **Settings** → **Secrets and variables** → **Actions** →
+   **Variables** and add a repository variable named `DEPLOY_DOCS` with the
+   value `true`. The `deploy` job in `documentation.yml` only runs when this
+   variable is set to `"true"`, so this step is required before the workflow
+   will publish anything.
 
 ### 2. Configure Site URL (Optional but Recommended)
 

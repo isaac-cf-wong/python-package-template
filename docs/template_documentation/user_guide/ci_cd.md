@@ -69,9 +69,9 @@ When there are new commits since the latest tag:
 1. Calls `ci.yml` and `codeql.yml`
 2. Bumps the next semantic tag with `git-cliff` / `uv run git-cliff`
 3. Calls `release.yml` with that tag
-4. Builds wheels, runs smoke tests, and attempts `uv publish` against the
-   **`pypi`** environment (with `continue-on-error: true` so missing setup does
-   not fail the template)
+4. If the repository variable `PUBLISH_TO_PYPI` is `"true"`, builds wheels, runs
+   smoke tests, and runs `uv publish` against the **`pypi`** environment.
+   Otherwise the `publish` job is skipped entirely.
 
 ### `release.yml` (Release)
 
@@ -94,15 +94,17 @@ changelog from git-cliff.
 **Triggers:** `push` to `main` and `workflow_dispatch`.
 
 Runs `uv sync --extra docs --frozen` and `uv run zensical build`, then uploads
-the `site/` directory to GitHub Pages.
+the `site/` directory to GitHub Pages. The `deploy` job only runs when the
+repository variable `DEPLOY_DOCS` is `"true"`.
 
 ### `publish.yml` / `publish_testpypi.yml`
 
 **Triggers:** `workflow_dispatch` with a tag and environment selection.
 
-Build with `uv build`, smoke-test artifacts, then `uv publish`. These workflows
-also use `continue-on-error: true` on the publish step so the template stays
-green until you configure PyPI trusted publishing and GitHub environments.
+Build with `uv build`, then publish with `pypa/gh-action-pypi-publish` in the
+`publish-to-pypi` / `publish-to-testpypi` job. Those jobs only run when the
+repository variable `PUBLISH_TO_PYPI` / `PUBLISH_TO_TESTPYPI` (respectively) is
+`"true"`.
 
 ### `support_floor_update.yml` (Support floor update)
 
@@ -185,12 +187,23 @@ rules you want, then configure
 this repository’s **`scheduled_release.yml`** and **`publish.yml`** (or the
 TestPyPI workflow) together with the matching environment name.
 
-### Remove `continue-on-error` for real packages
+### Enable publishing and docs deployment with repository variables
 
-The template tolerates missing PyPI configuration. For production, remove
-`continue-on-error: true` from the publish steps (for example in
-`scheduled_release.yml` near the `uv publish` step, and in `publish.yml` /
-`publish_testpypi.yml`) so failed uploads fail the workflow.
+By default the template ships with publishing and documentation deployment
+disabled, so a freshly generated repository stays green with no PyPI or Pages
+setup. Each gated job checks a repository variable (**Settings → Secrets and
+variables → Actions → Variables**) and only runs when it is set to the string
+`"true"`:
+
+| Variable              | Gates                                                                     |
+| --------------------- | ------------------------------------------------------------------------- |
+| `PUBLISH_TO_PYPI`     | `publish.yml` (`publish-to-pypi`) and `scheduled_release.yml` (`publish`) |
+| `PUBLISH_TO_TESTPYPI` | `publish_testpypi.yml` (`publish-to-testpypi`)                            |
+| `DEPLOY_DOCS`         | `documentation.yml` (`deploy`)                                            |
+
+Set the relevant variable(s) to `true` once the matching GitHub environment,
+PyPI trusted publisher, and/or GitHub Pages source are configured. Leave a
+variable unset (or any value other than `"true"`) to keep that job disabled.
 
 ## Customization
 
@@ -225,8 +238,14 @@ Remove or gate the `codeql` job in `scheduled_release.yml` instead of editing
 
 ### PyPI publish is skipped or succeeds silently
 
-- Check for `continue-on-error: true` on publish steps
-- Verify the `pypi` environment and trusted publisher mapping
+- Confirm the `PUBLISH_TO_PYPI` (or `PUBLISH_TO_TESTPYPI`) repository variable
+  is set to `"true"` — the publish job is skipped entirely otherwise
+- Verify the `pypi` / `testpypi` environment and trusted publisher mapping
+
+### Documentation deploy is skipped
+
+- Confirm the `DEPLOY_DOCS` repository variable is set to `"true"`
+- Verify GitHub Pages is enabled with source **GitHub Actions**
 
 ## Resources
 
