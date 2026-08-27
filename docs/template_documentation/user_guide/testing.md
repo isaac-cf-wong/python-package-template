@@ -39,10 +39,12 @@ tests/
 # tests/test_example.py
 from your_package.example import add_numbers
 
+
 def test_add_numbers():
     """Test basic addition."""
     result = add_numbers(2, 3)
     assert result == 5
+
 
 def test_add_negative():
     """Test addition with negative numbers."""
@@ -58,10 +60,12 @@ Fixtures provide reusable test data and setup.
 # tests/conftest.py
 import pytest
 
+
 @pytest.fixture
 def sample_data():
     """Provide sample data for tests."""
     return {"name": "test", "value": 42}
+
 
 @pytest.fixture
 def temp_file(tmp_path):
@@ -70,9 +74,11 @@ def temp_file(tmp_path):
     file_path.write_text("content")
     return file_path
 
+
 # tests/test_example.py
 def test_with_fixture(sample_data):
     assert sample_data["name"] == "test"
+
 
 def test_file_operations(temp_file):
     assert temp_file.exists()
@@ -85,13 +91,18 @@ Run the same test with different inputs.
 ```python
 import pytest
 
-@pytest.mark.parametrize("input,expected", [
-    (1, 2),
-    (2, 3),
-    (10, 11),
-])
+
+@pytest.mark.parametrize(
+    "input,expected",
+    [
+        (1, 2),
+        (2, 3),
+        (10, 11),
+    ],
+)
 def test_increment(input, expected):
     from your_package.example import increment
+
     assert increment(input) == expected
 ```
 
@@ -105,10 +116,11 @@ def test_api_call(mocker):
     mock_response.json.return_value = {"status": "ok"}
 
     # Mock the requests.get call
-    mock_get = mocker.patch('requests.get')
+    mock_get = mocker.patch("requests.get")
     mock_get.return_value = mock_response
 
     from your_package.api import fetch_data
+
     result = fetch_data()
     assert result["status"] == "ok"
 ```
@@ -306,6 +318,7 @@ def pytest_configure(config):
 ```python
 def create_test_data(size):
     return [i for i in range(size)]
+
 
 @pytest.fixture(params=[10, 100, 1000])
 def test_data(request):

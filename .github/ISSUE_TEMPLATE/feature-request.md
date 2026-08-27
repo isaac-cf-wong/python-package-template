@@ -28,7 +28,6 @@ import package_name_placeholder
 
 # How you'd like to use the new feature
 result = package_name_placeholder.new_function(param="example")
-
 ```
 
 ## 🌈 Use Case & Benefits

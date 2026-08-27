@@ -96,6 +96,7 @@ from __future__ import annotations
 
 if __name__ == "__main__":
     from your_package.cli.main import app
+
     app()
 ```
 
@@ -139,12 +140,15 @@ utils/
 # tests/conftest.py
 import pytest
 
+
 @pytest.fixture
 def sample_data():
     return {"key": "value"}
 
+
 # tests/test_main_module.py
 from your_package.main_module import main_function
+
 
 def test_main_function(sample_data):
     result = main_function(sample_data)
