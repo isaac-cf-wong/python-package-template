@@ -38,14 +38,18 @@ jobs:
     ci:
         needs: check_new_commits
         if: ${{ needs.check_new_commits.outputs.has-changes == 'true' }}
-        uses: $/ci.yml
+        # GitHub's `$/` self-repository syntax is rejected for reusable
+        # workflow calls ("invalid value workflow reference: no version
+        # specified"); it is only accepted for action references. Keep the
+        # workspace-relative form.
+        uses: ./.github/workflows/ci.yml # zizmor: ignore[self-repository]
         permissions:
             contents: read
 
     codeql:
         needs: check_new_commits
         if: ${{ needs.check_new_commits.outputs.has-changes == 'true' }}
-        uses: $/codeql.yml
+        uses: ./.github/workflows/codeql.yml # zizmor: ignore[self-repository]
         permissions:
             security-events: write
             actions: read
@@ -137,7 +141,7 @@ jobs:
 
     release:
         needs: create_tag
-        uses: $/release.yml
+        uses: ./.github/workflows/release.yml # zizmor: ignore[self-repository]
         permissions:
             contents: write
             id-token: write
