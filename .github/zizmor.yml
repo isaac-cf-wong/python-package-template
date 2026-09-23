@@ -1,0 +1,13 @@
+# zizmor configuration - https://docs.zizmor.sh/configuration/
+rules:
+    dangerous-triggers:
+        # PR-title lint uses pull_request_target with read-only permissions
+        # and never checks out or executes PR code.
+        ignore:
+            - semantic_pull_request.yml
+    superfluous-actions:
+        # softprops/action-gh-release + git-cliff content is the established
+        # release pattern across this org's repositories.
+        ignore:
+            - draft_release.yml
+            - release.yml

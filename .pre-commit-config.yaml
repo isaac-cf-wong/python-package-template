@@ -1,3 +1,8 @@
+ci:
+    # pre-commit.ci cannot run the zizmor hook (language: system); it runs in
+    # the zizmor job of .github/workflows/ci.yml instead.
+    skip: [zizmor]
+
 repos:
     - repo: https://github.com/pre-commit/pre-commit-hooks
       rev: v6.0.0
@@ -50,6 +55,14 @@ repos:
       rev: v1.7.12
       hooks:
           - id: actionlint
+            # actionlint v1.7.12 predates GitHub's `$/` self-repository
+            # `uses:` syntax (actionlint#711) and rejects the valid new
+            # form; ignore only those messages until the pinned version
+            # understands it, then remove these args.
+            args:
+                - --ignore
+                - 'reusable workflow call "\$/.+" at "uses" is not following the
+                  format'
 
     - repo: https://github.com/astral-sh/uv-pre-commit
       rev: 0.12.18
@@ -61,3 +74,12 @@ repos:
       rev: v1.8.1
       hooks:
           - id: betterleaks
+
+    - repo: local
+      hooks:
+          - id: zizmor
+            name: zizmor (GitHub Actions security)
+            entry: uv run zizmor .github/workflows
+            language: system
+            pass_filenames: false
+            files: ^\.github/workflows/.*\.ya?ml$
