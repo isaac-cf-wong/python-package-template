@@ -17,19 +17,25 @@ on:
                 required: false
                 type: string
 
+permissions:
+    contents: read
+
 jobs:
     build:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
               with:
+                  persist-credentials: false
                   ref: ${{ inputs.tag_name || github.sha }}
                   fetch-depth: 0
 
             - name: Output build information
+              env:
+                  TAG_NAME: ${{ inputs.tag_name || github.sha }}
               run: |
                   echo "### Publishing Build :package:" >> $GITHUB_STEP_SUMMARY
-                  echo "- **Version tag**: ${{ inputs.tag_name || github.sha }}" >> $GITHUB_STEP_SUMMARY
+                  echo "- **Version tag**: $TAG_NAME" >> $GITHUB_STEP_SUMMARY
 
             - name: Install uv
               uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78 # v7
@@ -41,10 +47,15 @@ jobs:
               run: uv sync --group build --frozen
 
             - name: Set version for publishing
+              env:
+                  # Resolved in `env:` rather than in `run:` so the
+                  # user-supplied tag name can never be interpreted by the
+                  # shell (zizmor: template-injection).
+                  TAG_NAME: ${{ inputs.tag_name }}
               run: |
-                  if [ -n "${{ inputs.tag_name }}" ]; then
+                  if [ -n "$TAG_NAME" ]; then
                     # Use the tag, stripping 'v' prefix if present
-                    VERSION=$(echo "${{ inputs.tag_name }}" | sed 's/^v//')
+                    VERSION=$(echo "$TAG_NAME" | sed 's/^v//')
                   else
                     # For untagged builds, use a dev version without local part
                     # Get the dev version from hatch-vcs, then strip +local
