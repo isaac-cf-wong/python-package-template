@@ -55,14 +55,6 @@ repos:
       rev: v1.7.12
       hooks:
           - id: actionlint
-            # actionlint v1.7.12 predates GitHub's `$/` self-repository
-            # `uses:` syntax (actionlint#711) and rejects the valid new
-            # form; ignore only those messages until the pinned version
-            # understands it, then remove these args.
-            args:
-                - --ignore
-                - 'reusable workflow call "\$/.+" at "uses" is not following the
-                  format'
 
     - repo: https://github.com/astral-sh/uv-pre-commit
       rev: 0.12.18
