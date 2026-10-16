@@ -12,11 +12,11 @@ classifiers = [
   "Intended Audience :: Developers",
   "License :: OSI Approved :: BSD License",
   "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: 3.15",
 ]
-requires-python = ">=3.12"
+requires-python = ">=3.13"
 dynamic = ["version"]
 dependencies = ["typer>=0.26.8"]
 
@@ -143,7 +143,7 @@ pytest_add_cli_args = [
 
 [tool.ruff]
 line-length = 120 # Matches Black's default
-target-version = "py312" # Align with CI (3.12–3.14) and requires-python (>=3.12)
+target-version = "py313" # Align with CI (3.13–3.15) and requires-python (>=3.13)
 lint.extend-select = [
   "E",
   "F",

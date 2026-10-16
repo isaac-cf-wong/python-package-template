@@ -5,7 +5,7 @@ dependencies for **python_package_template**.
 
 ## Requirements
 
-- **Python 3.12 or newer** (`requires-python` in `pyproject.toml`)
+- **Python 3.13 or newer** (`requires-python` in `pyproject.toml`)
 - Linux, macOS, or Windows
 
 ## Install from a checkout (recommended)
