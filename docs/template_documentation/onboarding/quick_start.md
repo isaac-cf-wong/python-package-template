@@ -12,7 +12,7 @@ cd YOUR_REPO_NAME
 
 ## 2. Install dependencies with uv
 
-This template targets **Python 3.12+** (see `requires-python` in
+This template targets **Python 3.13+** (see `requires-python` in
 `pyproject.toml`). Install [uv](https://docs.astral.sh/uv/) if needed, then from
 the repo root:
 

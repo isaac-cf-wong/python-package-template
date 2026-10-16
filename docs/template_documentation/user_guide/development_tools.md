@@ -90,7 +90,7 @@ hook in this template.
 ## CI
 
 The **CI** workflow runs `uv sync --extra test,ci --frozen` and `uv run pytest`
-on Linux, macOS, and Windows for Python 3.12–3.14. Quality gates you care about
+on Linux, macOS, and Windows for Python 3.13–3.15. Quality gates you care about
 beyond tests should be added explicitly (for example a job that runs Ruff) if
 you want them on every push.
 

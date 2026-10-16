@@ -5,7 +5,7 @@ security analysis, releases, documentation, and optional PyPI publishing.
 
 ## Overview
 
-- **CI** — `pytest` on Linux, macOS, and Windows for Python 3.12, 3.13, and 3.14
+- **CI** — `pytest` on Linux, macOS, and Windows for Python 3.13, 3.14, and 3.15
   (`ci.yml`)
 - **CodeQL** — scheduled and on pushes to `main` (`codeql.yml`; also invoked
   from the scheduled release pipeline)
@@ -37,14 +37,14 @@ separate job in `ci.yml`. Add a workflow job if you want Ruff in CI as well.
 upload.
 
 **Matrix:** the `highest` resolution runs on Linux, macOS, and Windows for
-Python 3.12–3.14. One extra `lowest-direct` cell (Ubuntu, Python 3.12) resolves
+Python 3.13–3.15. One extra `lowest-direct` cell (Ubuntu, Python 3.13) resolves
 every direct dependency to its declared lower bound, so the SPEC 0 support
 floors in `pyproject.toml` are proven to actually import and pass tests. Both
 paths use `--upgrade` (not `--frozen`) so CI tests real resolutions rather than
 the committed lock.
 
 **Branch protection:** require the matrix jobs you care about, for example
-`test (ubuntu-latest, 3.12, highest)` (exact names appear in the Actions UI).
+`test (ubuntu-latest, 3.13, highest)` (exact names appear in the Actions UI).
 
 ### `codeql.yml` (CodeQL Advanced)
 
