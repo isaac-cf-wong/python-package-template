@@ -77,6 +77,10 @@ The `src/` layout offers several advantages:
 
 from __future__ import annotations
 
+# PEP 810: on Python 3.15+, defer loading version.py (and importlib.metadata) until
+# __version__ is first read. Older versions ignore this list and import eagerly.
+__lazy_modules__ = ["your_package.version"]
+
 from your_package.main_module import main_function
 from your_package.version import __version__
 
@@ -86,6 +90,8 @@ __all__ = ["__version__", "main_function"]
 - Imports key functions/classes for easy access
 - Defines `__all__` for controlled exports
 - Includes version information
+- Lists `version` in `__lazy_modules__` so that, on Python 3.15+, importing the
+  package does not pay for `importlib.metadata` until `__version__` is read
 
 #### `__main__.py`
 
