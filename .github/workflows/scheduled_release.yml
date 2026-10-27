@@ -29,11 +29,17 @@ jobs:
                   persist-credentials: false
                   fetch-depth: 0
 
-            - name: Check for new commits
+            # Release only when something that reaches the built package changed
+            # since the latest tag: its sources, packaging config, readme, license
+            # or dynamic metadata files. Dev-dependency bumps, lock-file
+            # maintenance, CI, tests and docs do not count. Add more files to
+            # count with `paths`, or leave some out with `exclude-paths`.
+            - name: Check for package changes
               id: check_commits
-              uses: isaac-cf-wong/detect-git-changes-action@7a2a8da1d825e42f95f1f088760332b18604e781 # v0.0.23
+              uses: isaac-cf-wong/detect-git-changes-action@f0b91b32ed9c3e8984a85f4be5a271f4ea6269d8 # v0.1.0
               with:
                   use-latest-tag: true
+                  preset: python
 
     ci:
         needs: check_new_commits

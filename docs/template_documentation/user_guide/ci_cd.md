@@ -64,7 +64,8 @@ Validates the PR title with
 
 **Triggers:** `cron: '0 0 * * 2'` (Tuesday 00:00 UTC) and `workflow_dispatch`.
 
-When there are new commits since the latest tag:
+When something that reaches the built package has changed since the latest tag
+(see [What counts as a change](#what-counts-as-a-change)):
 
 1. Calls `ci.yml` and `codeql.yml`
 2. Bumps the next semantic tag with `git-cliff` / `uv run git-cliff`
@@ -72,6 +73,22 @@ When there are new commits since the latest tag:
 4. If the repository variable `PUBLISH_TO_PYPI` is `"true"`, builds wheels, runs
    smoke tests, and runs `uv publish` against the **`pypi`** environment.
    Otherwise the `publish` job is skipped entirely.
+
+#### What counts as a change
+
+The `check_new_commits` job runs
+[detect-git-changes-action](https://github.com/isaac-cf-wong/detect-git-changes-action)
+with `preset: python`. It counts a change only when it can alter the built
+wheel: the package sources (located from the build backend's configuration), the
+packaging tables of `pyproject.toml` (`[build-system]`, `[project]`, the
+backend's build settings), the readme and license files, and files that dynamic
+metadata is read from. Edits to `[dependency-groups]`, `[tool.*]` settings such
+as ruff or pytest, `uv.lock`, CI workflows, tests and docs do not, so routine
+dev-dependency bumps and lock-file maintenance don't trigger a release. A
+runtime dependency change in `[project]` does.
+
+To count more files, add them to `paths` on that step; to leave some out, use
+`exclude-paths`.
 
 ### `release.yml` (Release)
 
@@ -172,8 +189,8 @@ action is required if commits warrant a new version.
 ### Manual runs
 
 - **Scheduled Release** — Actions → **Scheduled Release** → **Run workflow** to
-  mimic the weekly job immediately (still subject to “new commits since last
-  tag” logic).
+  mimic the weekly job immediately (still subject to the
+  [package-change check](#what-counts-as-a-change)).
 - **Release** — supply an existing tag to regenerate release notes for that tag.
 - **Publish** / **Publish TestPyPI** — build and upload a chosen tag.
 
@@ -233,8 +250,12 @@ Remove or gate the `codeql` job in `scheduled_release.yml` instead of editing
 
 ### Scheduled release does nothing
 
-- Confirm there are commits after the latest tag (the workflow skips otherwise)
-- Inspect the `check_new_commits` job output
+- Confirm a change since the latest tag reaches the package (the workflow skips
+  otherwise; see [What counts as a change](#what-counts-as-a-change)). A commit
+  that only touches dev dependencies, `uv.lock`, CI, tests or docs is skipped by
+  design
+- Inspect the `check_new_commits` job output: its log lists the files that
+  counted, and any warning about package sources it could not locate
 
 ### PyPI publish is skipped or succeeds silently
 
