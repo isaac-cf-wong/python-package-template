@@ -36,7 +36,7 @@ jobs:
             # count with `paths`, or leave some out with `exclude-paths`.
             - name: Check for package changes
               id: check_commits
-              uses: isaac-cf-wong/detect-git-changes-action@f0b91b32ed9c3e8984a85f4be5a271f4ea6269d8 # v0.1.0
+              uses: isaac-cf-wong/detect-git-changes-action@fd41a9c5553a9148e8f78399855fd19e04801501 # v0.2.0
               with:
                   use-latest-tag: true
                   preset: python
