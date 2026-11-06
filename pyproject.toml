@@ -29,7 +29,7 @@ dev = [
   "pytest-mock>=3.17.0",
   "pytest>=9.2.0",
   "mutmut>=3.8.1",
-  "zizmor>=1.31.1",
+  "zizmor>=1.32.0",
 ]
 docs = ["zensical>=0.0.74", "mkdocstrings-python>=2.0.10"]
 build = ["hatch>=1.18.2"]
