@@ -71,8 +71,9 @@ When something that reaches the built package has changed since the latest tag
 2. Bumps the next semantic tag with `git-cliff` / `uv run git-cliff`
 3. Calls `release.yml` with that tag
 4. If the repository variable `PUBLISH_TO_PYPI` is `"true"`, builds wheels, runs
-   smoke tests, and runs `uv publish` against the **`pypi`** environment.
-   Otherwise the `publish` job is skipped entirely.
+   smoke tests, generates [PEP 740](https://peps.python.org/pep-0740/)
+   attestations with **astral-sh/attest-action**, and runs `uv publish` against
+   the **`pypi`** environment. Otherwise the `publish` job is skipped entirely.
 
 #### What counts as a change
 
@@ -118,10 +119,11 @@ repository variable `DEPLOY_DOCS` is `"true"`.
 
 **Triggers:** `workflow_dispatch` with a tag and environment selection.
 
-Build with `uv build`, then publish with `pypa/gh-action-pypi-publish` in the
-`publish-to-pypi` / `publish-to-testpypi` job. Those jobs only run when the
-repository variable `PUBLISH_TO_PYPI` / `PUBLISH_TO_TESTPYPI` (respectively) is
-`"true"`.
+Build with `uv build`, sign the distributions with **astral-sh/attest-action**
+(see [Provenance attestations](#provenance-attestations)), then publish with
+`uv publish` in the `publish-to-pypi` / `publish-to-testpypi` job. Those jobs
+only run when the repository variable `PUBLISH_TO_PYPI` / `PUBLISH_TO_TESTPYPI`
+(respectively) is `"true"`.
 
 ### `support_floor_update.yml` (Support floor update)
 
@@ -221,6 +223,26 @@ variables → Actions → Variables**) and only runs when it is set to the strin
 Set the relevant variable(s) to `true` once the matching GitHub environment,
 PyPI trusted publisher, and/or GitHub Pages source are configured. Leave a
 variable unset (or any value other than `"true"`) to keep that job disabled.
+
+### Provenance attestations
+
+Both publishing paths record [PEP 740](https://peps.python.org/pep-0740/)
+attestations, which PyPI and TestPyPI show as **Provenance** on each released
+file. `uv publish` uploads attestations but does not create them, so every
+publish job runs the **Generate PEP 740 attestations** step
+(`astral-sh/attest-action`) first. It writes a
+`<distribution>.publish.attestation` file next to each distribution in `dist/`,
+signed with the workflow's OIDC identity, and `uv publish` uploads it with the
+matching file.
+
+Both paths require `id-token: write`, which also provides the trusted publishing
+credential. Verify a published file with:
+
+```bash
+uvx pypi-attestations verify pypi \
+  --repository https://github.com/<owner>/<repo> \
+  pypi:<distribution-file>
+```
 
 ## Customization
 
