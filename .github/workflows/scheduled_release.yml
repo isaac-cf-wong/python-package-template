@@ -197,5 +197,12 @@ jobs:
                   uv run --isolated --no-project --with dist/*.tar.gz
                   tests/smoke_test.py
 
+            # `uv publish` does not generate PEP 740 attestations itself; it
+            # uploads any `<distribution>.publish.attestation` files it finds.
+            # attest-action signs each distribution in `dist/` with the
+            # workflow's OIDC identity so PyPI records the provenance.
+            - name: Generate PEP 740 attestations
+              uses: astral-sh/attest-action@39b6ce43875c196a579e31635b11aa2a2036384a # v0.0.7
+
             - name: Publish
               run: uv publish
